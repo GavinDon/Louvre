@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--左滑删除-->
+    <declare-styleable name="EasySwipeMenuLayout">
+        <attr name="leftMenuView" format="reference"/>
+        <attr name="rightMenuView" format="reference"/>
+        <attr name="contentView" format="reference"/>
+        <attr name="canRightSwipe" format="boolean"/>
+        <attr name="canLeftSwipe" format="boolean"/>
+        <attr name="fraction" format="float"/>
+    </declare-styleable>
+    <!--购物车计数-->
+    <declare-styleable name="AmountView">
+        <!-- 左右2边+-按钮的宽度 -->
+        <attr name="btnWidth" format="dimension"/>
+        <!-- 中间TextView的宽度 -->
+        <attr name="tvWidth" format="dimension"/>
+        <!--<attr name="tvColor" format="color"/>-->
+        <attr name="tvTextSize" format="dimension"/>
+        <attr name="btnTextSize" format="dimension"/>
+    </declare-styleable>
+</resources>

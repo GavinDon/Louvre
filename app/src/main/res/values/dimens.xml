@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginDp">16dp</dimen>
+    <dimen name="dp16">16dp</dimen>
+    <dimen name="dp18">18dp</dimen>
+    <dimen name="normalSp">16sp</dimen>
+    <dimen name="titleSp">18sp</dimen>
+    <dimen name="smallSp">14sp</dimen>
+</resources>

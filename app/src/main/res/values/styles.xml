@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/status_bar</item>
+        <item name="colorPrimaryDark">@color/status_bar</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@android:color/white</item>
+
+    </style>
+    <!--保证在低于Android L的版本上也能找到这个style，所以复制一遍style，但是留空就行-->
+    <style name="TransitionTheme" parent="AppTheme" />
+
+    <!--<style name="AnimActivityTheme" parent="@android:style/Animation.Activity">-->
+        <!--<item name="android:windowAnimationStyle">@style/MyWindowAnimTheme</item>-->
+    <!--</style>-->
+
+
+    <!--<style name="MyWindowAnimTheme">-->
+        <!--<item name="android:activityOpenEnterAnimation">@anim/top_to_bottom_in</item>-->
+        <!--<item name="android:activityOpenExitAnimation">@anim/top_to_bottom_out</item>-->
+        <!--<item name="android:activityCloseEnterAnimation">@anim/bottom_to_top_in</item>-->
+        <!--<item name="android:activityCloseExitAnimation">@anim/bottom_to_top_out</item>-->
+    <!--</style>-->
+
+
+</resources>

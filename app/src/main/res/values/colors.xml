@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="dividerColor">#f0f0f0</color>
+    <color name="status_bar">#303030</color>
+    <color name="bottom_bar">#a87766</color>
+    <!--主内容 Black 黑色-->
+    <color name="black">#000</color>
+    <!--大段的说明内容而且属于主要内容用 Semi 黑。-->
+    <color name="semi">#353535</color>
+    <!--次要内容 Grey 灰色-->
+    <color name="grey">#888888</color>
+    <!--时间戳与表单缺省值 Light 灰色-->
+    <color name="light">#b2b2b2</color>
+    <color name="price_red">#d81e06</color>
+    <color name="price_red_press">#d75140</color>
+
+
+
+
+</resources>

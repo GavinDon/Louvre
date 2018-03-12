@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/status_bar">
+
+    <include
+        android:id="@+id/home_title"
+        layout="@layout/common_title"
+        app:layout_constraintTop_toBottomOf="parent"
+        />
+
+    <RadioGroup
+        android:id="@+id/rb"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/home_title"
+        >
+
+        <RadioButton
+            android:id="@+id/rbLu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_home_tab"
+            android:button="@null"
+            android:gravity="center"
+            android:text="翰墨卢浮宫"
+            android:textColor="@color/sel_home_tab_text"
+            />
+
+        <RadioButton
+            android:id="@+id/rbArticle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_home_tab"
+            android:button="@null"
+            android:gravity="center"
+            android:text="艺术家"
+            android:textColor="@color/sel_home_tab_text"
+
+            />
+
+        <RadioButton
+            android:id="@+id/rbProduct"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_home_tab"
+            android:button="@null"
+            android:gravity="center"
+            android:text="作品"
+            android:textColor="@color/sel_home_tab_text"
+            />
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpTab"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rb"
+        app:layout_constraintVertical_bias="0.0"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

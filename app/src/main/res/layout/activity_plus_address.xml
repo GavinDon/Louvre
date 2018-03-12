@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.stxx.louvre.ui.activity.PlusAddressActivity">
+
+    <include
+        android:id="@+id/plus_address_include"
+        layout="@layout/common_activity_title"
+        />
+
+    <LinearLayout
+        android:id="@+id/plus_address_ll_contract"
+        android:layout_width="88dp"
+        android:layout_height="122dp"
+        android:clickable="true"
+        android:background="@drawable/shape_choose_contact_bg"
+        android:gravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_include"
+        >
+
+        <TextView
+            android:id="@+id/plus_address_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:drawableTop="@mipmap/add_contract"
+            android:gravity="center"
+            android:text="选联系人"
+            android:textColor="@color/semi"
+            android:textSize="@dimen/sp_12"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/plus_address_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:text="收货人:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_include"
+        />
+
+    <EditText
+        android:id="@+id/plus_address_et_name"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="4dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toRightOf="@id/plus_address_tv_name"
+        app:layout_constraintRight_toLeftOf="@id/plus_address_ll_contract"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_include"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/plus_address_ll_contract"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_et_name"
+        />
+
+    <TextView
+        android:id="@+id/plus_address_tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:text="联系方式:"
+        app:layout_constraintLeft_toLeftOf="@+id/plus_address_tv_name"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_name"
+        />
+
+    <EditText
+        android:id="@+id/plus_address_et_phone"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@null"
+        app:layout_constraintLeft_toRightOf="@id/plus_address_tv_phone"
+        app:layout_constraintRight_toLeftOf="@id/plus_address_ll_contract"
+        app:layout_constraintTop_toTopOf="@id/plus_address_tv_phone"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/plus_address_ll_contract"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_et_phone"
+        />
+
+    <TextView
+        android:id="@+id/plus_address_tv_area"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:text="所在地区:"
+        app:layout_constraintLeft_toLeftOf="@+id/plus_address_tv_phone"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_phone"
+        />
+
+    <TextView
+        android:id="@+id/plus_address_tv_checked_area"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/plus_address_tv_area"
+        app:layout_constraintRight_toLeftOf="@id/plus_address_iv_area"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_et_phone"
+        />
+
+    <ImageView
+        android:id="@+id/plus_address_iv_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:scaleType="centerInside"
+        android:src="@mipmap/arrow_right"
+        app:layout_constraintBottom_toBottomOf="@id/plus_address_tv_area"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/plus_address_tv_area"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_area"
+        />
+
+
+    <TextView
+        android:id="@+id/plus_address_tv_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:text="详细地址:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_area"
+        />
+
+    <EditText
+        android:id="@+id/plus_address_et_detail"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="街道、楼牌号等"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="@id/plus_address_tv_detail"
+        app:layout_constraintLeft_toRightOf="@id/plus_address_tv_detail"
+        app:layout_constraintTop_toTopOf="@id/plus_address_tv_detail"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_detail"/>
+
+    <TextView
+        android:id="@+id/plus_address_tv_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:text="标签"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plus_address_tv_detail"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/plus_address_rv_flag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/plus_address_tv_flag"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/plus_address_tv_flag"/>
+
+
+</android.support.constraint.ConstraintLayout>

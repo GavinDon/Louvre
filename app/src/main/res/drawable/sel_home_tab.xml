@@ -5,7 +5,7 @@
             <!-- 第一层 -->
             <item>
                 <shape>
-                    <gradient android:centerColor="#b2867d" android:endColor="@android:color/transparent" android:startColor="@android:color/transparent"  android:type="linear" />
+                    <gradient android:centerColor="#b2867d" android:endColor="@android:color/transparent" android:startColor="@android:color/transparent" android:type="linear"/>
                 </shape>
             </item>
             <!-- 第二层 -->

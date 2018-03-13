@@ -9,6 +9,7 @@ class Constaint {
 
     companion object {
         val SHARE_ELMMENT = "share_goods_img"
+        val PLUS_ADDRESS_REQUEST_CODE=101
 
     }
 }

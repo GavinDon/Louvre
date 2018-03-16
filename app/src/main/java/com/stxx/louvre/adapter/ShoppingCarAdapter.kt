@@ -3,12 +3,16 @@ package com.stxx.louvre.adapter
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.stxx.louvre.R
 import com.stxx.louvre.entity.ShoppingCarBean
+import com.stxx.louvre.entity.event.ShoppingCartEvent
 import com.stxx.louvre.widgets.AmountView
+import org.greenrobot.eventbus.EventBus
 
 /**
  * description:购物车适配器
@@ -16,22 +20,38 @@ import com.stxx.louvre.widgets.AmountView
 
  */
 class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) : BaseQuickAdapter<ShoppingCarBean, BaseViewHolder>(layoutResId, data) {
-    private lateinit var mListener: OnAmountChangeListener
+
+    private var position: Int = -1
+    private val shoppingEvent: ShoppingCartEvent = ShoppingCartEvent()
+
     override fun convert(helper: BaseViewHolder?, item: ShoppingCarBean?) {
         helper!!.setText(R.id.tv_shopping_cart_title, item!!.goodsName)
                 .setText(R.id.tv_shopping_cart_detail, item.description)
                 .setText(R.id.tv_shopping_cart_price, item.price.toString())
                 .setChecked(R.id.cb_shopping_cart, item.checked)
-                .addOnClickListener(R.id.cb_shopping_cart)
-//                .setNestView(R.id.iv_shopping_cart)
+                .addOnClickListener(R.id.shopping_cart_tv_deleter)
+                .addOnClickListener(R.id.ada_shopping_cart_content)
 //        Glide.with(mContext)
 //                .load(ContextCompat.getDrawable(mContext, R.mipmap.ic_launcher))
 //                .into(helper.getView(R.id.iv_shopping_cart))
-
-
-        /**
-         * 购物车加减数量
-         */
+        val itemCheckbox = helper.getView<CheckBox>(R.id.cb_shopping_cart) //item checkBox
+        val itemDeleter = helper.getView<TextView>(R.id.shopping_cart_tv_deleter) // item delete
+        itemCheckbox.setOnClickListener {
+            position = data.indexOf(item)
+            val checkState = (it as CheckBox).isChecked
+            data[position].checked = checkState
+            notifyItemChanged(position, item)
+            countNum()
+            EventBus.getDefault().post(shoppingEvent)
+        }
+        itemDeleter.setOnClickListener {
+            position = data.indexOf(item)
+            remove(position)
+            notifyItemRemoved(position)
+            countNum()
+            EventBus.getDefault().post(shoppingEvent)
+        }
+        //购物车加减
         val amountView = helper.getView<AmountView>(R.id.amount_shopping_cart)
                 .setGoodsStorage(10)
         val numView = amountView.findViewById<EditText>(R.id.etAmount2)
@@ -39,7 +59,6 @@ class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) 
         numView.setText(item.goodsAmount.toString())
         amountView.setOnAmountChangeListener(object : AmountView.OnAmountChangeListener {
             override fun onAmountChange(view: View, oldAmout: Int, amount: Int) {
-
                 if (amount > 1) {
                     btnDecrease.isClickable = true
                     btnDecrease.setTextColor(ContextCompat.getColor(mContext, R.color.semi))
@@ -49,21 +68,47 @@ class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) 
                 }
                 //当开始加数或者减数的时候默认选中 并更新适配器的数据
                 val currentPos = data.indexOf(item)
-//                mData[currentPos].checked = true
                 mData[currentPos].goodsAmount = amount
+                mData[currentPos].checked=true //只要加减数量就默认选中
                 notifyItemChanged(currentPos, mData[currentPos])
-                mListener.onAmountChange(amount, currentPos)
+                countNum()
+                EventBus.getDefault().post(shoppingEvent)
             }
         })
-
-
     }
 
-    fun setOnAmountChange(onAmountChange: OnAmountChangeListener) {
-        mListener = onAmountChange
+    /**
+     * 计算价格，数量
+     */
+    private fun countNum() {
+        //选中数量
+        shoppingEvent.num = mData.count { it.checked }
+        //全选状态
+        shoppingEvent.state = shoppingEvent.num == mData.size
+        //选中的总价格(使用kotlin操作符非常方便的实现)
+        shoppingEvent.total = mData.filter { it.checked }.sumByDouble {
+            it.goodsAmount * it.price.toDouble()
+        }
     }
 
-    interface OnAmountChangeListener {
-        fun onAmountChange(nowAmount: Int, position: Int)
+
+    /**
+     * 全选or反选
+     * @param isChecked 选中还是取消选中
+     */
+    fun AllOrNone(isChecked: Boolean) {
+        if (isChecked)
+            mData.forEach {
+                it.checked = true
+            }
+        else
+            mData.forEachIndexed { index: Int, _: ShoppingCarBean? ->
+                val mSourceData = mData[index]
+                mSourceData.checked = false
+            }
+        notifyDataSetChanged()
+        countNum()
+        EventBus.getDefault().post(shoppingEvent)
     }
+
 }

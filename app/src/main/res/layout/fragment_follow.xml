@@ -134,7 +134,8 @@
             android:id="@+id/shopping_cart_btn_pay"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="aa"
+            android:text="去结算"
+            android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="parent"
             />
 

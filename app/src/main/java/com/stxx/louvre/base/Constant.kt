@@ -5,11 +5,12 @@ package com.stxx.louvre.base
  * Created by liNan on 2018/3/8 10:39
 
  */
-class Constaint {
+class Constant {
 
     companion object {
         val SHARE_ELMMENT = "share_goods_img"
-        val PLUS_ADDRESS_REQUEST_CODE=101
+        val PLUS_ADDRESS_REQUEST_CODE = 101
+        val REQUEST_BASE_URL = ""
 
     }
 }

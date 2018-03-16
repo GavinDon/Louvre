@@ -17,7 +17,11 @@ abstract class BaseFragment: Fragment() {
         if (savedInstanceState != null) {
             val isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN)
             val ft = fragmentManager!!.beginTransaction()
-            if (isSupportHidden) ft.hide(this) else ft.show(this)
+            if (isSupportHidden) {
+                ft.hide(this)
+            } else {
+                ft.show(this)
+            }
             ft.commit()
         }
     }

@@ -1,7 +1,9 @@
 package com.stxx.louvre.base
 
 import android.app.Application
+import android.content.Context
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
+import kotlin.properties.Delegates
 
 /**
  * description:
@@ -9,11 +11,19 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 
  */
 class MyApplication : Application() {
+    companion object {
+        var appContext: Context by Delegates.notNull()
+    }
 
     override fun onCreate() {
         super.onCreate()
+        appContext = getAppContext()
         //初始化滑动返回
-        BGASwipeBackHelper.init(this,null)
+        BGASwipeBackHelper.init(this, null)
+    }
+
+    private fun getAppContext(): Context {
+        return this.applicationContext
     }
 
 }

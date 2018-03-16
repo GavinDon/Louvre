@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
-import com.stxx.louvre.base.Constaint
+import com.stxx.louvre.base.Constant
 import com.stxx.louvre.selector.SelectorFactory
 import com.stxx.louvre.selector.SelectorShape
 import com.stxx.louvre.selector.Shape
@@ -30,7 +30,7 @@ class DeliveryAddressActivity : BaseActivity() {
                 .build())
 
         address_tv_new.setOnClickListener {
-            startActivityForResult<PlusAddressActivity>(Constaint.PLUS_ADDRESS_REQUEST_CODE, "name" to "plus")
+            startActivityForResult<PlusAddressActivity>(Constant.PLUS_ADDRESS_REQUEST_CODE, "name" to "plus")
         }
 
     }

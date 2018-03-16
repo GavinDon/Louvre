@@ -9,5 +9,5 @@ data class ShoppingCarBean(var checked: Boolean,
                            val imgUrl: String,
                            val goodsName: String,
                            val description: String,
-                           val price: Float,
-                           var goodsAmount:Int)
+                           val price: Float, //单价
+                           var goodsAmount: Int) //选中数量

@@ -35,15 +35,15 @@ class RecommendFragment : BaseFragment() {
 
     private val leftNames = arrayOf("张三", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "").toMutableList()
     override fun initView() {
-      val   leftUi = UI {
+        val leftUi = UI {
             radioGroup {
                 orientation = LinearLayout.VERTICAL
                 gravity = Gravity.CENTER
-                for (i in 0 until leftNames.size) {
+                leftNames.forEachIndexed { i, item ->
                     val mRadioButton = radioButton {
                         id = i
                         isClickable = true
-                        text = leftNames[i]
+                        text = item
                         textSize = 14f
                         textColorResource = R.color.sel_recommend_left_text
 //                        setTextColor(createColorStateList("#a87766","#3F51B5"))
@@ -98,7 +98,6 @@ class RecommendFragment : BaseFragment() {
     }
 
 
-
     private fun createColorStateList(selected: String, normal: String): ColorStateList {
         val colors = intArrayOf(Color.parseColor(selected), Color.parseColor(normal))
         val states = arrayOfNulls<IntArray>(2)
@@ -107,7 +106,6 @@ class RecommendFragment : BaseFragment() {
         states[1] = intArrayOf(-1)
         return ColorStateList(states, colors)
     }
-
 
 
     override fun onDestroyView() {

@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="选联系人"
             android:textColor="@color/semi"
-            android:textSize="@dimen/sp_12"
+            android:textSize="@dimen/sp_14"
             />
     </LinearLayout>
 
@@ -43,6 +43,8 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:gravity="center_vertical"
         android:text="收货人:"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/plus_address_include"
         />
@@ -51,9 +53,11 @@
         android:id="@+id/plus_address_et_name"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="8dp"
         android:background="@null"
+        android:textSize="@dimen/sp_14"
         android:gravity="center_vertical"
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toRightOf="@id/plus_address_tv_name"
         app:layout_constraintRight_toLeftOf="@id/plus_address_ll_contract"
         app:layout_constraintTop_toBottomOf="@id/plus_address_include"
@@ -75,6 +79,8 @@
         android:layout_marginTop="1dp"
         android:gravity="center_vertical"
         android:text="联系方式:"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toLeftOf="@+id/plus_address_tv_name"
         app:layout_constraintTop_toBottomOf="@id/plus_address_tv_name"
         />
@@ -84,6 +90,9 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@null"
+        android:textColor="@color/semi"
+        android:layout_marginLeft="8dp"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintLeft_toRightOf="@id/plus_address_tv_phone"
         app:layout_constraintRight_toLeftOf="@id/plus_address_ll_contract"
         app:layout_constraintTop_toTopOf="@id/plus_address_tv_phone"
@@ -105,6 +114,9 @@
         android:layout_marginTop="1dp"
         android:gravity="center_vertical"
         android:text="所在地区:"
+        android:textSize="@dimen/sp_14"
+
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toLeftOf="@+id/plus_address_tv_phone"
         app:layout_constraintTop_toBottomOf="@id/plus_address_tv_phone"
         />
@@ -114,9 +126,12 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:clickable="true"
-        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="1dp"
         android:gravity="center_vertical"
+        android:textSize="@dimen/sp_14"
+
+        android:textColor="@color/semi"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/plus_address_tv_area"
         app:layout_constraintRight_toLeftOf="@id/plus_address_iv_area"
@@ -153,6 +168,9 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:gravity="center_vertical"
         android:text="详细地址:"
+        android:textSize="@dimen/sp_14"
+
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/plus_address_tv_area"
         />
@@ -161,10 +179,11 @@
         android:id="@+id/plus_address_et_detail"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginLeft="8dp"
         android:background="@null"
         android:gravity="center_vertical"
         android:hint="街道、楼牌号等"
+        android:textColor="@color/semi"
         android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toBottomOf="@id/plus_address_tv_detail"
         app:layout_constraintLeft_toRightOf="@id/plus_address_tv_detail"
@@ -183,6 +202,9 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:gravity="center_vertical"
         android:text="标签"
+        android:textSize="@dimen/sp_14"
+
+        android:textColor="@color/semi"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/plus_address_tv_detail"
         />

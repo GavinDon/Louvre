@@ -26,6 +26,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         if (savedInstanceState != null) {
         }
     }
+
     override fun inflateViewId(): Int = R.layout.activity_main
     override fun initView(savedInstanceState: Bundle?) {
         mTextBageItem.hide()
@@ -64,11 +65,14 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
 
     @Subscribe
     open fun onEvent(bottomBageEvent: BottomBageEvent) {
-        mTextBageItem.setBorderWidth(4)
-                .setBackgroundColorResource(R.color.price_red)
-                .setText("" + bottomBageEvent.num)
-                .setHideOnSelect(bottomBageEvent.num>0)
-        toast("bageEvent")
+        if (bottomBageEvent.num > 0)
+            mTextBageItem.setBorderWidth(4)
+                    .setBackgroundColorResource(R.color.price_red)
+                    .setText(bottomBageEvent.num.toString())
+                    .show(true)
+        else
+            mTextBageItem.setText("")
+                    .hide(true)
     }
 
     override fun onTabSelected(position: Int) {

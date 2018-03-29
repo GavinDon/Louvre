@@ -15,6 +15,7 @@ import com.stxx.louvre.R
 import com.stxx.louvre.adapter.ShoppingCarAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.ShoppingCarBean
+import com.stxx.louvre.entity.event.BottomBageEvent
 import com.stxx.louvre.entity.event.ShoppingCartEvent
 import com.stxx.louvre.selector.SelectorFactory
 import com.stxx.louvre.selector.SelectorShape
@@ -54,6 +55,10 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         EventBus.getDefault().unregister(this)
     }
 
+    /**
+     * 从适配器中发送数据过来(此处相当于观察者)
+     * 此处只更新底部总价、数量、是否全选
+     */
     @Subscribe
     fun onEvent(shoppingCartEvent: ShoppingCartEvent) {
         shopping_cart_tv_price.text = shoppingCartEvent.total.toString()
@@ -69,6 +74,8 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
             isClickItemCb = false
         }
         shopping_cart_cb_all.isChecked = shoppingCartEvent.state!!
+        //发送数据到mainActivity来更新底部购物车按钮bage数量
+        EventBus.getDefault().post(BottomBageEvent(num))
     }
 
     override fun initView() {

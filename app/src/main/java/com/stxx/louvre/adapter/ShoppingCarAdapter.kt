@@ -58,7 +58,7 @@ class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) 
         val btnDecrease = amountView.findViewById<Button>(R.id.btnDecrease)
         numView.setText(item.goodsAmount.toString())
         amountView.setOnAmountChangeListener(object : AmountView.OnAmountChangeListener {
-            override fun onAmountChange(view: View, oldAmout: Int, amount: Int) {
+            override fun onAmountChange(view: View, oldAmount: Int, amount: Int) {
                 if (amount > 1) {
                     btnDecrease.isClickable = true
                     btnDecrease.setTextColor(ContextCompat.getColor(mContext, R.color.semi))

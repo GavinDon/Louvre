@@ -74,7 +74,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
             isClickItemCb = false
         }
         shopping_cart_cb_all.isChecked = shoppingCartEvent.state!!
-        //发送数据到mainActivity来更新底部购物车按钮bage数量
+        //发送数据到mainActivity来更新底部购物车按钮badge数量
         EventBus.getDefault().post(BottomBageEvent(num))
     }
 

@@ -80,6 +80,7 @@ class AddressPickerView : LinearLayout, TabLayout.OnTabSelectedListener, BaseQui
         addressJsonStream.readLines().forEach {
             jsonSB.append(it)
         }
+        addressJsonStream.close()
         addressPickerBean = Gson().fromJson(jsonSB.toString(), AddressPickerBean::class.java)
         mRvData.addAll(addressPickerBean.province)
         mAdapter.setNewData(mRvData)

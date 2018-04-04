@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -45,10 +46,9 @@ class RecommendFragment : BaseFragment() {
                         isClickable = true
                         text = item
                         textSize = 14f
-                        textColorResource = R.color.sel_recommend_left_text
-//                        setTextColor(createColorStateList("#a87766","#3F51B5"))
+                        textColor = ContextCompat.getColor(context, R.color.sel_recommend_left_text)
                         buttonDrawable = ColorDrawable(Color.TRANSPARENT) //去掉圆点
-                        backgroundResource = R.drawable.sel_recommend_left_bg
+                        backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.sel_recommend_left_bg)
                         gravity = Gravity.CENTER
                     }.lparams(width = dip(100), height = dip(45))
                     //设置选中第一个item

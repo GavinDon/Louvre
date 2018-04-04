@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.jaeger.library.StatusBarUtil
 import com.stxx.louvre.R
+import com.stxx.louvre.base.Constant
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.*
 import java.util.*
@@ -31,18 +32,20 @@ class SplashActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_splash)
         StatusBarUtil.setTransparent(this)//设置全透明
-        initViewPager()
+        judgeFirstIn()
     }
 
     /**
      * 是否是第一次进入App
      */
     private fun judgeFirstIn() {
-        val isF = getSharedPreferences("isFirst", Context.MODE_PRIVATE)
-        val aa = isF.getBoolean("i", false)
-        if (aa) {
+        val sp = getSharedPreferences("app", Context.MODE_PRIVATE)
+        val first = sp.getBoolean(Constant.SHARE_IS_FIRST, true)
+        if (first) {
             initViewPager()
         } else {
+            startActivity<StartUpActivity>()
+            finish()
         }
     }
 
@@ -78,6 +81,10 @@ class SplashActivity : AppCompatActivity() {
                     bottomMargin = dip(40)
                     gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
                 }.setOnClickListener {
+                    val sp = getSharedPreferences("app", Context.MODE_PRIVATE)
+                    val edit = sp.edit()
+                    edit.putBoolean(Constant.SHARE_IS_FIRST, false) //设置不是第一次进入app
+                    edit.apply()
                     startActivity<MainActivity>()
                     finish()
                 }

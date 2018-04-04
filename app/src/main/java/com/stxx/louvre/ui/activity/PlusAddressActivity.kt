@@ -73,7 +73,7 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
                                 //当同意授权之后打开通讯录
                                 openContact()
                             } else {
-                                toast("不能读取联系人了")
+                                toast("不能读取联系人")
                             }
                         }, {
                             toast(it.message.toString())

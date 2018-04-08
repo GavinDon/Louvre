@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.jaeger.library.StatusBarUtil
+import com.jakewharton.rxbinding2.view.RxView
 import com.stxx.louvre.R
 import com.stxx.louvre.net.RxSchedulers
 import io.reactivex.Observable
@@ -31,9 +32,10 @@ class StartUpActivity : AppCompatActivity() {
         val view: View = StartUpUI().setContentView(this)
         val tv: TextView = view.findViewWithTag("tv")
         initDownTime(tv)
-        tv.setOnClickListener {
-            startActivity<MainActivity>()
-        }
+        RxView.clicks(tv).debounce(3, TimeUnit.MILLISECONDS)
+                .subscribe({
+                    startActivity<MainActivity>()
+                })
     }
 
     /**
@@ -70,7 +72,7 @@ class StartUpUI : AnkoComponent<StartUpActivity> {
                 visibility = View.VISIBLE
                 setPadding(28, 10, 28, 10)
                 textSize = 14f
-                textColor = ContextCompat.getColor(context,android.R.color.white)
+                textColor = ContextCompat.getColor(context, android.R.color.white)
                 backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.shape_down_time)
             }.lparams(width = wrapContent, height = wrapContent) {
                 rightMargin = 16

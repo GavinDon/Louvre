@@ -3,6 +3,7 @@ package com.stxx.louvre.ui.fragment
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RadioButton
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
@@ -19,6 +21,7 @@ import com.stxx.louvre.entity.RecommendListBean
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
+import org.jetbrains.anko.support.v4.dip
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,7 +32,7 @@ import kotlin.collections.ArrayList
 
  */
 class RecommendFragment : BaseFragment() {
-
+    private var lastRadioButton = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recommend, null, false)
     }
@@ -54,9 +57,14 @@ class RecommendFragment : BaseFragment() {
                     //设置选中第一个item
                     if (i == 0) {
                         mRadioButton.isChecked = true
+                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                     }
                     mRadioButton.setOnClickListener {
+                        //当点击时取出id放到全局变量 当下次再点击时把当前设置在左边的竖线取消掉
+                        this@radioGroup.find<RadioButton>(lastRadioButton).setCompoundDrawables(null, null, null, null)
+                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                         mAdapter.setNewData(radomData())
+                        lastRadioButton = it.id
                     }
                 }
             }
@@ -105,6 +113,15 @@ class RecommendFragment : BaseFragment() {
 //        states[1] = intArrayOf(android.R.attr.state_pressed)
         states[1] = intArrayOf(-1)
         return ColorStateList(states, colors)
+    }
+
+    /*
+    创建radioButton 选中时左边的竖线
+     */
+    private fun createRbDrawable(): Drawable {
+        val rbCheckDrawable = ContextCompat.getDrawable(context!!, R.mipmap.line)
+        rbCheckDrawable!!.setBounds(0, 0, rbCheckDrawable.intrinsicWidth, dip(40))
+        return rbCheckDrawable
     }
 
 

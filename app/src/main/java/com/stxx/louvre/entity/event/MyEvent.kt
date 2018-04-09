@@ -6,12 +6,12 @@ package com.stxx.louvre.entity.event
 
  */
 /*
-* 显示底部购物车选中数量bage
+* 显示底部购物车选中数量badge
 * */
-data class BottomBageEvent(val num: Int)
+data class BottomBadgeEvent(val num: Int)
 
 /*
 * 购物车全选状态 价格等
 * */
-data class ShoppingCartEvent(var state: Boolean?=false, var total: Double?=0.0, var num: Int?=0)
+data class ShoppingCartEvent(var state: Boolean? = false, var totalPrice: Double? = 0.0, var checkNum: Int? = 0, var totalNum: Int = 0)
 

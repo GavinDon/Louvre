@@ -8,6 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding2.view.RxView
@@ -77,7 +78,7 @@ class StartUpUI : AnkoComponent<StartUpActivity> {
                 backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.shape_down_time)
             }.lparams(width = wrapContent, height = wrapContent) {
                 rightMargin = dip(16)
-                topMargin = dip(55)
+                topMargin = dip(8)+BarUtils.getStatusBarHeight()
                 gravity = Gravity.END
             }
         }

@@ -69,7 +69,7 @@ class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) 
                 //当开始加数或者减数的时候默认选中 并更新适配器的数据
                 val currentPos = data.indexOf(item)
                 mData[currentPos].goodsAmount = amount
-                mData[currentPos].checked=true //只要加减数量就默认选中
+                mData[currentPos].checked = true //只要加减数量就默认选中
                 notifyItemChanged(currentPos, mData[currentPos])
                 countNum()
                 EventBus.getDefault().post(shoppingEvent)
@@ -82,12 +82,18 @@ class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) 
      */
     private fun countNum() {
         //选中数量
-        shoppingEvent.num = mData.count { it.checked }
+        shoppingEvent.checkNum = mData.count { it.checked }
         //全选状态
-        shoppingEvent.state = shoppingEvent.num == mData.size
+        shoppingEvent.state = shoppingEvent.checkNum == mData.size
         //选中的总价格(使用kotlin操作符非常方便的实现)
-        shoppingEvent.total = mData.filter { it.checked }.sumByDouble {
+        shoppingEvent.totalPrice = mData.filter { it.checked }.sumByDouble {
             it.goodsAmount * it.price.toDouble()
+        }
+        shoppingEvent.totalNum = 0//重置总数
+        for (i in 0 until mData.size) {
+            if (mData[i].checked) {
+                shoppingEvent.totalNum += mData[i].goodsAmount
+            }
         }
     }
 

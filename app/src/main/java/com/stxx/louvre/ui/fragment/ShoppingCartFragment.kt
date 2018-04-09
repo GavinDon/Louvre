@@ -15,7 +15,7 @@ import com.stxx.louvre.R
 import com.stxx.louvre.adapter.ShoppingCarAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.ShoppingCarBean
-import com.stxx.louvre.entity.event.BottomBageEvent
+import com.stxx.louvre.entity.event.BottomBadgeEvent
 import com.stxx.louvre.entity.event.ShoppingCartEvent
 import com.stxx.louvre.selector.SelectorFactory
 import com.stxx.louvre.selector.SelectorShape
@@ -61,10 +61,10 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
      */
     @Subscribe
     fun onEvent(shoppingCartEvent: ShoppingCartEvent) {
-        shopping_cart_tv_price.text = shoppingCartEvent.total.toString()
-        shopping_cart_tv_price1.text = shoppingCartEvent.total.toString()
+        shopping_cart_tv_price.text = shoppingCartEvent.totalPrice.toString()
+        shopping_cart_tv_price1.text = shoppingCartEvent.totalPrice.toString()
         //判断若选中的个数在列表item总数之间只需改变底部checkbox的状态 不需要进行额外的操作
-        val num = shoppingCartEvent.num
+        val num = shoppingCartEvent.checkNum
         if (num!! < mAdapter.itemCount && num > 0) {
             isClickItemCb = true
         }
@@ -75,7 +75,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         }
         shopping_cart_cb_all.isChecked = shoppingCartEvent.state!!
         //发送数据到mainActivity来更新底部购物车按钮badge数量
-        EventBus.getDefault().post(BottomBageEvent(num))
+        EventBus.getDefault().post(BottomBadgeEvent(shoppingCartEvent.totalNum))
     }
 
     override fun initView() {

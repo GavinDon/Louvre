@@ -44,8 +44,9 @@ class SplashActivity : AppCompatActivity() {
         if (first) {
             initViewPager()
         } else {
-            startActivity<StartUpActivity>()
-            finish()
+            initViewPager()
+//            startActivity<StartUpActivity>()
+//            finish()
         }
     }
 
@@ -73,10 +74,10 @@ class SplashActivity : AppCompatActivity() {
                     scaleType = ImageView.ScaleType.FIT_XY
                     image = imgs[imgs.lastIndex]
                 }
-                button("进入卢浮宫.->") {
+                textView("进入卢浮宫") {
                     backgroundResource = R.drawable.shape_entry
-                    padding = dip(8)
-                    textSize = 18f
+                    setPadding(dip(8),dip(4),dip(8),dip(4))
+                    textSize = 14f
                 }.lparams(width = wrapContent) {
                     bottomMargin = dip(40)
                     gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL

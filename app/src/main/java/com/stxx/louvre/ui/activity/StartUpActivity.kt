@@ -42,7 +42,7 @@ class StartUpActivity : AppCompatActivity() {
      * 倒计时
      */
     private fun initDownTime(textView: TextView) {
-        val countTime = 9L //倒计时3s
+        val countTime = 3L //倒计时3s
         Observable.interval(0, 1000L, TimeUnit.MILLISECONDS)
                 .compose(RxSchedulers.applySchedulers())
                 .map(Function<Long, Long> {
@@ -67,7 +67,8 @@ class StartUpUI : AnkoComponent<StartUpActivity> {
                         .load(R.mipmap.start_up)
                         .into(this)
             }
-            val tvGoMain = textView {
+            //跳过按钮
+            textView {
                 tag = "tv"
                 visibility = View.VISIBLE
                 setPadding(28, 10, 28, 10)
@@ -75,8 +76,8 @@ class StartUpUI : AnkoComponent<StartUpActivity> {
                 textColor = ContextCompat.getColor(context, android.R.color.white)
                 backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.shape_down_time)
             }.lparams(width = wrapContent, height = wrapContent) {
-                rightMargin = 16
-                topMargin = 55
+                rightMargin = dip(16)
+                topMargin = dip(55)
                 gravity = Gravity.END
             }
         }

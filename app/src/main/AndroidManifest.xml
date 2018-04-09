@@ -9,6 +9,8 @@
     <!-- 获取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_LOGS"
+                     tools:ignore="ProtectedPermissions"/>
 
     <application
         android:name=".base.MyApplication"

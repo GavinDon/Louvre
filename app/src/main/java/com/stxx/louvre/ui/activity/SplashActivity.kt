@@ -85,7 +85,7 @@ class SplashActivity : AppCompatActivity() {
                     val edit = sp.edit()
                     edit.putBoolean(Constant.SHARE_IS_FIRST, false) //设置不是第一次进入app
                     edit.apply()
-                    startActivity<MainActivity>()
+                    startActivity<StartUpActivity>()
                     finish()
                 }
             }

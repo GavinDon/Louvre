@@ -174,13 +174,11 @@ class AddressPickerView : LinearLayout, TabLayout.OnTabSelectedListener, BaseQui
 /**
  * 城市地区列表适配器
  */
-class AddressAdapter : BaseQuickAdapter<AddressPickerBean.AddressItemBean, BaseViewHolder> {
+class AddressAdapter(layoutResId: Int, data: MutableList<AddressPickerBean.AddressItemBean>?) : BaseQuickAdapter<AddressPickerBean.AddressItemBean, BaseViewHolder>(layoutResId, data) {
     override fun convert(helper: BaseViewHolder?, item: AddressPickerBean.AddressItemBean?) {
         helper!!.setText(android.R.id.text1, item?.n)
                 .addOnClickListener(android.R.id.text1)
 
     }
-
-    constructor(layoutResId: Int, data: MutableList<AddressPickerBean.AddressItemBean>?) : super(layoutResId, data)
 
 }

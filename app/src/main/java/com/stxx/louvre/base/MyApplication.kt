@@ -3,6 +3,7 @@ package com.stxx.louvre.base
 import android.app.Application
 import android.content.Context
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
+import com.tencent.bugly.crashreport.CrashReport
 import kotlin.properties.Delegates
 
 /**
@@ -20,10 +21,10 @@ class MyApplication : Application() {
         appContext = getAppContext()
         //初始化滑动返回
         BGASwipeBackHelper.init(this, null)
+        CrashReport.initCrashReport(applicationContext, "05da608d2d", true)
     }
 
     private fun getAppContext(): Context {
         return this.applicationContext
     }
-
 }

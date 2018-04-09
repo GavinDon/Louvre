@@ -38,6 +38,7 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'jp.wasabeef:glide-transformations:3.1.1'
     //recycleView
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation 'com.github.fondesa:recycler-view-divider:2.0.0'
@@ -53,6 +54,7 @@ dependencies {
     //eventbus
     implementation 'com.blankj:utilcode:1.13.3'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.tencent.bugly:crashreport:2.6.6.1'
 
 
 }

@@ -21,13 +21,22 @@ abstract class LazyLoadFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getLayoutResId(), container, false)
+//        bIsViewCreated = true
+//        if (userVisibleHint && !bIsDataLoaded) {
+//            loadData()
+//            bIsDataLoaded = true
+//        }
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView(view)
         bIsViewCreated = true
         if (userVisibleHint && !bIsDataLoaded) {
             loadData()
             bIsDataLoaded = true
         }
-        return view
     }
 
     /**

@@ -12,7 +12,7 @@ import android.widget.CompoundButton
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.stxx.louvre.R
-import com.stxx.louvre.adapter.ShoppingCarAdapter
+import com.stxx.louvre.adapter.ShoppingCartAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.ShoppingCarBean
 import com.stxx.louvre.entity.event.BottomBadgeEvent
@@ -37,7 +37,7 @@ import org.jetbrains.anko.support.v4.startActivity
 class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListener, View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
     private lateinit var lst: MutableList<ShoppingCarBean>
-    private lateinit var mAdapter: ShoppingCarAdapter
+    private lateinit var mAdapter: ShoppingCartAdapter
     private var isClickItemCb = false
     private lateinit var mLayoutManager: LinearLayoutManager
 
@@ -83,7 +83,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         rvShoppingCar.setHasFixedSize(true)
         rvShoppingCar.layoutManager = mLayoutManager
         RecyclerViewDivider.with(this.context!!).color(ContextCompat.getColor(this.context!!, R.color.dividerColor)).build().addTo(rvShoppingCar)
-        mAdapter = ShoppingCarAdapter(R.layout.adapter_shoppingcart, null)
+        mAdapter = ShoppingCartAdapter(R.layout.adapter_shoppingcart, null)
         rvShoppingCar.adapter = mAdapter
         loadData()
         //底部全选checkbox的监听事件

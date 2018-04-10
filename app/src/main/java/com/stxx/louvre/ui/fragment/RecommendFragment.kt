@@ -1,6 +1,5 @@
 package com.stxx.louvre.ui.fragment
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -13,17 +12,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import com.google.gson.Gson
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
-import com.stxx.louvre.entity.RecommendItemBean
+import com.stxx.louvre.entity.ClassifyBean
 import com.stxx.louvre.entity.RecommendListBean
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.dip
-import java.util.*
-import kotlin.collections.ArrayList
+import org.jetbrains.anko.support.v4.onUiThread
+import org.jetbrains.anko.support.v4.toast
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 /**
@@ -33,12 +35,73 @@ import kotlin.collections.ArrayList
  */
 class RecommendFragment : BaseFragment() {
     private var lastRadioButton = 0
+    private lateinit var classifyBean: ClassifyBean
+    private val leftNames = arrayListOf<String>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recommend, null, false)
     }
-
-    private val leftNames = arrayOf("张三", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "李四", "王五", "赵六", "田七", "").toMutableList()
     override fun initView() {
+        initRightRecycleView()
+        readJsonData()
+    }
+
+    private lateinit var mAdapter: RecommendRightAdapter
+    private fun initRightRecycleView() {
+        rvRight.layoutManager = GridLayoutManager(this.context, 3, GridLayoutManager.VERTICAL, false)
+        rvRight.setHasFixedSize(true)
+        mAdapter = RecommendRightAdapter(R.layout.recommond_right_item, R.layout.recommend_item_title, null)
+        rvRight.adapter = mAdapter
+        val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
+        mAdapter.addHeaderView(headerView)
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            toast("a $position")
+        }
+    }
+
+    private fun radomData(leftName: String): ArrayList<RecommendListBean> {
+        val list = ArrayList<RecommendListBean>()
+        list.clear()
+        for (i in 0 until classifyBean.data.size) {
+            if (leftName == classifyBean.data[i].leftName) {
+                val right = classifyBean.data[i].right
+                for (j  in 0 until  right.size){
+                    list.add(RecommendListBean(true,right[j].title))
+                    for (k in 0 until right[j].detail.size){
+                        list.add(RecommendListBean(right[j].detail[k]))
+                    }
+                }
+            }
+        }
+        return list
+    }
+
+    private fun readJsonData() {
+        val jsonSB = StringBuilder()
+        doAsync {
+            val addressJsonStream = BufferedReader(InputStreamReader(this@RecommendFragment.context!!.assets.open("classifyJson.json")))
+            addressJsonStream.readLines().forEach {
+                jsonSB.append(it)
+            }
+            addressJsonStream.close()
+            onUiThread {
+                classifyBean = Gson().fromJson(jsonSB.toString(), ClassifyBean::class.java)
+                if (classifyBean.code == 0 && classifyBean.data.size > 0) {
+                    classifyBean.data.forEach {
+                        leftNames.add(it.leftName)
+                    }
+                    createUi()
+                }
+            }
+        }
+    }
+
+    /**
+     * 唉 后悔 不如用xml写着来的美
+     * 啥么这是
+     * 烦
+     */
+    private fun createUi() {
         val leftUi = UI {
             radioGroup {
                 orientation = LinearLayout.VERTICAL
@@ -56,6 +119,7 @@ class RecommendFragment : BaseFragment() {
                     }.lparams(width = dip(100), height = dip(45))
                     //设置选中第一个item
                     if (i == 0) {
+                        mAdapter.setNewData(  radomData(leftNames[i]))
                         mRadioButton.isChecked = true
                         mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                     }
@@ -63,61 +127,18 @@ class RecommendFragment : BaseFragment() {
                         //当点击时取出id放到全局变量 当下次再点击时把当前设置在左边的竖线取消掉
                         this@radioGroup.find<RadioButton>(lastRadioButton).setCompoundDrawables(null, null, null, null)
                         mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
-                        mAdapter.setNewData(radomData())
+                        mAdapter.setNewData(radomData(mRadioButton.text.toString()))
                         lastRadioButton = it.id
                     }
                 }
             }
         }.view
         lvLeft.addView(leftUi)
-        initRightRecycleView()
-//        lvLeft.smoothScrollBy()
-    }
-
-    private lateinit var mAdapter: RecommendRightAdapter
-    private fun initRightRecycleView() {
-        rvRight.layoutManager = GridLayoutManager(this.context, 3, GridLayoutManager.VERTICAL, false)
-        rvRight.setHasFixedSize(true)
-        mAdapter = RecommendRightAdapter(R.layout.recommond_right_item, R.layout.recommend_item_title, radomData())
-        rvRight.adapter = mAdapter
-        val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
-        mAdapter.addHeaderView(headerView)
-
-    }
-
-    private fun radomData(): ArrayList<RecommendListBean> {
-        val list = ArrayList<RecommendListBean>()
-        val sb = StringBuffer()
-        val source = arrayOf("我", "每", "世", "界", "如", "你", "只", "没", "果", "喜", "就", "欢", "的", "生", "一", "爱", "有", "过", "你", "在", "想", "会")
-        for (i in 0 until Random().nextInt(3) + 3) {
-            list.add(RecommendListBean(true, "header$i"))
-            for (i in 0 until Random().nextInt(2) + 5) {
-                for (i in 0 until 4) {
-                    val index = Random().nextInt(22)
-                    sb.append(source[index])
-                }
-                list.add(RecommendListBean(RecommendItemBean(sb.toString())))
-                sb.delete(0, sb.length)
-            }
-
-        }
-        return list
-
-    }
-
-
-    private fun createColorStateList(selected: String, normal: String): ColorStateList {
-        val colors = intArrayOf(Color.parseColor(selected), Color.parseColor(normal))
-        val states = arrayOfNulls<IntArray>(2)
-        states[0] = intArrayOf(android.R.attr.state_selected)
-//        states[1] = intArrayOf(android.R.attr.state_pressed)
-        states[1] = intArrayOf(-1)
-        return ColorStateList(states, colors)
     }
 
     /*
-    创建radioButton 选中时左边的竖线
-     */
+    *  创建radioButton 选中时左边的竖线
+    * */
     private fun createRbDrawable(): Drawable {
         val rbCheckDrawable = ContextCompat.getDrawable(context!!, R.mipmap.line)
         rbCheckDrawable!!.setBounds(0, 0, rbCheckDrawable.intrinsicWidth, dip(40))
@@ -125,8 +146,4 @@ class RecommendFragment : BaseFragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-    }
 }

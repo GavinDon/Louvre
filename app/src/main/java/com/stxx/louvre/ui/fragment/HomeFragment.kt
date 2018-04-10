@@ -41,7 +41,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, RadioGroup.
 
 
     override fun initView() {
-        val fragmentList = arrayListOf<Fragment>(TabFragment.newsInstance(0), TabFragment.newsInstance(1), TabFragment.newsInstance(2))
+        val fragmentList = arrayListOf<Fragment>(HomeTabLfgFragment(), HomeTabArticleFragment(), HomeTabProtfolioFragment())
         mAdapter = HomeFragmentAdapter(childFragmentManager, fragmentList)
         vpTab.adapter = mAdapter
         vpTab.currentItem = 0

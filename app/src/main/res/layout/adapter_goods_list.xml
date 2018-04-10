@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp">
+
+    <ImageView
+        android:id="@+id/ada_goods_list_img"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/start_up"
+        />
+
+    <TextView
+        android:id="@+id/ada_goods_list_tv_introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:textSize="@dimen/normalSp"
+        app:layout_constraintLeft_toRightOf="@id/ada_goods_list_img"
+        app:layout_constraintTop_toTopOf="@id/ada_goods_list_img"
+        tools:text="@string/app_name"
+        />
+
+    <TextView
+        android:id="@+id/ada_goods_list_common"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="暂无评价"
+        app:layout_constraintBottom_toBottomOf="@id/ada_goods_list_img"
+        app:layout_constraintLeft_toRightOf="@id/ada_goods_list_img"
+        />
+
+    <TextView
+        android:id="@+id/ada_goods_list_tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/money"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingLeft="4dp"
+        android:text="1299.00"
+        android:textColor="@color/price_red"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toTopOf="@id/ada_goods_list_common"
+        app:layout_constraintLeft_toRightOf="@id/ada_goods_list_img"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

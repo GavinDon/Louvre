@@ -1,0 +1,124 @@
+{
+    "code": 0,
+    "data": [
+        {
+            "leftName": "国画",
+            "right": [
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写意"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "工笔"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "推荐类目"
+                },
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写意"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "工笔"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "其他类目"
+                }
+            ]
+        },
+        {
+            "leftName": "书法",
+            "right": [
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "楷书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "行书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "草书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "隶书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "篆书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "魏碑"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "篆书"
+                        }
+                    ],
+                    "title": "推荐类目"
+                },
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写篆书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "魏碑"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "其他类目"
+                }
+            ]
+        }
+    ],
+    "msg": "成功"
+}

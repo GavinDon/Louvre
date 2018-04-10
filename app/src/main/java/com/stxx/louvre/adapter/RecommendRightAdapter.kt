@@ -13,10 +13,12 @@ import com.stxx.louvre.entity.RecommendListBean
 class RecommendRightAdapter(layoutResId: Int, sectionHeadResId: Int, data: MutableList<RecommendListBean>?) : BaseSectionQuickAdapter<RecommendListBean, BaseViewHolder>(layoutResId, sectionHeadResId, data) {
 
     override fun convert(helper: BaseViewHolder?, item: RecommendListBean?) {
-        helper!!.setText(R.id.tvTest,item!!.t.imgUrl)
+        helper!!.setText(R.id.tvTest, item!!.t.name)
     }
 
     override fun convertHead(helper: BaseViewHolder?, item: RecommendListBean?) {
         helper!!.setText(R.id.tvRecommendTitle, item!!.header)
     }
 }
+
+

@@ -29,18 +29,4 @@ class HomeTabAdapter(layoutResId: Int, data: MutableList<HomeRecDataBean>) : Bas
                 .into(iv)
 
     }
-
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
-//        val lp: LinearLayout.LayoutParams = holder.getView<ImageView>(R.id.ada_home_tab_iv).layoutParams as LinearLayout.LayoutParams
-//        lp.height = mData[position].height
-////        lp.width = ScreenUtils.getScreenWidth() / 2 - 16
-//        if (position % 2 == 0) {
-//            lp.rightMargin = 8
-//        } else {
-//            lp.leftMargin = 8
-//        }
-    }
-
-
 }

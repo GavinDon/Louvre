@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.EventBus
  * Created by liNan on 2018/3/5 16:41
 
  */
-class ShoppingCarAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) : BaseQuickAdapter<ShoppingCarBean, BaseViewHolder>(layoutResId, data) {
+class ShoppingCartAdapter(layoutResId: Int, data: MutableList<ShoppingCarBean>?) : BaseQuickAdapter<ShoppingCarBean, BaseViewHolder>(layoutResId, data) {
 
     private var position: Int = -1
     private val shoppingEvent: ShoppingCartEvent = ShoppingCartEvent()

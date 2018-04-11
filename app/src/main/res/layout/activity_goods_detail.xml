@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.stxx.louvre.ui.activity.GoodsDetailActivity">
 
-    <ImageView
-        android:id="@+id/goods_detail_iv"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/mTabLayout"
         android:layout_width="match_parent"
-        android:scaleType="fitXY"
-        android:layout_height="120dp"/>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:tabIndicatorColor="@color/grey"
+        app:tabSelectedTextColor="@color/price_red"
+        app:tabTextColor="@color/black"
+        app:tabTextAppearance="@style/tabLayoutAppearance"
+        >
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/goods_detail_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>

@@ -118,6 +118,151 @@
                     "title": "其他类目"
                 }
             ]
+        },
+        {
+            "leftName": "油画",
+            "right": [
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "人物"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "风景"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "静物"
+                        }
+                    ],
+                    "title": "推荐类目"
+                },
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写意"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "工笔"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "其他类目"
+                }
+            ]
+        },
+        {
+            "leftName": "万福进万家",
+            "right": [
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "吉祥有福"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "聚水生财"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "现代简约"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "怡情养性"
+                        }
+                    ],
+                    "title": "推荐类目"
+                },
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写篆书"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "魏碑"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "其他类目"
+                }
+            ]
+        },
+        {
+            "leftName": "万福进万家",
+            "right": [
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "国画"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "书法"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "油画"
+                        }
+                    ],
+                    "title": "推荐类目"
+                },
+                {
+                    "detail": [
+                        {
+                            "imgUrl": "",
+                            "name": "写意"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "工笔"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "重彩"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "白描"
+                        },
+                        {
+                            "imgUrl": "",
+                            "name": "兼工带写"
+                        }
+                    ],
+                    "title": "其他类目"
+                }
+            ]
         }
     ],
     "msg": "成功"

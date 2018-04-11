@@ -5,6 +5,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context="com.stxx.louvre.ui.activity.PayActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/pay_cl_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/pay_iv_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp16"
+            android:src="@mipmap/wechat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信支付"
+            app:layout_constraintBottom_toBottomOf="@id/pay_iv_wechat"
+            app:layout_constraintLeft_toRightOf="@id/pay_iv_wechat"
+            app:layout_constraintTop_toTopOf="@id/pay_iv_wechat"
+            />
+
+        <RadioButton
+            android:id="@+id/pay_rb_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@id/pay_cl_wechat">
+
+        <ImageView
+            android:id="@+id/pay_iv_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp16"
+            android:src="@mipmap/alipay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝"
+            app:layout_constraintBottom_toBottomOf="@id/pay_iv_alipay"
+            app:layout_constraintLeft_toRightOf="@id/pay_iv_alipay"
+            app:layout_constraintTop_toTopOf="@id/pay_iv_alipay"/>
+
+        <RadioButton
+            android:id="@+id/pay_rb_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:layout_constraintRight_toRightOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -32,7 +32,7 @@
                 android:id="@+id/tvMultip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/camera"
+                android:drawableRight="@mipmap/angel_down_red"
                 android:text="综合"
                 android:textColor="@color/semi"
                 android:textSize="@dimen/normalSp"
@@ -45,7 +45,7 @@
                 android:id="@+id/tvSales"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/camera"
+                android:drawableRight="@mipmap/angel_down"
                 android:text="销量"
                 android:textColor="@color/semi"
                 android:textSize="@dimen/normalSp"
@@ -57,7 +57,7 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/camera"
+                android:drawableRight="@mipmap/angel_down"
                 android:text="价格"
                 android:textColor="@color/semi"
                 android:textSize="@dimen/normalSp"
@@ -69,7 +69,7 @@
                 android:id="@+id/tvFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/camera"
+                android:drawableRight="@mipmap/angel_down"
                 android:text="筛选"
                 android:textColor="@color/semi"
                 android:textSize="@dimen/normalSp"
@@ -86,7 +86,7 @@
             >
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/goods_detail_rv"
+                android:id="@+id/goods_list_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

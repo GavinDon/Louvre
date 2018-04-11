@@ -27,7 +27,6 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
         setTitle("新建联系人")
         plus_address_ll_contract.setOnClickListener(this)
         plus_address_tv_checked_area.setOnClickListener(this)
-
     }
 
     /**
@@ -103,6 +102,5 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
         if (areaDialog.isShowing) {
             areaDialog.dismiss()
         }
-
     }
 }

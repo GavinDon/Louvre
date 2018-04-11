@@ -14,8 +14,10 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.google.gson.Gson
 import com.stxx.louvre.R
 import com.stxx.louvre.entity.AddressPickerBean
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
+import org.jetbrains.anko.uiThread
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -76,14 +78,20 @@ class AddressPickerView : LinearLayout, TabLayout.OnTabSelectedListener, BaseQui
      */
     private fun initData() {
         val jsonSB = StringBuilder()
-        val addressJsonStream = BufferedReader(InputStreamReader(this.context.assets.open("address.json")))
-        addressJsonStream.readLines().forEach {
-            jsonSB.append(it)
+        doAsync {
+            val addressJsonStream = BufferedReader(InputStreamReader(this@AddressPickerView.context.assets.open("address.json")))
+            addressJsonStream.readLines().forEach {
+                jsonSB.append(it)
+            }
+            addressJsonStream.close()
+            uiThread {
+                addressPickerBean = Gson().fromJson(jsonSB.toString(), AddressPickerBean::class.java)
+                mRvData.addAll(addressPickerBean.province)
+                mAdapter.setNewData(mRvData)
+            }
         }
-        addressJsonStream.close()
-        addressPickerBean = Gson().fromJson(jsonSB.toString(), AddressPickerBean::class.java)
-        mRvData.addAll(addressPickerBean.province)
-        mAdapter.setNewData(mRvData)
+
+
     }
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {

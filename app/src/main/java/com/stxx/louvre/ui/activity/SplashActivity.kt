@@ -56,7 +56,7 @@ class SplashActivity : AppCompatActivity() {
     private fun initViewPager() {
         val views = ArrayList<View>() //viewPagerAdapter 需要装载的view集合
         //引导页面的图片集合
-        imgs = arrayOf(ContextCompat.getDrawable(this, R.mipmap.ic_launcher), ContextCompat.getDrawable(this, R.mipmap.ic_launcher), ContextCompat.getDrawable(this, R.mipmap.ic_launcher))
+        imgs = arrayOf(ContextCompat.getDrawable(this, R.mipmap.splash1), ContextCompat.getDrawable(this, R.mipmap.splash2), ContextCompat.getDrawable(this, R.mipmap.splash3))
         //把引导的页面装载到集合中(除过最后一页因为最后一页需要添加一个button)
         (0 until imgs.size - 1).mapTo(destination = views) {
             UI {

@@ -45,7 +45,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/TransitionTheme"/>
         <activity
-            android:name=".ui.activity.FillInOrderActivity"
+            android:name=".ui.activity.ConfirmOrderActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"/>
         <activity

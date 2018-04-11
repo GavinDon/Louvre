@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.GoodsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/start_up"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:text="写给大家的西方美术史　【荐书联盟推荐】 [To Everyone's Western Art History]"
+                android:textColor="@color/semi"
+                android:textSize="@dimen/normalSp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:text="金融博物馆书院倾情推荐！人生的很多时候，会因你懂一点艺术而变得欢欣美好。台湾美学大师、百万册畅销书作者蒋勋经典之作"
+                android:textColor="@color/price_red"
+                android:textSize="@dimen/normalSp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@mipmap/money"
+                android:text="12"
+                android:textColor="@color/price_red"
+                android:textSize="18sp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/dividerColor"
+                />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/ct_has_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/tv_has_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="已选"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/normalSp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/goods_tv_check_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="1件"
+                    android:textColor="@color/semi"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_has_check"
+                    app:layout_constraintLeft_toRightOf="@id/tv_has_check"
+                    app:layout_constraintTop_toTopOf="@id/tv_has_check"
+                    />
+
+                <TextView
+                    android:id="@+id/goods_tv_retain_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="仅剩5件"
+                    android:textColor="@color/price_red"
+                    android:textSize="@dimen/smallSp"
+                    app:layout_constraintLeft_toLeftOf="@id/goods_tv_check_num"
+                    app:layout_constraintTop_toBottomOf="@id/goods_tv_check_num"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/dividerColor"
+                />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_goods_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/goods_tv_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="送至"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/normalSp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/goods_tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@mipmap/location"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="西部国际广场"
+                    android:textColor="@color/semi"
+                    android:textSize="@dimen/normalSp"
+                    app:layout_constraintLeft_toRightOf="@id/goods_tv_send"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="现货，从英国发货 预计5-10天送达"
+                    app:layout_constraintLeft_toLeftOf="@id/goods_tv_address"
+                    app:layout_constraintTop_toBottomOf="@id/goods_tv_address"
+                    />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dividerColor"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_goods_send"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="店铺发货&amp;售后"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/smallSp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="不支持7天无理由退货"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/smallSp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/dividerColor"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/location"
+            android:gravity="center"
+            android:text="店铺"
+            android:textColor="@color/light"
+            android:textSize="@dimen/smallSp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/location"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@color/light"
+            android:textSize="@dimen/smallSp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/location"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="@color/light"
+            android:textSize="@dimen/smallSp"
+            />
+
+        <TextView
+            android:id="@+id/goods_join_shopping_cart"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:background="@color/price_red"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/normalSp"
+            />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
+

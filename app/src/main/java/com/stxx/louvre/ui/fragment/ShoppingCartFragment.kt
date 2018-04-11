@@ -20,8 +20,8 @@ import com.stxx.louvre.entity.event.ShoppingCartEvent
 import com.stxx.louvre.selector.SelectorFactory
 import com.stxx.louvre.selector.SelectorShape
 import com.stxx.louvre.selector.Shape
+import com.stxx.louvre.ui.activity.ConfirmOrderActivity
 import com.stxx.louvre.ui.activity.GoodsDetailActivity
-import com.stxx.louvre.ui.activity.PayActivity
 import kotlinx.android.synthetic.main.fragment_follow.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -110,7 +110,6 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         shopping_cart_ib_scroll.setOnClickListener {
             rvShoppingCar.smoothScrollToPosition(0)
         }
-
     }
 
     /**
@@ -144,7 +143,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
 
     override fun onClick(v: View?) {
         if (v is Button) {
-            startActivity<PayActivity>()
+            startActivity<ConfirmOrderActivity>()
         }
     }
 

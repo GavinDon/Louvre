@@ -18,12 +18,13 @@ import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.ClassifyBean
 import com.stxx.louvre.entity.RecommendListBean
+import com.stxx.louvre.ui.activity.GoodsListActivity
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.dip
 import org.jetbrains.anko.support.v4.onUiThread
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.startActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -55,7 +56,7 @@ class RecommendFragment : BaseFragment() {
         val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
         mAdapter.addHeaderView(headerView)
         mAdapter.setOnItemClickListener { adapter, view, position ->
-            toast("a $position")
+            startActivity<GoodsListActivity>()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.stxx.louvre.ui.fragment
 
+import android.app.FragmentTransaction
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
@@ -13,11 +14,9 @@ import com.stxx.louvre.selector.SelectorShape
 import com.stxx.louvre.selector.Shape
 import com.stxx.louvre.widgets.TooltipView
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_goods.*
 import org.jetbrains.anko.backgroundDrawable
-import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.toast
 import java.util.concurrent.TimeUnit
 
 /**
@@ -38,20 +37,30 @@ class GoodsFragment : BaseFragment() {
                 .shapeBuilder(Shape.ShapeBuilder())
                 .build())
         goods_join_shopping_cart.backgroundDrawable = btnBackGround
-        RxView.clicks(goods_join_shopping_cart).subscribe {
+        RxView.clicks(goods_join_shopping_cart).debounce(500,TimeUnit.MILLISECONDS) .subscribe {
             mTipDialog.setTipImgFlag(TooltipView.SUCCESS_IMG)
                     .setTipText("加入购物车成功")
-                    .show(fragmentManager, "GoodsFragment")
+            val ft = fragmentManager?.beginTransaction()
+            ft?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            mTipDialog.show(ft, "GoodsFragment")
+            hideTip() //取消提示框
         }
-        //订时取消弹窗
-        doAsync {
-            Observable.interval(3000, TimeUnit.MILLISECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        mTipDialog?.dismiss()
+
+    }
+
+    /**
+     *  订时取消弹窗
+     */
+    private fun hideTip() {
+      Observable.just("1")
+                .delay(800, TimeUnit.MILLISECONDS)
+                .subscribe({
+                    if (mTipDialog.isResumed) {
+                        mTipDialog.dismiss()
                     }
-        }
+                }, {
+                    toast(it.message.toString())
+                })
     }
 
     override fun onDestroy() {

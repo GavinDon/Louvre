@@ -27,6 +27,7 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
         setTitle("新建联系人")
         plus_address_ll_contract.setOnClickListener(this)
         plus_address_tv_checked_area.setOnClickListener(this)
+        plus_address_save.setOnClickListener(this)
     }
 
     /**
@@ -94,6 +95,9 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
                 //右上角关闭按钮
                 pickerClose.setOnClickListener { areaDialog.dismiss() }
 
+            }
+            R.id.plus_address_save ->{
+                this.finish()
             }
         }
     }

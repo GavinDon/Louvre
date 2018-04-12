@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RadioButton
 import com.google.gson.Gson
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
@@ -122,12 +121,12 @@ class RecommendFragment : BaseFragment() {
                     if (i == 0) {
                         mAdapter.setNewData(  radomData(leftNames[i]))
                         mRadioButton.isChecked = true
-                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
+//                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                     }
                     mRadioButton.setOnClickListener {
                         //当点击时取出id放到全局变量 当下次再点击时把当前设置在左边的竖线取消掉
-                        this@radioGroup.find<RadioButton>(lastRadioButton).setCompoundDrawables(null, null, null, null)
-                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
+//                        this@radioGroup.find<RadioButton>(lastRadioButton).setCompoundDrawables(null, null, null, null)
+//                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                         mAdapter.setNewData(radomData(mRadioButton.text.toString()))
                         lastRadioButton = it.id
                     }

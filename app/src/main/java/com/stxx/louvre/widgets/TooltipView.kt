@@ -39,6 +39,7 @@ class TooltipView : DialogFragment() {
         dialog.window.setBackgroundDrawableResource(android.R.color.transparent) //设置透明
         activity!!.windowManager.defaultDisplay.getMetrics(dm)
         dialog.window.setLayout(((dm.widthPixels * 0.65).toInt()), ViewGroup.LayoutParams.WRAP_CONTENT)
+        this.isCancelable=false
 
     }
 

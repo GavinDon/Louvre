@@ -11,6 +11,7 @@ import com.stxx.louvre.adapter.PersonalListAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.PersonalBean
 import com.stxx.louvre.ui.activity.DeliveryAddressActivity
+import com.stxx.louvre.ui.activity.LoginActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -19,7 +20,7 @@ import org.jetbrains.anko.support.v4.startActivity
  * Created by liNan on 2018/2/27 15:20
 
  */
-class PersonalFragment : BaseFragment(),BaseQuickAdapter.OnItemChildClickListener{
+class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemChildClickListener {
 
 
     private lateinit var mAdapter: PersonalListAdapter
@@ -39,12 +40,15 @@ class PersonalFragment : BaseFragment(),BaseQuickAdapter.OnItemChildClickListene
         }
         loadData()
         mAdapter.onItemChildClickListener = this
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            startActivity<LoginActivity>()
+        }
     }
 
     /**
      *
      */
-    private fun loadData(){
+    private fun loadData() {
         itemData = mutableMapOf(Pair("退款管理", false),
                 Pair("我的拍卖", false),
                 Pair("客服与帮助", true),
@@ -61,9 +65,11 @@ class PersonalFragment : BaseFragment(),BaseQuickAdapter.OnItemChildClickListene
     }
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        val mData=adapter!!.data[position] as PersonalBean
-        when(mData.name){
-            "收获地址" -> startActivity<DeliveryAddressActivity>()
+        val mData = adapter!!.data[position] as PersonalBean
+        when (mData.name) {
+            "收获地址" -> {
+                startActivity<DeliveryAddressActivity>()
+            }
         }
     }
 

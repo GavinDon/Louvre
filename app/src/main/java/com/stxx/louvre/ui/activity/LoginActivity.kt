@@ -9,6 +9,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import com.blankj.utilcode.util.RegexUtils
+import com.jaeger.library.StatusBarUtil
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -28,6 +29,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     override fun inflateViewId() = R.layout.activity_login
 
     override fun initView(savedInstanceState: Bundle?) {
+        StatusBarUtil.setTransparent(this)//设置全透明
         val span = SpannableString(login_tv_subscribe.text)
         span.setSpan(ForegroundColorSpan(Color.RED), 7, span.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         login_tv_subscribe.text = span

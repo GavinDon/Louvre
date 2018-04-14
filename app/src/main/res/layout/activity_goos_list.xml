@@ -57,7 +57,7 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/angel_down"
+                android:drawableRight="@drawable/ic_unfold_more_black_24dp"
                 android:text="价格"
                 android:textColor="@color/semi"
                 android:textSize="@dimen/normalSp"

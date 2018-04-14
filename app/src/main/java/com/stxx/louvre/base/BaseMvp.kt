@@ -9,10 +9,12 @@ interface BaseMvp {
     interface View
     interface Presenter<in V> {
         //绑定view
-        fun attachView(view: V)
+        fun attachView(view: V){
+        }
+
         //解绑View
-        fun detachView(view: V){
-            view.to(null)
+        fun detachView(view: V) {
+            view to null
         }
     }
 }

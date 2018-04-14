@@ -1,4 +1,4 @@
-package com.stxx.louvre.contract
+package com.stxx.louvre.ui.contract
 
 import com.stxx.louvre.base.BaseMvp
 
@@ -9,8 +9,7 @@ import com.stxx.louvre.base.BaseMvp
  */
 interface HomeContact {
 
-    interface View : BaseMvp.View {
-    }
+    interface View : BaseMvp.View
 
     interface Presenter : BaseMvp.Presenter<View> {
         fun reqTabData()

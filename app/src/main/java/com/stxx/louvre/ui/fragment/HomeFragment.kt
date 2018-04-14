@@ -11,7 +11,7 @@ import android.widget.RadioGroup
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.HomeFragmentAdapter
 import com.stxx.louvre.base.BaseFragment
-import com.stxx.louvre.contract.HomeContact
+import com.stxx.louvre.ui.contract.HomeContact
 import com.stxx.louvre.ui.activity.SearchActivity
 import kotlinx.android.synthetic.main.common_title.*
 import kotlinx.android.synthetic.main.fragment_home.*

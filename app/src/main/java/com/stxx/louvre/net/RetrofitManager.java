@@ -79,7 +79,6 @@ public class RetrofitManager {
         }
     };
 
-
     /**
      * 获取OkHttpClient实例
      *

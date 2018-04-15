@@ -8,7 +8,6 @@ import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
-import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding2.view.RxView
@@ -37,6 +36,8 @@ class StartUpActivity : AppCompatActivity() {
                 .subscribe({
                     startActivity<MainActivity>()
                 })
+
+
     }
 
     /**
@@ -77,9 +78,9 @@ class StartUpUI : AnkoComponent<StartUpActivity> {
                 textColor = ContextCompat.getColor(context, android.R.color.white)
                 backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.shape_down_time)
             }.lparams(width = wrapContent, height = wrapContent) {
-                rightMargin = dip(16)
-                topMargin = dip(8)+BarUtils.getStatusBarHeight()
-                gravity = Gravity.END
+                rightMargin = dip(25)
+                bottomMargin = dip(98)
+                gravity = Gravity.BOTTOM or Gravity.END
             }
         }
     }

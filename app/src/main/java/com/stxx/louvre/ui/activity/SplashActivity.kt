@@ -44,9 +44,9 @@ class SplashActivity : AppCompatActivity() {
         if (first) {
             initViewPager()
         } else {
-            initViewPager()
-//            startActivity<StartUpActivity>()
-//            finish()
+//            initViewPager()
+            startActivity<StartUpActivity>()
+            finish()
         }
     }
 

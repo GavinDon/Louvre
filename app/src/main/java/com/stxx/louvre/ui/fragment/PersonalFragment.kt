@@ -20,8 +20,7 @@ import org.jetbrains.anko.support.v4.startActivity
  * Created by liNan on 2018/2/27 15:20
 
  */
-class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemChildClickListener {
-
+class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
 
     private lateinit var mAdapter: PersonalListAdapter
     private lateinit var itemData: MutableMap<String, Boolean>
@@ -39,10 +38,7 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemChildClickListen
             adapter = mAdapter
         }
         loadData()
-        mAdapter.onItemChildClickListener = this
-        mAdapter.setOnItemClickListener { adapter, view, position ->
-            startActivity<LoginActivity>()
-        }
+        mAdapter.onItemClickListener = this
     }
 
     /**
@@ -63,13 +59,10 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemChildClickListen
         }
         mAdapter.setNewData(itemList)
     }
-
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        val mData = adapter!!.data[position] as PersonalBean
-        when (mData.name) {
-            "收获地址" -> {
-                startActivity<DeliveryAddressActivity>()
-            }
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+        when (position) {
+            0, 1 -> startActivity<LoginActivity>()
+            4 -> startActivity<DeliveryAddressActivity>()
         }
     }
 

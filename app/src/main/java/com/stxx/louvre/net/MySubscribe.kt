@@ -4,6 +4,7 @@ import android.widget.Toast
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.JsonParseException
+import com.stxx.louvre.entity.DataResponse
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -26,8 +27,11 @@ abstract class MySubscribe<T> : Observer<T> {
     }
 
     override fun onNext(response: T) {
-        onSuccess(response)
-        onFinish()
+        if (response is DataResponse<*>) {
+            if (response.code == 0) onSuccess(response) else onFail(response.msg)
+        } else {
+            onSuccess(response)
+        }
     }
 
     override fun onError(e: Throwable) {
@@ -68,7 +72,7 @@ abstract class MySubscribe<T> : Observer<T> {
     /**
      * 取消订阅
      */
-    private fun onFinish() {
+     fun onFinish() {
         mDisposable.dispose()
     }
 

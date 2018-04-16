@@ -55,10 +55,8 @@ abstract class LazyLoadFragment : BaseFragment() {
         super.onDestroyView()
         bIsViewCreated = false
         bIsDataLoaded = false
-
     }
 
     override fun initView() {
-
     }
 }

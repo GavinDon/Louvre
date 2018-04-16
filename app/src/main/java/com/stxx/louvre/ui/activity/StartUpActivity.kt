@@ -14,6 +14,7 @@ import com.jakewharton.rxbinding2.view.RxView
 import com.stxx.louvre.R
 import com.stxx.louvre.net.RxSchedulers
 import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function
 import org.jetbrains.anko.*
 import java.util.concurrent.TimeUnit
@@ -23,6 +24,8 @@ import java.util.concurrent.TimeUnit
  * 承载首页加载过多数据
  */
 class StartUpActivity : AppCompatActivity() {
+
+    private lateinit var mDisposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +39,6 @@ class StartUpActivity : AppCompatActivity() {
                 .subscribe({
                     startActivity<MainActivity>()
                 })
-
-
     }
 
     /**
@@ -45,7 +46,7 @@ class StartUpActivity : AppCompatActivity() {
      */
     private fun initDownTime(textView: TextView) {
         val countTime = 3L //倒计时3s
-        Observable.interval(0, 1000L, TimeUnit.MILLISECONDS)
+        mDisposable = Observable.interval(0, 1000L, TimeUnit.MILLISECONDS)
                 .compose(RxSchedulers.applySchedulers())
                 .map(Function<Long, Long> {
                     return@Function countTime - it
@@ -57,6 +58,13 @@ class StartUpActivity : AppCompatActivity() {
                         finish()
                     }
                 })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!mDisposable.isDisposed) {
+            mDisposable.dispose()
+        }
     }
 }
 

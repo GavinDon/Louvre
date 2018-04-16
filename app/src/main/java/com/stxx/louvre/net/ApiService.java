@@ -9,6 +9,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -20,16 +21,17 @@ public interface ApiService {
      *
      * @param page page
      */
-   @GET("/article/list/{page}/json")
-   Observable<DataResponse<ShoppingCarBean>> getHomeArticles(@Path("page") int page);
+    @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})//需要添加touch
+    @GET("/article/list/json/{page}")
+    Observable<DataResponse<ShoppingCarBean>> getHomeArticles(@Path("page") int page);
 
 
     /**
      * 登录
      */
 //    @FormUrlEncoded
-    @GET("zhcomplaint/appUser/userLogin")
-    Observable<LoginBean> getLogin(@Query("username") String phone, @Query("password") String psw);
+    @GET("zhcomplaint/appUser/userLogin/")
+    Observable<LoginBean> getLogin( @Query("username") String phone, @Query("password") String psw);
 
     @POST("/lg/collect/usertools/json")
     @FormUrlEncoded

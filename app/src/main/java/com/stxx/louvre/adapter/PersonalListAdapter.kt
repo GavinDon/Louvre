@@ -18,7 +18,7 @@ class PersonalListAdapter(layoutResId: Int, data: MutableList<PersonalBean>?) : 
             divider.visibility = View.VISIBLE
         }
         helper.setText(R.id.tvItemName, item.name)
-                .addOnClickListener(R.id.consItem)
+//                .addOnClickListener(R.id.consItem)
 
 //        item!!.isShowDivider ?: divider.visibility = View.GONE
 

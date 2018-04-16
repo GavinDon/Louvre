@@ -50,6 +50,7 @@
 -keep public class * extends android.support.annotation.**
 # 保留R下面的资源
 -keep class **.R$* {*;}
+-keep class com.stxx.louvre.entity.** {*; }
 # glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule

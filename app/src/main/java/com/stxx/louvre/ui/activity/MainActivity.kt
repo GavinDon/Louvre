@@ -24,7 +24,7 @@ import java.util.*
 open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListener {
     private lateinit var fragmentController: FragmentController
     private val mFragments = ArrayList<BaseFragment>()
-    private val mTextBageItem = TextBadgeItem()
+    private val mTextBadgeItem = TextBadgeItem()
     private var mLastFgIndex: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +34,12 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
 
     override fun inflateViewId(): Int = R.layout.activity_main
     override fun initView(savedInstanceState: Bundle?) {
-        mTextBageItem.hide()
+        mTextBadgeItem.hide()
         bottom_navigation_bar.setMode(BottomNavigationBar.MODE_FIXED)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
                 .addItem(BottomNavigationItem(R.mipmap.home, "首页")).setActiveColor(R.color.bottom_bar)
                 .addItem(BottomNavigationItem(R.mipmap.categary, "分类")).setActiveColor(R.color.bottom_bar)
-                .addItem(BottomNavigationItem(R.mipmap.shopping_car, "购物车").setBadgeItem(mTextBageItem)).setActiveColor(R.color.bottom_bar)
+                .addItem(BottomNavigationItem(R.mipmap.shopping_car, "购物车").setBadgeItem(mTextBadgeItem)).setActiveColor(R.color.bottom_bar)
                 .addItem(BottomNavigationItem(R.mipmap.me, "我的"))
                 .setFirstSelectedPosition(0)
                 .setTabSelectedListener(this)
@@ -80,12 +80,12 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
     @Subscribe
     open fun onEvent(bottomBageEvent: BottomBadgeEvent) {
         if (bottomBageEvent.num > 0)
-            mTextBageItem.setBorderWidth(4)
+            mTextBadgeItem.setBorderWidth(4)
                     .setBackgroundColorResource(R.color.price_red)
                     .setText(bottomBageEvent.num.toString())
                     .show(true)
         else
-            mTextBageItem.setText("")
+            mTextBadgeItem.setText("")
                     .hide(true)
     }
 

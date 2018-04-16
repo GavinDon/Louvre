@@ -101,6 +101,8 @@
             android:paddingBottom="10dp"
             android:visibility="gone"
             android:paddingTop="10dp"
+            android:inputType="number"
+            android:maxLength="6"
             android:layout_marginTop="@dimen/dp16"
             app:layout_constraintTop_toBottomOf="@id/login_et_phone"
             />
@@ -116,7 +118,7 @@
             app:btnAngle="4dp"
             android:gravity="center"
             android:layout_marginTop="22dp"
-            app:btnNormalColor="#a6767575"
+            app:btnNormalColor="#a65b5a5a"
             app:btnPressColor="@color/light"
             app:layout_constraintTop_toBottomOf="@id/login_et_code"
             />

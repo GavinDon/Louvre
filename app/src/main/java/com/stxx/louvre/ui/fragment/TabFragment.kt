@@ -16,6 +16,7 @@ import org.jetbrains.anko.bundleOf
 
  */
 class TabFragment : LazyLoadFragment() {
+
     //tab索引
     private var tabIndex: Int = 0
     private lateinit var mAdapter: HomeTabAdapter

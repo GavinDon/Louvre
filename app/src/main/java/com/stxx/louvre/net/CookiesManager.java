@@ -20,7 +20,9 @@ public class CookiesManager implements CookieJar {
             }
         }
     }
-
+    /**
+     *  加载新的cookies
+     */
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookies = cookieStore.get(url);

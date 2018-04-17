@@ -45,12 +45,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
-        <TextView
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/tvSearch"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@null"
             android:hint="画家"
+            android:focusable="false"
             android:gravity="center_vertical"
             android:textColorHint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"

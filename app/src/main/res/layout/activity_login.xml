@@ -76,51 +76,87 @@
         <EditText
             android:id="@+id/login_et_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"
             android:hint="请输入手机号"
             android:inputType="phone"
-            android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/normalSp"
             />
 
-        <EditText
-            android:id="@+id/login_et_code"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/login_fl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="验证码"
-            android:background="@drawable/shape_et_bg"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textSize="@dimen/normalSp"
-            android:paddingBottom="10dp"
+            app:flexDirection="column"
             android:visibility="gone"
-            android:paddingTop="10dp"
-            android:inputType="number"
-            android:maxLength="6"
-            android:layout_marginTop="@dimen/dp16"
             app:layout_constraintTop_toBottomOf="@id/login_et_phone"
-            />
+            >
+
+            <EditText
+                android:id="@+id/login_et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_et_bg"
+                android:gravity="center"
+                android:hint="验证码"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="@dimen/normalSp"
+                />
+
+            <EditText
+                android:id="@+id/login_et_psw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_et_bg"
+                android:gravity="center"
+                android:hint="输入密码"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="@dimen/normalSp"
+                />
+
+            <EditText
+                android:id="@+id/login_et_psw2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_et_bg"
+                android:gravity="center"
+                android:hint="再次输入密码"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="@dimen/normalSp"
+                />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
 
         <com.stxx.louvre.widgets.SubmitButton
             android:id="@+id/login_btn_request_code"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="22dp"
             android:clickable="true"
+            android:gravity="center"
             android:text="获取验证码"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:btnAngle="4dp"
-            android:gravity="center"
-            android:layout_marginTop="22dp"
             app:btnNormalColor="#a65b5a5a"
             app:btnPressColor="@color/light"
-            app:layout_constraintTop_toBottomOf="@id/login_et_code"
+            app:layout_constraintTop_toBottomOf="@id/login_fl"
             />
 
         <ImageView

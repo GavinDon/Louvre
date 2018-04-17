@@ -12,6 +12,7 @@ import com.stxx.louvre.base.BaseActivity
 import com.stxx.louvre.ui.contract.LoginContact
 import com.stxx.louvre.ui.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.toast
 
 
 /**
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 
  */
 class LoginActivity : BaseActivity(), View.OnClickListener, LoginContact.View {
+
+
     private lateinit var mPresenter: LoginPresenter
 
     override fun inflateViewId() = R.layout.activity_login
@@ -37,9 +40,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener, LoginContact.View {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.login_btn_request_code -> {
-                mPresenter.showSmsCodeWidget(login_et_phone, login_et_code)
+                if (login_btn_request_code.text == "注册") {
+                    mPresenter.reqRegister(login_et_phone.text.toString(), login_et_psw2.toString(),login_et_code.text.toString())
+                } else {
+                    mPresenter.showSmsCodeWidget(login_et_phone, login_fl)
+                    mPresenter.reqSmsCode(login_et_phone.text.toString().trim())
+                }
+
             }
         }
+    }
+
+    override fun registerFinish() {
+        toast("注册成功")
+    }
+
+    override fun loginSmsCode() {
+        login_btn_request_code.text = "注册"
     }
 
     override fun onDestroy() {

@@ -134,7 +134,7 @@ public class PersistentCookieStore {
             ObjectOutputStream outputStream = new ObjectOutputStream(os);
             outputStream.writeObject(cookie);
         } catch (IOException e) {
-            if (Constant.Companion.getDEBUGER())
+            if (Constant.DEBUGER)
                 Log.d(LOG_TAG, "IOException in encodeCookie", e);
             return null;
         }

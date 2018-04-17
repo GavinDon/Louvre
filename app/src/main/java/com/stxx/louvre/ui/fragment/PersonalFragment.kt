@@ -1,6 +1,14 @@
 package com.stxx.louvre.ui.fragment
 
+import android.annotation.TargetApi
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +22,8 @@ import com.stxx.louvre.ui.activity.DeliveryAddressActivity
 import com.stxx.louvre.ui.activity.LoginActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
+
 
 /**
  * description: 个人中心
@@ -39,6 +49,7 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
         }
         loadData()
         mAdapter.onItemClickListener = this
+        createNotify()
     }
 
     /**
@@ -59,11 +70,54 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
         }
         mAdapter.setNewData(itemList)
     }
+
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         when (position) {
             0, 1 -> startActivity<LoginActivity>()
             4 -> startActivity<DeliveryAddressActivity>()
+            2 -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    showNotify()
+            }
         }
     }
+
+    private fun createNotify() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "chat"
+            val channelName = "聊天信息"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            createNotifyChannel(channelId, channelName, importance)
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun createNotifyChannel(channelId: String, channelName: String, importance: Int) {
+        val channel = NotificationChannel(channelId, channelName, importance)
+        val notificationManager = context!!.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun showNotify() {
+        val notificationManager = context!!.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channel = notificationManager.getNotificationChannel("chat")
+        if (channel.importance == NotificationManager.IMPORTANCE_NONE) {
+            val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context!!.packageName)
+            intent.putExtra(Settings.EXTRA_CHANNEL_ID, channel.id)
+            startActivity(intent)
+            toast("请手动将打开通知")
+        }
+        val notification = NotificationCompat.Builder(context!!, "chat")
+                .setShowWhen(true)
+                .setContentText("今天中午吃什么")
+                .setContentTitle("收到一条消息")
+                .setAutoCancel(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .build()
+        notificationManager.notify(1, notification)
+    }
+
 
 }

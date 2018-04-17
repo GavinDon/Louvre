@@ -51,7 +51,6 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         switchFragment(0)
         EventBus.getDefault().register(this)
 
-
         RetrofitManager.create(ApiService::class.java).getLogin("18602928514", "123456")
                 .compose(RxSchedulers.applySchedulers())
                 .subscribe(object : MySubscribe<LoginBean>() {

@@ -1,0 +1,8 @@
+package com.stxx.louvre.entity
+
+/**
+ * description:
+ * Created by liNan on 2018/4/17 17:18
+
+ */
+data class CodeAndMsg(val code: Int, val msg: String)

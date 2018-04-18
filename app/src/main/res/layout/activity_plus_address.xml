@@ -221,10 +221,12 @@
 
     <com.stxx.louvre.widgets.SubmitButton
         android:id="@+id/plus_address_save"
-        android:layout_width="140dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
         android:minWidth="140dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         app:btnAngle="2dp"
         app:btnNormalColor="@color/price_red"
         app:btnPressColor="@color/price_red_press"

@@ -8,12 +8,7 @@ import com.ashokvarma.bottomnavigation.TextBadgeItem
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
 import com.stxx.louvre.base.BaseFragment
-import com.stxx.louvre.entity.LoginBean
 import com.stxx.louvre.entity.event.BottomBadgeEvent
-import com.stxx.louvre.net.ApiService
-import com.stxx.louvre.net.MySubscribe
-import com.stxx.louvre.net.RetrofitManager
-import com.stxx.louvre.net.RxSchedulers
 import com.stxx.louvre.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -51,13 +46,6 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         switchFragment(0)
         EventBus.getDefault().register(this)
 
-        RetrofitManager.create(ApiService::class.java).getLogin("18602928514", "123456")
-                .compose(RxSchedulers.applySchedulers())
-                .subscribe(object : MySubscribe<LoginBean>() {
-                    override fun onSuccess(response: LoginBean?) {
-                        toast(response?.user?.id.toString())
-                    }
-                })
     }
 
     /**

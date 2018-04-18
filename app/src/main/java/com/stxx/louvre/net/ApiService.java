@@ -1,14 +1,16 @@
 package com.stxx.louvre.net;
 
 
+import com.stxx.louvre.entity.AddressListBean;
 import com.stxx.louvre.entity.CodeAndMsg;
 import com.stxx.louvre.entity.DataResponse;
-import com.stxx.louvre.entity.LoginBean;
 import com.stxx.louvre.entity.ShoppingCarBean;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -44,6 +46,30 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST("sys/login/")
-    Observable<LoginBean> getLogin( @Field("username") String phone, @Field("password") String psw);
+    Observable<CodeAndMsg> getLogin( @Field("username") String phone, @Field("password") String psw);
+
+    /**
+     * 地址列表
+     */
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("address/list/")
+    Observable<AddressListBean> getAddressList(@Body RequestBody body);
+
+    /**
+     * 添加新地址
+     */
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("address/save/")
+    Observable<CodeAndMsg> getPlusAddress(@Body RequestBody body);
+
+    /**
+     * 删除某个地址
+     */
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("address/remove/")
+    Observable<CodeAndMsg> getRemoveAddress(@Body RequestBody body);
+
+
+
 
 }

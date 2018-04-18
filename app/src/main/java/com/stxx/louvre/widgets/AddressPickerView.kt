@@ -120,7 +120,7 @@ class AddressPickerView : LinearLayout, TabLayout.OnTabSelectedListener, BaseQui
                 mSelectDistrictPosition = position
                 context.toast(mSelectCity?.n.toString())
                 if (mListener != null) {
-                    mListener!!.onCheckListener(mSelectProvince?.n + mSelectCity?.n + mSelectDistrict?.n)
+                    mListener!!.onCheckListener("${mSelectProvince?.n}-" + "${mSelectCity?.n}-" + mSelectDistrict?.n)
                 }
             }
         }

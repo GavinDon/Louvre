@@ -1,200 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<com.google.android.flexbox.FlexboxLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_bg"
-    >
+    app:flexDirection="column"
+    tools:context=".ui.activity.LoginActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dp16"
-        android:padding="@dimen/dp16"
-        android:src="@mipmap/fail"
-        app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/login_guide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"
-        />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/login_guide_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"
-        />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/login_guide_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"
-        />
-
-
-    <android.support.constraint.ConstraintLayout
+    <EditText
+        android:id="@+id/login_et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/login_guide"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/login_logo"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/login_cl"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/login_guide_left"
-        app:layout_constraintRight_toRightOf="@id/login_guide_right"
-        app:layout_constraintTop_toBottomOf="@id/login_guide"
-        >
-
-        <android.support.constraint.Guideline
-            android:id="@+id/login_guide_middle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"
-            />
-
-        <EditText
-            android:id="@+id/login_et_phone"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/shape_et_bg"
-            android:gravity="center"
-            android:hint="请输入手机号"
-            android:inputType="phone"
-            android:paddingTop="10dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textSize="@dimen/normalSp"
-            />
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/login_fl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flexDirection="column"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/login_et_phone"
-            >
-
-            <EditText
-                android:id="@+id/login_et_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:hint="验证码"
-                android:inputType="number"
-                android:maxLength="6"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:textSize="@dimen/normalSp"
-                />
-
-            <EditText
-                android:id="@+id/login_et_psw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:hint="输入密码"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:textSize="@dimen/normalSp"
-                />
-
-            <EditText
-                android:id="@+id/login_et_psw2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:hint="再次输入密码"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:textSize="@dimen/normalSp"
-                />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-
-        <com.stxx.louvre.widgets.SubmitButton
-            android:id="@+id/login_btn_request_code"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="22dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="获取验证码"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:btnAngle="4dp"
-            app:btnNormalColor="#a65b5a5a"
-            app:btnPressColor="@color/light"
-            app:layout_constraintTop_toBottomOf="@id/login_fl"
-            />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/wechat"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/login_guide_middle"
-            app:layout_constraintTop_toBottomOf="@id/login_btn_request_code"
-            />
-
-        <ImageView
-            android:id="@+id/sina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/wechat"
-            app:layout_constraintLeft_toLeftOf="@id/login_guide_middle"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_btn_request_code"
-            />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/login_tv_subscribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="注册即视为同意《用户协议》"
-        android:textColor="@android:color/white"
-        app:layout_constraintLeft_toLeftOf="@id/login_guide_left"
-        app:layout_constraintRight_toRightOf="@id/login_guide_right"
-        app:layout_constraintTop_toBottomOf="@id/login_cl"
+        android:hint="手机号"
         />
 
+    <EditText
+        android:id="@+id/login_et_psw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="登陆"
+        />
+
+</com.google.android.flexbox.FlexboxLayout>

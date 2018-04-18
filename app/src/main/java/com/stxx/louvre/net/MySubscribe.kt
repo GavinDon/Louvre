@@ -1,7 +1,6 @@
 package com.stxx.louvre.net
 
 import android.widget.Toast
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.JsonParseException
 import com.stxx.louvre.entity.DataResponse
@@ -35,7 +34,6 @@ abstract class MySubscribe<T> : Observer<T> {
     }
 
     override fun onError(e: Throwable) {
-        LogUtils.e("Retrofit", e.message)
         if (e is HttpException) {     //   HTTP错误
             onException(ExceptionReason.BAD_NETWORK)
         } else if (e is ConnectException || e is UnknownHostException) {   //连接错误

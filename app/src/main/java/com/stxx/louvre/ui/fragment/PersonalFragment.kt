@@ -8,18 +8,23 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.support.constraint.ConstraintLayout
 import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.PersonalListAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.PersonalBean
+import com.stxx.louvre.net.CookiesManager
 import com.stxx.louvre.ui.activity.DeliveryAddressActivity
 import com.stxx.louvre.ui.activity.LoginActivity
+import com.stxx.louvre.ui.activity.RegisterActivity
+import com.stxx.louvre.widgets.WaveView
 import kotlinx.android.synthetic.main.fragment_mine.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -30,11 +35,10 @@ import org.jetbrains.anko.support.v4.toast
  * Created by liNan on 2018/2/27 15:20
 
  */
-class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
-
+class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, WaveView.OnWaveInterface {
     private lateinit var mAdapter: PersonalListAdapter
-    private lateinit var itemData: MutableMap<String, Boolean>
 
+    private lateinit var itemData: MutableMap<String, Boolean>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_mine, null, false)
     }
@@ -50,6 +54,8 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
         loadData()
         mAdapter.onItemClickListener = this
         createNotify()
+        waveView.setOnWaveInterface(this)
+        iv_user_icon.setOnClickListener { startActivity<LoginActivity>() }
     }
 
     /**
@@ -73,11 +79,15 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         when (position) {
-            0, 1 -> startActivity<LoginActivity>()
+            0, 1 -> startActivity<RegisterActivity>()
             4 -> startActivity<DeliveryAddressActivity>()
             2 -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                     showNotify()
+            }
+            3 ->{
+               val aa= CookiesManager.getCookies()[0].value()
+                LogUtils.i(aa)
             }
         }
     }
@@ -117,6 +127,12 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .build()
         notificationManager.notify(1, notification)
+    }
+
+    override fun onWaveAnimation(y: Float) {
+        val llp = tv_user_nickname.layoutParams as ConstraintLayout.LayoutParams
+        llp.setMargins(0, 0, 0, y.toInt())
+        tv_user_nickname.layoutParams = llp
     }
 
 

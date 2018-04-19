@@ -1,32 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.flexbox.FlexboxLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:flexDirection="column"
+    android:background="@mipmap/login_bg"
     tools:context=".ui.activity.LoginActivity">
 
     <EditText
         android:id="@+id/login_et_phone"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="center"
         android:hint="手机号"
+        android:inputType="phone"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textColor="#ffff"
+        android:textColorHint="@color/grey"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"
+        />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2"
+        />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"
+        />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/login_logo"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
         android:id="@+id/login_et_psw"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="center"
         android:hint="密码"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffff"
+        android:textColorHint="@color/grey"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/login_et_phone"
         />
 
-    <Button
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        android:text="免费注册"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/login_et_psw"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_forget_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        android:text="忘记密码?"
+        android:textColor="@color/price_red_press"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/login_et_psw"
+        />
+
+    <com.stxx.louvre.widgets.SubmitButton
         android:id="@+id/login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:gravity="center"
         android:text="登陆"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:btnAngle="4dp"
+        app:btnNormalColor="#a65b5a5a"
+        app:btnPressColor="@color/light"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_forget_psw"
         />
 
-</com.google.android.flexbox.FlexboxLayout>
+    <ImageView
+        android:id="@+id/login_wechat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/wechat_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_middle"
+        />
+
+    <ImageView
+        android:id="@+id/login_sina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/sina_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_middle"
+        app:layout_constraintRight_toRightOf="@id/guideline_right"
+        />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        app:alignItems="center"
+        app:flexDirection="row"
+        app:layout_constraintBottom_toTopOf="@id/login_sina"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#9b9a9a"
+            app:layout_flexGrow="2"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="其他登陆方式"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#9b9a9a"
+            app:layout_flexGrow="2"
+            />
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</android.support.constraint.ConstraintLayout>

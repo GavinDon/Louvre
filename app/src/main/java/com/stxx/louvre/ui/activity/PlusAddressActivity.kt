@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.jakewharton.rxbinding2.view.RxView
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
+import com.stxx.louvre.entity.AddressListBean
 import com.stxx.louvre.entity.CodeAndMsg
 import com.stxx.louvre.entity.RequestEntity
 import com.stxx.louvre.net.MySubscribe
@@ -35,13 +36,29 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
     private var addressArray = listOf<String>() //省市区用'-'分割后的数组
     private val areaDialog: BottomSheetDialog by lazy { BottomSheetDialog(this) }
     override fun inflateViewId() = R.layout.activity_plus_address
-
+    private var data: AddressListBean.RowsBean? = null
     override fun initView(savedInstanceState: Bundle?) {
-        setTitle("新建联系人")
+        data = intent.getParcelableExtra("data")
+        if (null != data) {
+            editAddress()
+        } else {
+            setTitle("新建联系人")
+        }
         plus_address_ll_contract.setOnClickListener(this)
         plus_address_tv_checked_area.setOnClickListener(this)
         plus_address_save.setOnClickListener(this)
         RxView.clicks(plus_address_save).throttleFirst(1000, TimeUnit.MILLISECONDS)
+    }
+
+    /**
+     * 地址列表点击编辑跳转过来
+     */
+    private fun editAddress() {
+        setTitle("编辑联系人")
+        plus_address_et_name.setText(data?.trueName)
+        plus_address_et_phone.setText(data?.phone)
+        plus_address_tv_checked_area.text = "${data?.province} ${data?.city} ${data?.area}"
+        plus_address_et_detail.setText(data?.address)
     }
 
     /**
@@ -112,7 +129,7 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
 
             }
             R.id.plus_address_save -> {
-                addNewAddress()
+                if (null != data) reqUpdateAddress() else addNewAddress()
             }
         }
     }
@@ -148,7 +165,6 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
                                     ToastUtils.showLong(response?.msg)
                                 }
                             }
-
                         })
             } else {
                 ToastUtils.setGravity(Gravity.CENTER, 0, 0)
@@ -159,6 +175,37 @@ class PlusAddressActivity : BaseActivity(), View.OnClickListener {
             ToastUtils.showLong("请选择地址")
         }
 
+    }
+
+    /**
+     * 修改地址
+     */
+    private fun reqUpdateAddress() {
+        data?.phone = plus_address_et_phone.text.toString()
+        data?.trueName = plus_address_et_name.text.toString()
+        data?.area = plus_address_et_detail.text.toString()
+        if (addressArray.size >= 3) {
+            data?.province = addressArray[0]
+            data?.city = addressArray[1]
+            data?.area = addressArray[2]
+        }
+        if (data?.phone == null || data?.trueName == null || data?.area==null) {
+            toast("请填写所有内容")
+            return
+        }
+        val reqJson = Gson().toJson(data)
+        val body = RequestBody.create(MediaType.parse("application/json; charset=UTF-8"), reqJson)
+        RetrofitManager.create().getUpdateAddress(body)
+                .compose(RxSchedulers.applySchedulers())
+                .compose(ProgressUtils.applyProgressBar(this))
+                .subscribe(object : MySubscribe<CodeAndMsg>() {
+                    override fun onSuccess(response: CodeAndMsg?) {
+                        if (0 == response?.code) {
+                            toast("修改成功")
+                            this@PlusAddressActivity.finish()
+                        }
+                    }
+                })
     }
 
     override fun onDestroy() {

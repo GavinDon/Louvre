@@ -20,7 +20,7 @@ class RequestEntity {
                               var address: String,// 详细地址
                               var province: String,// 省
                               var city: String,// 市
-                              var areaLocal: String)// 区域名
+                              var area: String)// 区域名
 
     /**
      * 删除某一地址

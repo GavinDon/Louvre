@@ -20,6 +20,8 @@ import okhttp3.RequestBody
 
  */
 class DeliveryPresenter : DeliveryAddressContact.Presenter {
+
+
     private lateinit var mView: DeliveryAddressContact.View
     /**
      *获取地址列表
@@ -61,9 +63,16 @@ class DeliveryPresenter : DeliveryAddressContact.Presenter {
     }
 
     /**
-     * 设置默认地址
+     * 编辑地址
      */
-    override fun setDefaultAddress() {
+    override fun editAddress(id: String, pos: Int) {
+
+    }
+    /**
+     * 设置默认选中地址
+     */
+    override fun setDefaultAddress(id: String) {
+
     }
 
     /**

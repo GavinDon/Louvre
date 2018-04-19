@@ -10,6 +10,7 @@ import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,6 +29,7 @@ public interface ApiService {
     @Headers({"Content-type:application/json;charset=utf-8", "Accept:application/json"})//需要添加touch
     @GET("/article/list/json/{page}")
     Observable<DataResponse<ShoppingCarBean>> getHomeArticles(@Path("page") int page);
+
     /**
      * 发送短信验证码
      */
@@ -40,36 +42,53 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST("sys/registered/")
-   Observable<CodeAndMsg> getRegister(@Field("phone") String phone, @Field("password") String password, @Field("vcode") String vcode);
+    Observable<CodeAndMsg> getRegister(@Field("phone") String phone, @Field("password") String password, @Field("vcode") String vcode);
+
     /**
      * 登录
      */
     @FormUrlEncoded
     @POST("sys/login/")
-    Observable<CodeAndMsg> getLogin( @Field("username") String phone, @Field("password") String psw);
+    Observable<CodeAndMsg> getLogin(@Field("username") String phone, @Field("password") String psw);
 
     /**
      * 地址列表
      */
-    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("address/list/")
     Observable<AddressListBean> getAddressList(@Body RequestBody body);
 
     /**
      * 添加新地址
      */
-    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("address/save/")
     Observable<CodeAndMsg> getPlusAddress(@Body RequestBody body);
 
     /**
      * 删除某个地址
      */
-    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("address/remove/")
     Observable<CodeAndMsg> getRemoveAddress(@Body RequestBody body);
 
+    /**
+     * 修改地址
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("address/update/")
+    Observable<CodeAndMsg> getUpdateAddress(@Body RequestBody body);
 
+    /**
+     * 设置默认地址
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("address/updateCmsAddressDefalurt/")
+    Observable<CodeAndMsg> setDefaultAddress(@Body RequestBody body);
 
-
+    /**
+     * 获取个人信息
+     */
+    @POST("presonalinfo/getMemberByUserId")
+    Response<ResponseBody> getPsersonalInfo();
 }

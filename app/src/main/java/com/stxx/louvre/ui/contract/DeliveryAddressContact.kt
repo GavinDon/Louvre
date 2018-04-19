@@ -12,7 +12,7 @@ interface DeliveryAddressContact {
 
     interface View : BaseMvp.View {
         fun showAddress(rows:List<AddressListBean.RowsBean>) //成功显示列表
-        fun setDefault() //设置默认地址
+        fun setDefault(pos: Int) //设置默认地址
         fun deleterSuccess(pos:Int) //删除地址成功
     }
 
@@ -21,7 +21,9 @@ interface DeliveryAddressContact {
 
         fun deleterAddress(id:String ,pos: Int)
 
-        fun setDefaultAddress()
+        fun setDefaultAddress(id:String)
+
+        fun editAddress(id:String,pos: Int)
 
     }
 

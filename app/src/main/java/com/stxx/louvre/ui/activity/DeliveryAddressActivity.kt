@@ -17,6 +17,7 @@ import com.stxx.louvre.ui.contract.DeliveryAddressContact
 import com.stxx.louvre.ui.presenter.DeliveryPresenter
 import kotlinx.android.synthetic.main.activity_delivery_address.*
 import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 
 
@@ -24,7 +25,6 @@ import org.jetbrains.anko.startActivityForResult
  * 收货地址列表
  */
 class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, BaseQuickAdapter.OnItemChildClickListener {
-
 
 
     private lateinit var mAdapter: AddressListAdapter
@@ -47,14 +47,19 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
         address_tv_new.setOnClickListener {
             startActivityForResult<PlusAddressActivity>(Constant.PLUS_ADDRESS_REQUEST_CODE, "name" to "plus")
         }
-
         mAdapter.onItemChildClickListener = this
+
     }
 
+    /**
+     * 编辑、删除 监听
+     */
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         val id = mAdapter.data[position].id
         if (view?.id == R.id.ada_delivery_tv_deleter) {
             deliveryPresenter.deleterAddress(id, position)
+        } else if (view?.id == R.id.ada_delivery_tv_edit) {
+            startActivity(intentFor<PlusAddressActivity>("data" to mAdapter.data[position]))
         }
     }
 
@@ -75,7 +80,7 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
     /**
      * 设置默认地址
      */
-    override fun setDefault() {
+    override fun setDefault(id:Int) {
     }
 
     /**
@@ -85,6 +90,7 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
         mAdapter.remove(pos)
         mAdapter.notifyItemRemoved(pos)
     }
+
     override fun onDestroy() {
         super.onDestroy()
         deliveryPresenter.detachView(this)

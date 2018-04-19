@@ -1,9 +1,8 @@
 package com.stxx.louvre.ui.presenter
 
-import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.stxx.louvre.base.BaseMvp
 import com.stxx.louvre.entity.CodeAndMsg
-import com.stxx.louvre.entity.RequestEntity
 import com.stxx.louvre.net.MySubscribe
 import com.stxx.louvre.net.RetrofitManager
 import com.stxx.louvre.net.RxSchedulers
@@ -27,8 +26,12 @@ class LoginPresenter : LoginContact.Presenter {
                 .compose(ProgressUtils.applyProgressBar(mView as LoginActivity))
                 .subscribe(object : MySubscribe<CodeAndMsg>() {
                     override fun onSuccess(response: CodeAndMsg?) {
-                        LogUtils.i(response.toString())
-                        (mView as LoginActivity).loginSuccess()
+                        if (0 == response?.code) {
+                            ToastUtils.showLong("登陆成功")
+                            (mView as LoginActivity).loginSuccess()
+                        } else {
+                            ToastUtils.showShort(response?.msg)
+                        }
                     }
                 })
     }
@@ -36,6 +39,5 @@ class LoginPresenter : LoginContact.Presenter {
     override fun attachView(view: LoginContact.View) {
         super.attachView(view)
         this.mView = view
-        RequestEntity.AddressListBean()
     }
 }

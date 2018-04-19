@@ -134,7 +134,7 @@ public class AddressListBean implements Parcelable {
         dest.writeInt(totalPages);
     }
 
-    public static class RowsBean {
+    public static class RowsBean implements Parcelable{
         /**
          * address : 南五十家子镇远安制药厂
          * area : null
@@ -172,6 +172,32 @@ public class AddressListBean implements Parcelable {
         private String trueName;
         private Object type;
         private String userId;
+
+        protected RowsBean(Parcel in) {
+            address = in.readString();
+            city = in.readString();
+            createDate = in.readString();
+            createId = in.readString();
+            id = in.readString();
+            isdefalurt = in.readInt();
+            phone = in.readString();
+            province = in.readString();
+            status = in.readInt();
+            trueName = in.readString();
+            userId = in.readString();
+        }
+
+        public static final Creator<RowsBean> CREATOR = new Creator<RowsBean>() {
+            @Override
+            public RowsBean createFromParcel(Parcel in) {
+                return new RowsBean(in);
+            }
+
+            @Override
+            public RowsBean[] newArray(int size) {
+                return new RowsBean[size];
+            }
+        };
 
         public String getAddress() {
             return address;
@@ -307,6 +333,26 @@ public class AddressListBean implements Parcelable {
 
         public void setUserId(String userId) {
             this.userId = userId;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(address);
+            dest.writeString(city);
+            dest.writeString(createDate);
+            dest.writeString(createId);
+            dest.writeString(id);
+            dest.writeInt(isdefalurt);
+            dest.writeString(phone);
+            dest.writeString(province);
+            dest.writeInt(status);
+            dest.writeString(trueName);
+            dest.writeString(userId);
         }
     }
 }

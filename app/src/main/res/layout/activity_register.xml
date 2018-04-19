@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/dp16"
         android:padding="@dimen/dp16"
-        android:src="@mipmap/fail"
+        android:src="@drawable/ic_close_black_24dp"
         app:layout_constraintRight_toRightOf="parent"
         />
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"
+        app:layout_constraintGuide_percent="0.35"
         />
 
     <android.support.constraint.Guideline
@@ -41,20 +41,15 @@
         />
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@mipmap/login_logo"
         app:layout_constraintBottom_toBottomOf="@id/register_guide"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/login_logo"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
-
-    </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/register_cl"
@@ -76,12 +71,13 @@
         <EditText
             android:id="@+id/register_et_phone"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"
             android:hint="请输入手机号"
             android:inputType="phone"
             android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
             android:textSize="@dimen/normalSp"
@@ -91,8 +87,8 @@
             android:id="@+id/register_fl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:flexDirection="column"
             android:visibility="gone"
+            app:flexDirection="column"
             app:layout_constraintTop_toBottomOf="@id/register_et_phone"
             >
 
@@ -119,6 +115,8 @@
                 android:background="@drawable/shape_et_bg"
                 android:gravity="center"
                 android:hint="输入密码"
+                android:inputType="textPassword"
+                android:nextFocusForward="@id/register_et_psw2"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textColor="@android:color/white"
@@ -164,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wechat"
+            android:src="@mipmap/wechat_login"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@+id/register_guide_middle"
             app:layout_constraintTop_toBottomOf="@id/register_btn_request_code"
@@ -176,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wechat"
+            android:src="@mipmap/sina_login"
             app:layout_constraintLeft_toLeftOf="@id/register_guide_middle"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/register_btn_request_code"

@@ -18,6 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     /**
@@ -50,6 +51,25 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("sys/login/")
     Observable<CodeAndMsg> getLogin(@Field("username") String phone, @Field("password") String psw);
+
+    /**
+     * 忘记密码(发送短信)
+     */
+    @GET("sys/uppasswordsms")
+    Observable<CodeAndMsg> getUpdatewordSms(@Query("phone") String phone);
+
+    /**
+     * 验证验证码
+     */
+    @GET("sys/checkuppassword")
+    Observable<CodeAndMsg> getVertifyPassword(@Query("phone") String phone, @Query("vcode") String vCode);
+
+    /**
+     * 忘记/修改密码 完成
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("sys/uppasswordfinal")
+    Observable<CodeAndMsg> getPswUpdateFinish(@Body RequestBody body);
 
     /**
      * 地址列表
@@ -90,5 +110,12 @@ public interface ApiService {
      * 获取个人信息
      */
     @POST("presonalinfo/getMemberByUserId")
-    Response<ResponseBody> getPsersonalInfo();
+    Response<ResponseBody> getPersonalInfo();
+
+    /**
+     * 首页推荐
+     */
+    @POST("index/getAppZhuanti")
+    Call<ResponseBody> getHomeRecommend();
+
 }

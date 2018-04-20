@@ -26,6 +26,8 @@ class LoginActivity : BaseActivity(), LoginContact.View {
             startActivity<RegisterActivity>()
             this.finish()
         }
+        //忘记密码
+        tv_forget_psw.setOnClickListener { startActivity<UpdatePswActivity>() }
     }
 
     /**

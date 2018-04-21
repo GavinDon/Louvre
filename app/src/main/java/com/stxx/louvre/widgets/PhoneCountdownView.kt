@@ -31,6 +31,7 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
     private val btnSms: SubmitButton  by lazy { find<SubmitButton>(R.id.btn_view) }
     private var mDisposable: Disposable? = null
     private var exitTime: Long? = null
+    private var exitSeconds: Long? = null //返回上一页面时 短信倒计时还剩多少秒
     private val countDownTime = 40L //倒计时总数
 
     constructor(context: Context?) : this(context, null)
@@ -42,13 +43,15 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
 
     private fun initView() {
         val mExitTime = SPUtils.getInstance().getLong("exitTime")
+        val mExitSeconds = SPUtils.getInstance().getLong("exitSeconds")
+
         val currentTime = System.currentTimeMillis()
         //如果退出时间为-1表示没有给sp中存数据
         if (mExitTime != -1L) {
             val diffTime = (currentTime - mExitTime) / 1000 //计算时间差
-            //如果当前时间和退出当前页面之前的时间不足60s
-            if (diffTime < countDownTime) {
-                initDownTime(countDownTime - diffTime)
+            //如果当前时间和退出当前页面之前的时间小于还剩倒计时数
+            if (diffTime < mExitSeconds) {
+                initDownTime(mExitSeconds - diffTime)
             }
         }
         btnSms.setOnClickListener {
@@ -75,6 +78,7 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
                 .subscribe({
                     btnSms.text = "${it}s之后获取"
                     exitTime = System.currentTimeMillis()
+                    exitSeconds = it
                     if (0L == it) {
                         btnSms.isClickable = true
                         btnSms.text = "获取验证码"
@@ -100,8 +104,11 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
      * 取消订时器
      */
     fun onFinish() {
+        //只要一个不为空 另一个肯定不为空
         if (null != exitTime) {
+            //把退出时的毫秒数和还剩多少秒保存起来
             SPUtils.getInstance().put("exitTime", exitTime!!)
+            SPUtils.getInstance().put("exitSeconds", exitSeconds!!)
         }
         if (null != mDisposable && !mDisposable!!.isDisposed) {
             mDisposable?.dispose()

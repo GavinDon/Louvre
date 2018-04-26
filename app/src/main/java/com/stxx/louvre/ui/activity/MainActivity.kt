@@ -21,6 +21,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
     private val mFragments = ArrayList<BaseFragment>()
     private val mTextBadgeItem = TextBadgeItem()
     private var mLastFgIndex: Int = 0
+    private var index: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
@@ -53,7 +54,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
      */
     private fun initFragment() {
         mFragments.add(HomeFragment())
-        mFragments.add(RecommendFragment())
+        mFragments.add(RecommendWebFragment())
         mFragments.add(ShoppingCartFragment())
         mFragments.add(PersonalFragment())
     }
@@ -79,6 +80,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
     override fun onTabSelected(position: Int) {
 //        fragmentController.switchFragment(position).show()
         switchFragment(position)
+        index = position
     }
 
 
@@ -121,5 +123,6 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         ft.show(targetFg)
         ft.commitAllowingStateLoss()
     }
+
 
 }

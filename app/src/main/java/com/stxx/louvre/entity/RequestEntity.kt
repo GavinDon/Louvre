@@ -27,4 +27,8 @@ class RequestEntity {
      */
     data class DeleterAddress(var id: String)
 
+    /**
+     * 更新密码
+     */
+     data class UpdatePassWordBean(var phone:String,var token:String,var password:String)
 }

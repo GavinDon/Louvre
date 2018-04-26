@@ -12,6 +12,8 @@
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".base.MyApplication"
@@ -72,6 +74,12 @@
         </activity>
         <activity android:name=".ui.activity.UpdatePswActivity">
         </activity>
+        <activity android:name=".ui.WebActivity">
+        </activity>
+        <!--<activity-->
+            <!--android:name="com.tencent.bugly.beta.ui.BetaActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize|locale"-->
+            <!--android:theme="@android:style/Theme.Translucent" />-->
     </application>
 
 </manifest>

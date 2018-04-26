@@ -6,3 +6,5 @@ package com.stxx.louvre.entity
 
  */
 data class CodeAndMsg(val code: Int, val msg: String)
+
+data class  UpdatePswBean(val code: Int,val msg: String, val token:String)

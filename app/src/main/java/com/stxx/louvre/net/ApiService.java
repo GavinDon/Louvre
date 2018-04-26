@@ -4,7 +4,9 @@ package com.stxx.louvre.net;
 import com.stxx.louvre.entity.AddressListBean;
 import com.stxx.louvre.entity.CodeAndMsg;
 import com.stxx.louvre.entity.DataResponse;
+import com.stxx.louvre.entity.HomeLfgBean;
 import com.stxx.louvre.entity.ShoppingCarBean;
+import com.stxx.louvre.entity.UpdatePswBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -23,7 +25,6 @@ import retrofit2.http.Query;
 public interface ApiService {
     /**
      * 首页数据
-     * http://www.wanandroid.com/article/list/0/json
      *
      * @param page page
      */
@@ -55,21 +56,24 @@ public interface ApiService {
     /**
      * 忘记密码(发送短信)
      */
-    @GET("sys/uppasswordsms")
-    Observable<CodeAndMsg> getUpdatewordSms(@Query("phone") String phone);
+    @FormUrlEncoded
+    @POST("sys/uppasswordsms")
+    Observable<CodeAndMsg> getUpdatewordSms(@Field("phone") String phone);
 
     /**
      * 验证验证码
      */
-    @GET("sys/checkuppassword")
-    Observable<CodeAndMsg> getVertifyPassword(@Query("phone") String phone, @Query("vcode") String vCode);
+    @FormUrlEncoded
+    @POST("sys/checkuppassword")
+    Observable<UpdatePswBean> getVertifyPassword(@Field("phone") String phone, @Field("vcode") String vCode);
 
     /**
      * 忘记/修改密码 完成
      */
-    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @FormUrlEncoded
     @POST("sys/uppasswordfinal")
-    Observable<CodeAndMsg> getPswUpdateFinish(@Body RequestBody body);
+    Observable<CodeAndMsg> getPswUpdateFinish(@Field("phone") String phone, @Field("token") String token, @Field("password") String password);
 
     /**
      * 地址列表
@@ -115,7 +119,15 @@ public interface ApiService {
     /**
      * 首页推荐
      */
-    @POST("index/getAppZhuanti")
-    Call<ResponseBody> getHomeRecommend();
+    @GET("index/getAppZhuanti")
+    Observable<HomeLfgBean> getHomeRecommend(@Query("pageNumber") String pageNumber, @Query("pageSize") String pageSize);
+
+    /**
+     * 获取购物车列表
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("shoppingcart/list")
+    Call<ResponseBody> getShoppingCartList(@Body RequestBody body);
+
 
 }

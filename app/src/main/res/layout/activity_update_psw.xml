@@ -15,5 +15,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <EditText
+        android:id="@+id/et_code"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="center_vertical"
+        android:hint="验证码"
+        android:inputType="number"
+        android:maxLength="6"/>
+
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="center_vertical"
+        android:hint="输入密码"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/et_psw2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_et_bg"
+        android:gravity="center_vertical"
+        android:hint="再次输入密码"
+        android:inputType="textPassword"/>
+
+    <com.stxx.louvre.widgets.SubmitButton
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="修改"
+        android:textColor="@android:color/white"
+        app:btnAngle="4dp"
+        app:btnNormalColor="@color/price_red"
+        app:btnPressColor="@color/price_red_press"
+        />
 
 </LinearLayout>

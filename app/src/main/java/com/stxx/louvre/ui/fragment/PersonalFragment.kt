@@ -21,6 +21,7 @@ import com.stxx.louvre.adapter.PersonalListAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.PersonalBean
 import com.stxx.louvre.net.CookiesManager
+import com.stxx.louvre.ui.WebActivity
 import com.stxx.louvre.ui.activity.DeliveryAddressActivity
 import com.stxx.louvre.ui.activity.LoginActivity
 import com.stxx.louvre.ui.activity.RegisterActivity
@@ -85,9 +86,12 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                     showNotify()
             }
-            3 ->{
-               val aa= CookiesManager.getCookies()[0].value()
+            3 -> {
+                val aa = CookiesManager.getCookies()[0].value()
                 LogUtils.i(aa)
+            }
+            5 -> {
+                startActivity<WebActivity>()
             }
         }
     }

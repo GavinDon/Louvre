@@ -8,11 +8,11 @@ package com.stxx.louvre.base
 class Constant {
 
     companion object {
-        const val DEBUGER=true
-        const val SHARE_ELMMENT = "share_goods_img"
+        const val DEBUGER = true
         const val PLUS_ADDRESS_REQUEST_CODE = 101
         const val REQUEST_BASE_URL = "http://124.115.16.18/"
-        const val SHARE_IS_FIRST="is_first_enter_app"
-
+        const val SHARE_IS_FIRST = "is_first_enter_app"
+        private const val WEB_BASE_URL="${REQUEST_BASE_URL}wapapp/dist/view/"
+        const val CLASSIFY_URL = "${WEB_BASE_URL}shangpinfenlei.html"
     }
 }

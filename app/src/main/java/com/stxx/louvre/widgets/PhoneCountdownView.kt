@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.SPUtils
 import com.stxx.louvre.R
 import com.stxx.louvre.net.RxSchedulers
@@ -33,6 +34,12 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
     private var exitTime: Long? = null
     private var exitSeconds: Long? = null //返回上一页面时 短信倒计时还剩多少秒
     private val countDownTime = 40L //倒计时总数
+    private lateinit var listener: OnRegexSmsListener
+
+    interface OnRegexSmsListener {
+        fun onRegexSuccess()
+    }
+
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -55,7 +62,11 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
             }
         }
         btnSms.setOnClickListener {
-            initDownTime(countDownTime) //倒计时60s
+            if (RegexUtils.isMobileExact(etPhone.text.toString())) {
+                initDownTime(countDownTime)//倒计时60s
+                listener.onRegexSuccess()
+            }
+
         }
         ivClose.setOnClickListener {
             etPhone.text = null
@@ -100,6 +111,10 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
     }
 
+    fun setOnRegexListener(onRegexSmsListener: OnRegexSmsListener) {
+        this.listener = onRegexSmsListener
+    }
+
     /**
      * 取消订时器
      */
@@ -114,5 +129,6 @@ class PhoneCountdownView : ConstraintLayout, TextWatcher {
             mDisposable?.dispose()
         }
     }
+
 
 }

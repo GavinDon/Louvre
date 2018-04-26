@@ -9,7 +9,6 @@
         android:id="@+id/et_viewCountdown"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/shape_et_bg"
         android:hint="输入手机号码"
         android:maxLength="11"

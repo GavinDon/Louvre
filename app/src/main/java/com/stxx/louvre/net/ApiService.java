@@ -2,10 +2,14 @@ package com.stxx.louvre.net;
 
 
 import com.stxx.louvre.entity.AddressListBean;
+import com.stxx.louvre.entity.ArticleResponseBean;
+import com.stxx.louvre.entity.ProtfoloListBean;
+import com.stxx.louvre.entity.ClassifyBean;
 import com.stxx.louvre.entity.CodeAndMsg;
 import com.stxx.louvre.entity.DataResponse;
 import com.stxx.louvre.entity.HomeLfgBean;
 import com.stxx.louvre.entity.ShoppingCarBean;
+import com.stxx.louvre.entity.ShoppingCartListRespBean;
 import com.stxx.louvre.entity.UpdatePswBean;
 
 import io.reactivex.Observable;
@@ -117,6 +121,12 @@ public interface ApiService {
     Response<ResponseBody> getPersonalInfo();
 
     /**
+     * 分类数据
+     */
+    @GET("index/class/list")
+    Observable<ClassifyBean> getClassifyData();
+
+    /**
      * 首页推荐
      */
     @GET("index/getAppZhuanti")
@@ -127,7 +137,55 @@ public interface ApiService {
      */
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     @POST("shoppingcart/list")
-    Call<ResponseBody> getShoppingCartList(@Body RequestBody body);
+    Observable<ShoppingCartListRespBean> getShoppingCartList(@Body RequestBody body);
 
+    /**
+     * 购物车加
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("shoppingcart/countup")
+    Observable<CodeAndMsg> ShoppingIncrease(@Body RequestBody body);
+
+    /**
+     * 购物车减
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("shoppingcart/countdown")
+    Observable<CodeAndMsg> ShoppingDecrease(@Body RequestBody body);
+
+    /**
+     * 购物车 删除
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("shoppingcart/remove")
+    Observable<CodeAndMsg> ShoppingDeleter(@Body RequestBody body);
+
+    /**
+     * 购物车 结算
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("shoppingcart/killbill")
+    Observable<CodeAndMsg> ShoppingClear(@Body RequestBody body);
+
+    /**
+     * 加入收藏夹
+     */
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @POST("rs/address/cmsMemberCollection")
+    Observable<CodeAndMsg> addCollection(@Body RequestBody body);
+
+    /**
+     * 作品
+     */
+    @Headers({"Content-Type: application/json", "Accept:application/json"})
+    @POST("index/getPaingtingWorksByConditions")
+    Observable<ProtfoloListBean> getProtfolioList(@Body RequestBody body);
+
+    /**
+     * 艺术家
+     */
+    @Headers({"Content-Type: application/json", "Accept:application/json"})
+    @POST("index/getClassificationByConditions")
+    Observable<ArticleResponseBean> getArticleList(@Body RequestBody body);
 
 }

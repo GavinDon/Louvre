@@ -5,5 +5,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="connect_error">连接错误</string>
+    <string name="empty_not_login">登录后可同步购物车中商品</string>
+    <string name="empty_not_goods">购物车空空如也</string>
 
 </resources>

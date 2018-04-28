@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding2.view.RxView
 import com.stxx.louvre.R
+import com.stxx.louvre.listener.ILogin
 import com.stxx.louvre.net.RxSchedulers
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * 启动页
  * 承载首页加载过多数据
  */
-class StartUpActivity : AppCompatActivity() {
+class StartUpActivity : AppCompatActivity(), ILogin {
 
     private lateinit var mDisposable: Disposable
 
@@ -39,13 +40,14 @@ class StartUpActivity : AppCompatActivity() {
                 .subscribe({
                     startActivity<MainActivity>()
                 })
+        goLogin() //自动登陆
     }
 
     /**
      * 倒计时
      */
     private fun initDownTime(textView: TextView) {
-        val countTime = 3L //倒计时3s
+        val countTime = 5L //倒计时3s
         mDisposable = Observable.interval(0, 1000L, TimeUnit.MILLISECONDS)
                 .compose(RxSchedulers.applySchedulers())
                 .map(Function<Long, Long> {
@@ -59,12 +61,12 @@ class StartUpActivity : AppCompatActivity() {
                     }
                 })
     }
-
     override fun onDestroy() {
         super.onDestroy()
         if (!mDisposable.isDisposed) {
             mDisposable.dispose()
         }
+
     }
 }
 

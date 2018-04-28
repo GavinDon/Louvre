@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.PersonalListAdapter
@@ -87,12 +86,17 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
                     showNotify()
             }
             3 -> {
-                val aa = CookiesManager.getCookies()[0].value()
-                LogUtils.i(aa)
+//                val aa = CookiesManager.getCookies()[0].value()
+//                LogUtils.i(aa)
             }
             5 -> {
                 startActivity<WebActivity>()
             }
+            6 ->{
+                CookiesManager.clearAllCookies()
+                toast("您已退出登陆")
+            }
+
         }
     }
 

@@ -3,21 +3,19 @@ package com.stxx.louvre.entity;
 import java.util.List;
 
 /**
- * description:
- * Created by liNan on 2018/4/10 15:07
+ * description: 分类
+ * Created by liNan on 2018/4/27 9:07
  */
 public class ClassifyBean {
 
 
     /**
      * code : 0
-     * data : [{"leftName":"国画","right":[{"detail":[{"imgUrl":"","name":"写意"},{"imgUrl":"","name":"工笔"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}],"title":"推荐类目"},{"detail":[{"imgUrl":"","name":"写意"},{"imgUrl":"","name":"工笔"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}],"title":"其他类目"}]},{"leftName":"书法","right":[{"detail":[{"imgUrl":"","name":"楷书"},{"imgUrl":"","name":"行书"},{"imgUrl":"","name":"草书"},{"imgUrl":"","name":"隶书"},{"imgUrl":"","name":"篆书"},{"imgUrl":"","name":"魏碑"},{"imgUrl":"","name":"篆书"}],"title":"推荐类目"},{"detail":[{"imgUrl":"","name":"写篆书"},{"imgUrl":"","name":"魏碑"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}],"title":"其他类目"}]}]
-     * msg : 成功
+     * rows : [{"categoryDepth":null,"categoryList":"H","categoryName":"国画","createDate":"2018-04-20 16:59:07","createId":"19","id":"da2f05c728634d7a910ffd02c2af1fb9","isLocked":0,"list":[{"categoryDepth":null,"categoryList":"国画","categoryName":"白描","createDate":"2018-04-20 17:00:07","createId":"19","id":"ef1eaae9fc3d49f4a47e16a87584df18","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"重彩","createDate":"2018-04-20 16:59:51","createId":"19","id":"da71cc292bc74c69b94e27083cb3ffbb","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"水彩","createDate":"2018-04-20 17:00:41","createId":"19","id":"d4615487e4af408d9e59438bfa8bdb9d","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"写意","createDate":"2018-04-20 16:59:29","createId":"19","id":"b8ffc91c04384b218b0a7d9897fa798d","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"其他","createDate":"2018-04-20 17:01:03","createId":"19","id":"9ac128187f3f4c9a835a178cd9b3113e","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"兼工带写","createDate":"2018-04-20 17:00:26","createId":"19","id":"50816eadfe3c4f43bc8a39e5720d7036","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"工笔","createDate":"2018-04-20 16:59:41","createId":"19","id":"43075a4df3e84e6996bd67c89f5a3155","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null}],"modifyDate":null,"modifyId":null,"open":false,"pid":"0","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"Y","categoryName":"油画","createDate":"2018-04-20 17:08:04","createId":"19","id":"bb5644455a004f98a77239daab104282","isLocked":0,"list":[{"categoryDepth":null,"categoryList":"油画","categoryName":"人物","createDate":"2018-04-20 17:08:18","createId":"19","id":"742d7c0b22184d688c47f88dc564dc24","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"bb5644455a004f98a77239daab104282","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"油画","categoryName":"静物","createDate":"2018-04-20 17:08:34","createId":"19","id":"5b4298114f7f4bcc887af3ef43aaeebc","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"bb5644455a004f98a77239daab104282","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"油画","categoryName":"抽象","createDate":"2018-04-20 17:08:47","createId":"19","id":"3a24c0298f6f4b1aa484ed2dc2a60129","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"bb5644455a004f98a77239daab104282","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"油画","categoryName":"风景","createDate":"2018-04-20 17:08:25","createId":"19","id":"2629ea6dbe994c8a93e6c8ee09791fd9","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"bb5644455a004f98a77239daab104282","sort":0,"status":0,"type":null}],"modifyDate":null,"modifyId":null,"open":false,"pid":"0","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"Z","categoryName":"书法","createDate":"2018-04-20 17:05:46","createId":"19","id":"5e2a53675bf64437ac0cf6511e5baa40","isLocked":0,"list":[{"categoryDepth":null,"categoryList":"书法","categoryName":"楷书","createDate":"2018-04-20 17:06:14","createId":"19","id":"f8e1096a69d1448095c770808adf029e","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"篆书","createDate":"2018-04-20 17:07:09","createId":"19","id":"cbb300440d924b91b870315c81731604","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"行书","createDate":"2018-04-20 17:06:29","createId":"19","id":"a6530b0b2f0a47c5a40d9479f30ac2d1","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"隶书","createDate":"2018-04-20 17:06:51","createId":"19","id":"48a762d3aa5e43969d77f4a00480a5e0","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"魏碑","createDate":"2018-04-20 17:07:22","createId":"19","id":"271bc0b9c2a241b6b697ec4e2ab0948c","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"草书","createDate":"2018-04-20 17:06:41","createId":"19","id":"19dd3e5cda434d4ca4b46f4147c5c542","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"书法","categoryName":"其他","createDate":"2018-04-20 17:07:32","createId":"19","id":"0916ae3a65994f0b94d9001c0f2fb4a6","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"5e2a53675bf64437ac0cf6511e5baa40","sort":0,"status":0,"type":null}],"modifyDate":null,"modifyId":null,"open":false,"pid":"0","sort":0,"status":0,"type":null}]
      */
 
     private int code;
-    private String msg;
-    private List<DataBean> data;
+    private List<RowsBean> rows;
 
     public int getCode() {
         return code;
@@ -27,96 +25,322 @@ public class ClassifyBean {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public List<RowsBean> getRows() {
+        return rows;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setRows(List<RowsBean> rows) {
+        this.rows = rows;
     }
 
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
+    public static class RowsBean {
         /**
-         * leftName : 国画
-         * right : [{"detail":[{"imgUrl":"","name":"写意"},{"imgUrl":"","name":"工笔"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}],"title":"推荐类目"},{"detail":[{"imgUrl":"","name":"写意"},{"imgUrl":"","name":"工笔"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}],"title":"其他类目"}]
+         * categoryDepth : null
+         * categoryList : H
+         * categoryName : 国画
+         * createDate : 2018-04-20 16:59:07
+         * createId : 19
+         * id : da2f05c728634d7a910ffd02c2af1fb9
+         * isLocked : 0
+         * list : [{"categoryDepth":null,"categoryList":"国画","categoryName":"白描","createDate":"2018-04-20 17:00:07","createId":"19","id":"ef1eaae9fc3d49f4a47e16a87584df18","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"重彩","createDate":"2018-04-20 16:59:51","createId":"19","id":"da71cc292bc74c69b94e27083cb3ffbb","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"水彩","createDate":"2018-04-20 17:00:41","createId":"19","id":"d4615487e4af408d9e59438bfa8bdb9d","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"写意","createDate":"2018-04-20 16:59:29","createId":"19","id":"b8ffc91c04384b218b0a7d9897fa798d","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"其他","createDate":"2018-04-20 17:01:03","createId":"19","id":"9ac128187f3f4c9a835a178cd9b3113e","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"兼工带写","createDate":"2018-04-20 17:00:26","createId":"19","id":"50816eadfe3c4f43bc8a39e5720d7036","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null},{"categoryDepth":null,"categoryList":"国画","categoryName":"工笔","createDate":"2018-04-20 16:59:41","createId":"19","id":"43075a4df3e84e6996bd67c89f5a3155","isLocked":0,"list":null,"modifyDate":null,"modifyId":null,"open":false,"pid":"da2f05c728634d7a910ffd02c2af1fb9","sort":0,"status":0,"type":null}]
+         * modifyDate : null
+         * modifyId : null
+         * open : false
+         * pid : 0
+         * sort : 0
+         * status : 0
+         * type : null
          */
 
-        private String leftName;
-        private List<RightBean> right;
+        private Object categoryDepth;
+        private String categoryList;
+        private String categoryName;
+        private String createDate;
+        private String createId;
+        private String id;
+        private int isLocked;
+        private Object modifyDate;
+        private Object modifyId;
+        private boolean open;
+        private String pid;
+        private int sort;
+        private int status;
+        private Object type;
+        private List<ListBean> list;
 
-        public String getLeftName() {
-            return leftName;
+        public Object getCategoryDepth() {
+            return categoryDepth;
         }
 
-        public void setLeftName(String leftName) {
-            this.leftName = leftName;
+        public void setCategoryDepth(Object categoryDepth) {
+            this.categoryDepth = categoryDepth;
         }
 
-        public List<RightBean> getRight() {
-            return right;
+        public String getCategoryList() {
+            return categoryList;
         }
 
-        public void setRight(List<RightBean> right) {
-            this.right = right;
+        public void setCategoryList(String categoryList) {
+            this.categoryList = categoryList;
         }
 
-        public static class RightBean {
+        public String getCategoryName() {
+            return categoryName;
+        }
+
+        public void setCategoryName(String categoryName) {
+            this.categoryName = categoryName;
+        }
+
+        public String getCreateDate() {
+            return createDate;
+        }
+
+        public void setCreateDate(String createDate) {
+            this.createDate = createDate;
+        }
+
+        public String getCreateId() {
+            return createId;
+        }
+
+        public void setCreateId(String createId) {
+            this.createId = createId;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public int getIsLocked() {
+            return isLocked;
+        }
+
+        public void setIsLocked(int isLocked) {
+            this.isLocked = isLocked;
+        }
+
+        public Object getModifyDate() {
+            return modifyDate;
+        }
+
+        public void setModifyDate(Object modifyDate) {
+            this.modifyDate = modifyDate;
+        }
+
+        public Object getModifyId() {
+            return modifyId;
+        }
+
+        public void setModifyId(Object modifyId) {
+            this.modifyId = modifyId;
+        }
+
+        public boolean isOpen() {
+            return open;
+        }
+
+        public void setOpen(boolean open) {
+            this.open = open;
+        }
+
+        public String getPid() {
+            return pid;
+        }
+
+        public void setPid(String pid) {
+            this.pid = pid;
+        }
+
+        public int getSort() {
+            return sort;
+        }
+
+        public void setSort(int sort) {
+            this.sort = sort;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public Object getType() {
+            return type;
+        }
+
+        public void setType(Object type) {
+            this.type = type;
+        }
+
+        public List<ListBean> getList() {
+            return list;
+        }
+
+        public void setList(List<ListBean> list) {
+            this.list = list;
+        }
+
+        public static class ListBean {
             /**
-             * detail : [{"imgUrl":"","name":"写意"},{"imgUrl":"","name":"工笔"},{"imgUrl":"","name":"重彩"},{"imgUrl":"","name":"白描"},{"imgUrl":"","name":"兼工带写"}]
-             * title : 推荐类目
+             * categoryDepth : null
+             * categoryList : 国画
+             * categoryName : 白描
+             * createDate : 2018-04-20 17:00:07
+             * createId : 19
+             * id : ef1eaae9fc3d49f4a47e16a87584df18
+             * isLocked : 0
+             * list : null
+             * modifyDate : null
+             * modifyId : null
+             * open : false
+             * pid : da2f05c728634d7a910ffd02c2af1fb9
+             * sort : 0
+             * status : 0
+             * type : null
              */
 
-            private String title;
-            private List<DetailBean> detail;
+            private Object categoryDepth;
+            private String categoryList;
+            private String categoryName;
+            private String createDate;
+            private String createId;
+            private String id;
+            private int isLocked;
+            private Object list;
+            private Object modifyDate;
+            private Object modifyId;
+            private boolean open;
+            private String pid;
+            private int sort;
+            private int status;
+            private Object type;
 
-            public String getTitle() {
-                return title;
+            public Object getCategoryDepth() {
+                return categoryDepth;
             }
 
-            public void setTitle(String title) {
-                this.title = title;
+            public void setCategoryDepth(Object categoryDepth) {
+                this.categoryDepth = categoryDepth;
             }
 
-            public List<DetailBean> getDetail() {
-                return detail;
+            public String getCategoryList() {
+                return categoryList;
             }
 
-            public void setDetail(List<DetailBean> detail) {
-                this.detail = detail;
+            public void setCategoryList(String categoryList) {
+                this.categoryList = categoryList;
             }
 
-            public static class DetailBean {
-                /**
-                 * imgUrl :
-                 * name : 写意
-                 */
+            public String getCategoryName() {
+                return categoryName;
+            }
 
-                private String imgUrl;
-                private String name;
+            public void setCategoryName(String categoryName) {
+                this.categoryName = categoryName;
+            }
 
-                public String getImgUrl() {
-                    return imgUrl;
-                }
+            public String getCreateDate() {
+                return createDate;
+            }
 
-                public void setImgUrl(String imgUrl) {
-                    this.imgUrl = imgUrl;
-                }
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
 
-                public String getName() {
-                    return name;
-                }
+            public String getCreateId() {
+                return createId;
+            }
 
-                public void setName(String name) {
-                    this.name = name;
-                }
+            public void setCreateId(String createId) {
+                this.createId = createId;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public int getIsLocked() {
+                return isLocked;
+            }
+
+            public void setIsLocked(int isLocked) {
+                this.isLocked = isLocked;
+            }
+
+            public Object getList() {
+                return list;
+            }
+
+            public void setList(Object list) {
+                this.list = list;
+            }
+
+            public Object getModifyDate() {
+                return modifyDate;
+            }
+
+            public void setModifyDate(Object modifyDate) {
+                this.modifyDate = modifyDate;
+            }
+
+            public Object getModifyId() {
+                return modifyId;
+            }
+
+            public void setModifyId(Object modifyId) {
+                this.modifyId = modifyId;
+            }
+
+            public boolean isOpen() {
+                return open;
+            }
+
+            public void setOpen(boolean open) {
+                this.open = open;
+            }
+
+            public String getPid() {
+                return pid;
+            }
+
+            public void setPid(String pid) {
+                this.pid = pid;
+            }
+
+            public int getSort() {
+                return sort;
+            }
+
+            public void setSort(int sort) {
+                this.sort = sort;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            public Object getType() {
+                return type;
+            }
+
+            public void setType(Object type) {
+                this.type = type;
             }
         }
     }

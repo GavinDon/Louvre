@@ -7,6 +7,7 @@ import android.webkit.CookieSyncManager
 import com.jaeger.library.StatusBarUtil
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
+import com.stxx.louvre.base.Constant
 import com.stxx.louvre.net.CookiesManager
 import com.stxx.louvre.ui.contract.LoginContact
 import com.stxx.louvre.ui.presenter.LoginPresenter
@@ -57,9 +58,14 @@ class LoginActivity : BaseActivity(), LoginContact.View {
             for (i in cookies.indices) {
                 val cookie = cookies[i]
                 val value = cookie.name() + "=" + cookie.value() + ";domain=" + cookie.domain() + ";path=/;"
-                manager.setCookie("http://124.115.16.18/wapapp/dist/view/gerenzhongxin.html", value)
+                manager.setCookie(Constant.WEB_BASE_URL, value)
             }
             this.finish()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView(this)
     }
 }

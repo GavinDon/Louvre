@@ -1,5 +1,6 @@
 package com.stxx.louvre.ui.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.stxx.louvre.R;
 import com.stxx.louvre.base.BaseFragment;
 import com.stxx.louvre.base.Constant;
+import com.stxx.louvre.entity.event.BackEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Stack;
 
@@ -38,7 +44,13 @@ public class RecommendWebFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        EventBus.getDefault().register(this);
         initWeb();
+    }
+
+    @Subscribe
+    public void onEvent(BackEvent event) {
+        onKeyDown(event.getCode(), event.getEvent());
     }
 
     /**
@@ -61,13 +73,17 @@ public class RecommendWebFragment extends BaseFragment {
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.getSettings().setLoadWithOverviewMode(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        if (!url.isEmpty()) {
-            mWebView.loadUrl(url);
-        }
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+        });
+        mWebView.loadUrl(url);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
+        if ((keyCode == 4) && mWebView.canGoBack()) {
             mWebView.goBack(); // goBack()表示返回WebView的上一页面
             //pop 的是当前页面的标题 所以Pop之后取栈中最后一个值
             if (titleStack.size() > 1) {
@@ -75,6 +91,12 @@ public class RecommendWebFragment extends BaseFragment {
             }
             return true;
         }
-        return this.getActivity().onKeyDown(keyCode, event);
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

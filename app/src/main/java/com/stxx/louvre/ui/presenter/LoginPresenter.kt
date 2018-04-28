@@ -1,5 +1,6 @@
 package com.stxx.louvre.ui.presenter
 
+import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.stxx.louvre.base.BaseMvp
 import com.stxx.louvre.entity.CodeAndMsg
@@ -27,7 +28,8 @@ class LoginPresenter : LoginContact.Presenter {
                 .subscribe(object : MySubscribe<CodeAndMsg>() {
                     override fun onSuccess(response: CodeAndMsg?) {
                         if (0 == response?.code) {
-                            ToastUtils.showLong("登陆成功")
+                            SPUtils.getInstance().put("userName",userName)
+                            SPUtils.getInstance().put("passWord", password)
                             (mView as LoginActivity).loginSuccess()
                         } else {
                             ToastUtils.showShort(response?.msg)

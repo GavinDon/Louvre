@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
@@ -33,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/iv_shopping_cart"
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="90dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="@dimen/dp16"
                 android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher"
@@ -50,11 +51,11 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp16"
                 android:maxLines="2"
-                android:text="qqq"
                 android:textColor="@color/semi"
                 app:layout_constraintLeft_toRightOf="@id/iv_shopping_cart"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_shopping_cart"
+                tools:text="@string/app_name"
                 />
 
             <TextView
@@ -63,12 +64,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp16"
-                android:text="aa"
                 android:textColor="@color/grey"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@id/iv_shopping_cart"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_shopping_cart_title"
+                tools:text="@string/app_name"
                 />
 
             <TextView

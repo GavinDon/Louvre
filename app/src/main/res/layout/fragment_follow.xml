@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -11,21 +12,27 @@
         layout="@layout/common_title"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvShoppingCar"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/shopping_cart_srl"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/shopping_cart_cl_balance"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shopping_cart_include"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvShoppingCar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/shopping_cart_cl_balance"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="51dp"
         android:background="#f2f2f2"
         app:layout_constraintBottom_toBottomOf="parent"
         >
@@ -150,10 +157,10 @@
         android:layout_marginRight="24dp"
         android:scaleType="centerInside"
         android:src="@mipmap/scorll_top"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_goneMarginBottom="110dp"
-        android:visibility="gone"
         />
 
 </android.support.constraint.ConstraintLayout>

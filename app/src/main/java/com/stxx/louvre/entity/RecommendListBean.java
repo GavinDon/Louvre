@@ -7,15 +7,12 @@ import com.chad.library.adapter.base.entity.SectionEntity;
  * Created by liNan on 2018/3/2 14:52
  */
 
-public class RecommendListBean extends SectionEntity<ClassifyBean.DataBean.RightBean.DetailBean> {
-
-
-
-    public RecommendListBean(ClassifyBean.DataBean.RightBean.DetailBean classifyBean) {
-        super(classifyBean);
-    }
-
+public class RecommendListBean extends SectionEntity<ClassifyBean.RowsBean.ListBean> {
     public RecommendListBean(boolean isHeader, String header) {
         super(isHeader, header);
+    }
+
+    public RecommendListBean(ClassifyBean.RowsBean.ListBean listBean) {
+        super(listBean);
     }
 }

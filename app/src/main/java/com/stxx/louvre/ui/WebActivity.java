@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -66,7 +65,6 @@ public class WebActivity extends BaseActivity {
         if (!url.isEmpty()){
             mWebView.loadUrl(url);
         }
-        String cookie = CookieManager.getInstance().getCookie(url);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {

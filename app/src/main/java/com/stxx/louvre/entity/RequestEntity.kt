@@ -22,13 +22,47 @@ class RequestEntity {
                               var city: String,// 市
                               var area: String)// 区域名
 
-    /**
-     * 删除某一地址
-     */
-    data class DeleterAddress(var id: String)
 
     /**
      * 更新密码
      */
-     data class UpdatePassWordBean(var phone:String,var token:String,var password:String)
+    data class UpdatePassWordBean(var phone: String, var token: String, var password: String)
+
+    /**
+     * 作品
+     */
+    data class ProtfolioBean(val type: String = "2",
+                             val cName: String = "不限",
+                             val kongjian: String = "不限",
+                             val chicun: String = "不限",
+                             val xingzhi: String = "不限",
+                             val lowprice: String = "0",
+                             val hprice: String = "999999999",
+                             val parId: String = "",
+                             val key: String = "",
+                             val pageNumber: String = "1",
+                             val pageSize: String = "1",
+                             val ids: String? = null
+    )
+
+    /**
+     * 艺术家json
+     */
+    data class ArticleReqBean(var pageNumber: Int = 1, var pageSize: Int = 10)
+
+    /**
+     * 购物车列表json
+     */
+    data class ShoppingCartReqBean(var pageNumber: Int = 1, var pageSize: Int = 100)
+
+
+
+    /**
+     * 结算购物车
+     */
+    data class BalanceAccountReqBean(var number: Int = 0,
+                                     var totalprice: String,
+                                     var lessprice: Int = 0,
+                                     var postage: Int = 0,
+                                     var idlist: List<String>)
 }

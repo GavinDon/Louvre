@@ -34,7 +34,7 @@ class AmountView : LinearLayout, View.OnClickListener, TextWatcher {
     private val btnIncrease by lazy { find<Button>(R.id.btnIncrease) }
 
     interface OnAmountChangeListener {
-        fun onAmountChange(view: View, oldAmount:Int,amount: Int)
+        fun onAmountChange(view: View, oldAmount: Int, amount: Int)
     }
 
 
@@ -46,8 +46,6 @@ class AmountView : LinearLayout, View.OnClickListener, TextWatcher {
         LayoutInflater.from(context).inflate(R.layout.view_amount, this)
         btnDecrease.setOnClickListener(this)
         btnIncrease.setOnClickListener(this)
-//        etAmount.addTextChangedListener(this)
-
         val obtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.AmountView)
         val btnWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_btnWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
         val tvWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.AmountView_tvWidth, 45)
@@ -64,7 +62,7 @@ class AmountView : LinearLayout, View.OnClickListener, TextWatcher {
         }
 
         val textParams = LinearLayout.LayoutParams(tvWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
-        textParams.gravity=Gravity.CENTER
+        textParams.gravity = Gravity.CENTER
         etAmount.layoutParams = textParams
         if (tvTextSize != 0) {
             etAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, tvTextSize.toFloat())
@@ -83,12 +81,14 @@ class AmountView : LinearLayout, View.OnClickListener, TextWatcher {
 
     override fun onClick(v: View?) {
         val i = v!!.id
+        //在服务器返回的数据的基础上操作
+        amount = etAmount.text.toString().trim().toInt()
         if (i == R.id.btnDecrease) {
             if (amount > 1) {
                 amount--
                 etAmount.setText(amount.toString())
                 if (mListener != null) {
-                    mListener!!.onAmountChange(this,amount-1, amount)
+                    mListener!!.onAmountChange(this, amount+1, amount)
                 }
             }
         } else if (i == R.id.btnIncrease) {
@@ -99,7 +99,7 @@ class AmountView : LinearLayout, View.OnClickListener, TextWatcher {
                 context.toast("已经达到库存上限,不能再添加了")
             }
             if (mListener != null) {
-                mListener!!.onAmountChange(this, amount+1,amount)
+                mListener!!.onAmountChange(this, amount - 1, amount)
             }
 
         }

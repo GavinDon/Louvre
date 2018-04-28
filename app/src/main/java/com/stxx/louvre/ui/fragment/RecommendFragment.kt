@@ -11,39 +11,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.google.gson.Gson
+import com.blankj.utilcode.util.LogUtils
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
+import com.stxx.louvre.base.Constant
 import com.stxx.louvre.entity.ClassifyBean
 import com.stxx.louvre.entity.RecommendListBean
-import com.stxx.louvre.ui.activity.GoodsListActivity
+import com.stxx.louvre.net.MySubscribe
+import com.stxx.louvre.net.RetrofitManager
+import com.stxx.louvre.net.RxSchedulers
+import com.stxx.louvre.net.dialog.ProgressUtils
+import com.stxx.louvre.ui.WebActivity
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.dip
-import org.jetbrains.anko.support.v4.onUiThread
 import org.jetbrains.anko.support.v4.startActivity
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import org.jetbrains.anko.support.v4.toast
 
 
 /**
- * description: 推荐页面
+ * description: 分类页面
  * Created by liNan on 2018/2/27 15:20
 
  */
 class RecommendFragment : BaseFragment() {
     private var lastRadioButton = 0
-    private lateinit var classifyBean: ClassifyBean
     private val leftNames = arrayListOf<String>()
+    private var rowsBean: List<ClassifyBean.RowsBean> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recommend, null, false)
     }
+
     override fun initView() {
         initRightRecycleView()
-        readJsonData()
+        reqData()
     }
 
     private lateinit var mAdapter: RecommendRightAdapter
@@ -54,46 +58,48 @@ class RecommendFragment : BaseFragment() {
         rvRight.adapter = mAdapter
         val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
         mAdapter.addHeaderView(headerView)
-        mAdapter.setOnItemClickListener { adapter, view, position ->
-            startActivity<GoodsListActivity>()
+        mAdapter.setOnItemClickListener { _, _, position ->
+            LogUtils.i(mAdapter.data[position].t.categoryName)
+            startActivity<WebActivity>("url" to "${Constant.CLASSIFY_URL}?type=${mAdapter.data[position].t.categoryName}")
         }
     }
 
     private fun radomData(leftName: String): ArrayList<RecommendListBean> {
         val list = ArrayList<RecommendListBean>()
         list.clear()
-        for (i in 0 until classifyBean.data.size) {
-            if (leftName == classifyBean.data[i].leftName) {
-                val right = classifyBean.data[i].right
-                for (j  in 0 until  right.size){
-                    list.add(RecommendListBean(true,right[j].title))
-                    for (k in 0 until right[j].detail.size){
-                        list.add(RecommendListBean(right[j].detail[k]))
-                    }
+        for (i in 0 until rowsBean.size) {
+            if (leftName == rowsBean[i].categoryName) {
+                list.add(RecommendListBean(true, rowsBean[i].categoryName))
+                val right = rowsBean[i].list
+                for (k in 0 until right.size) {
+                    list.add(RecommendListBean(right[k]))
                 }
             }
         }
         return list
     }
 
-    private fun readJsonData() {
-        val jsonSB = StringBuilder()
-        doAsync {
-            val addressJsonStream = BufferedReader(InputStreamReader(this@RecommendFragment.context!!.assets.open("classifyJson.json")))
-            addressJsonStream.readLines().forEach {
-                jsonSB.append(it)
-            }
-            addressJsonStream.close()
-            onUiThread {
-                classifyBean = Gson().fromJson(jsonSB.toString(), ClassifyBean::class.java)
-                if (classifyBean.code == 0 && classifyBean.data.size > 0) {
-                    classifyBean.data.forEach {
-                        leftNames.add(it.leftName)
+    /**
+     * 获取服务器分类数据
+     */
+    private fun reqData() {
+        RetrofitManager.create().classifyData
+                .compose(RxSchedulers.applySchedulers())
+                .compose(ProgressUtils.applyProgressBar(activity!!))
+                .subscribe(object : MySubscribe<ClassifyBean>() {
+                    override fun onSuccess(response: ClassifyBean?) {
+                        if (null != response && response.code == 0) {
+                            rowsBean = response.rows
+                            //添加左边的列表
+                            rowsBean.forEach {
+                                leftNames.add(it.categoryName)
+                            }
+                            createUi() //获取数据之后创建左边列表视图
+                        } else {
+                            toast("code!=0")
+                        }
                     }
-                    createUi()
-                }
-            }
-        }
+                })
     }
 
     /**
@@ -119,7 +125,7 @@ class RecommendFragment : BaseFragment() {
                     }.lparams(width = dip(100), height = dip(45))
                     //设置选中第一个item
                     if (i == 0) {
-                        mAdapter.setNewData(  radomData(leftNames[i]))
+                        mAdapter.setNewData(radomData(leftNames[i]))
                         mRadioButton.isChecked = true
 //                        mRadioButton.setCompoundDrawables(createRbDrawable(), null, null, null)
                     }

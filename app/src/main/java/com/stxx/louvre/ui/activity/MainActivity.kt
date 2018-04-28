@@ -9,6 +9,8 @@ import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.entity.event.BottomBadgeEvent
+import com.stxx.louvre.entity.event.ConvertFragment
+import com.stxx.louvre.net.CookiesManager
 import com.stxx.louvre.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -21,7 +23,6 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
     private val mFragments = ArrayList<BaseFragment>()
     private val mTextBadgeItem = TextBadgeItem()
     private var mLastFgIndex: Int = 0
-    private var index: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
@@ -40,9 +41,6 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
                 .setFirstSelectedPosition(0)
                 .setTabSelectedListener(this)
                 .initialise()
-//        fragmentController = FragmentController(R.id.flContent, this)
-//        fragmentController.addFragment(HomeFragment(), RecommendFragment(), ShoppingCartFragment(), PersonalFragment())
-//        supportFragmentManager.beginTransaction().replace(R.id.flContent, HomeFragment()).commit() //默认显示HomeFragment
         initFragment()
         switchFragment(0)
         EventBus.getDefault().register(this)
@@ -54,7 +52,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
      */
     private fun initFragment() {
         mFragments.add(HomeFragment())
-        mFragments.add(RecommendWebFragment())
+        mFragments.add(RecommendFragment())
         mFragments.add(ShoppingCartFragment())
         mFragments.add(PersonalFragment())
     }
@@ -77,10 +75,17 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
                     .hide(true)
     }
 
+    /**
+     * 购物车为空时 点击去逛逛跳转到首页
+     */
+    @Subscribe
+    open fun onShoppingComeEvent(index: ConvertFragment) {
+        bottom_navigation_bar.selectTab(0)
+    }
+
     override fun onTabSelected(position: Int) {
 //        fragmentController.switchFragment(position).show()
         switchFragment(position)
-        index = position
     }
 
 
@@ -97,6 +102,8 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
                 toast("再按一次退出程序")
                 mExitTime = System.currentTimeMillis()
             } else {
+                //退出之后清除cookie
+                CookiesManager.clearAllCookies()
                 System.exit(0)
             }
             return true
@@ -109,7 +116,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
      *
      * @param position 要显示的fragment的下标
      */
-    private fun switchFragment(position: Int) {
+    fun switchFragment(position: Int) {
         if (position >= mFragments.size) {
             return
         }
@@ -123,6 +130,4 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         ft.show(targetFg)
         ft.commitAllowingStateLoss()
     }
-
-
 }

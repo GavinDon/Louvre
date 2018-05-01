@@ -188,4 +188,11 @@ public interface ApiService {
     @POST("index/getClassificationByConditions")
     Observable<ArticleResponseBean> getArticleList(@Body RequestBody body);
 
+    /**
+     * 下单
+     */
+    @POST("ali/saveOrderUserInfoApp")
+    Call<ResponseBody> getOrderInfo();
+
+
 }

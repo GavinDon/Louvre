@@ -63,27 +63,20 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
     override fun onResume() {
         super.onResume()
         if (judgeIsLogin()) {
+            shopping_cart_srl.isEnabled = true
             //让显示自动刷新  *注意只是出现刷新动画，不会请求数据 所以手动请求一次数据*
             shopping_cart_srl.measure(0, 0)
             shopping_cart_srl.post({
                 shopping_cart_srl.isRefreshing = true
             })
-            mAdapter.data.clear()
             mPresenter.reqShoppingCartList()
         } else {
-            val view = layoutInflater.inflate(R.layout.empty_shping_cart, rvShoppingCar, false)
-            mAdapter.emptyView = view
-            view.find<SubmitButton>(R.id.empty_btn).setOnClickListener { startActivity<LoginActivity>() }
-            shopping_cart_cl_balance.visibility = View.GONE
+            //当未登陆时禁止下拉
+            shopping_cart_srl.isEnabled = false
+            showUnLoginLayout()
         }
 
     }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
     /**
      * 从适配器中发送数据过来(此处相当于观察者)
      * 此处只更新底部总价、数量、是否全选
@@ -102,7 +95,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         if (!shopping_cart_cb_all.isChecked) {
             isClickItemCb = false
         }
-//        shopping_cart_btn_pay.text = "(${shoppingCartEvent.totalNum}去结算)"
+        if (shoppingCartEvent.totalNum <= 0) showEmptyShoppingLayout() //如果客户删除购物车到0时则显示空布局
         shopping_cart_cb_all.isChecked = shoppingCartEvent.state!!
         //发送数据到mainActivity来更新底部购物车按钮badge数量
         EventBus.getDefault().post(BottomBadgeEvent(shoppingCartEvent.totalNum))
@@ -129,7 +122,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         //判断rv滚动之后显示滚到顶部按钮
         rvShoppingCar.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                if (mLayoutManager.findFirstVisibleItemPosition() >= 1) {
+                if (mLayoutManager.findFirstVisibleItemPosition() >= 4) {
                     shopping_cart_ib_scroll.visibility = View.VISIBLE
                 } else {
                     shopping_cart_ib_scroll.visibility = View.GONE
@@ -141,49 +134,50 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         }
         mPresenter = ShoppingCartPresenter()
         mPresenter.attachView(this)
+        //下拉刷新
         shopping_cart_srl.setOnRefreshListener {
-            mAdapter.data.clear()
             mPresenter.reqShoppingCartList()
         }
-
-    }
-
-    override fun loadListSuccess(shoppingCartList: ShoppingCartListRespBean) {
-        mAdapter.addData(shoppingCartList.rows)
-        mAdapter.AllOrNone(true) //返回的数据默认全部选中
-        shopping_cart_srl.post({
-            shopping_cart_srl.isRefreshing = false
-        })
-    }
-
-    override fun loadListFail() {
-        addEmptyLayout()
-        //加载空布局
-        shopping_cart_srl.post({
-            shopping_cart_srl.isRefreshing = false
-        })
     }
 
     /**
-     * 当数据为空时 显示去逛逛
+     * 当加载数据状态为0且size大于0时回调loadListSuccess
      */
-    private fun addEmptyLayout() {
+    override fun loadListSuccess(shoppingCartList: ShoppingCartListRespBean) {
+        mAdapter.setNewData(shoppingCartList.rows)
+        mAdapter.AllOrNone(true) //返回的数据默认全部选中
+        shopping_cart_srl.isRefreshing = false
+        shopping_cart_cl_balance.visibility = View.VISIBLE
+    }
+
+    override fun loadListFail() {
+        showEmptyShoppingLayout() //在登陆成功的前提下 没有加载到数据则显示此布局
+        shopping_cart_srl.isRefreshing = false
+    }
+
+    /**
+     * 显示未登陆布局
+     */
+    private fun showUnLoginLayout() {
+        val view = layoutInflater.inflate(R.layout.empty_shping_cart, rvShoppingCar, false)
+        mAdapter.emptyView = view
+        view.find<SubmitButton>(R.id.empty_btn).setOnClickListener { startActivity<LoginActivity>() }
+    }
+
+    /**
+     * 显示没有商品布局(去逛逛)
+     */
+    private fun showEmptyShoppingLayout() {
+        //若适配器数据<=0则认为没有商品加入购物车
         if (mAdapter.data.size <= 0) {
             shopping_cart_cl_balance.visibility = View.GONE
             val view = layoutInflater.inflate(R.layout.empty_goods, rvShoppingCar, false)
             mAdapter.emptyView = view
             view.find<SubmitButton>(R.id.empty_goods_btn).setOnClickListener {
+                //通知mainActivity切换首页fragment
                 EventBus.getDefault().post(ConvertFragment("0"))
             }
-        } else {
-            shopping_cart_cl_balance.visibility = View.VISIBLE
-
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter.detachView(this)
     }
 
     /**
@@ -216,6 +210,17 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         startActivity<GoodsDetailActivity>()
     }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachView(this)
+    }
+
 
 }
 

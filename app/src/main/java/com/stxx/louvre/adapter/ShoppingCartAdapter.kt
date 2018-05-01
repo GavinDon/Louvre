@@ -22,6 +22,7 @@ import com.stxx.louvre.widgets.AmountView
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.greenrobot.eventbus.EventBus
+import java.lang.Exception
 
 /**
  * description:购物车适配器
@@ -98,7 +99,7 @@ class ShoppingCartAdapter(layoutResId: Int, data: MutableList<ShoppingCartListRe
             shoppingEvent.totalPrice = mData.filter { it.status == 0 }.sumByDouble {
                 it.count * it.olD_PRICE.toDouble()
             }
-        } catch (exception: KotlinNullPointerException) {
+        } catch (exception: Exception) {
             ToastUtils.showShort("oldPrice must not be null ")
         }
 

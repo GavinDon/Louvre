@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.OrderStatusActivity">
+
+    <include
+        android:id="@+id/order_include"
+        layout="@layout/common_activity_title"
+        />
+
+        <android.support.design.widget.TabLayout
+        android:id="@+id/order_tl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/order_include"
+        app:tabSelectedTextColor="@color/price_red"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/order_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/order_tl"/>
+
+</android.support.constraint.ConstraintLayout>

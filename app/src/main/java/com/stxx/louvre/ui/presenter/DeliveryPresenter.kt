@@ -34,10 +34,8 @@ class DeliveryPresenter : DeliveryAddressContact.Presenter {
                 .compose(ProgressUtils.applyProgressBar(mView as DeliveryAddressActivity))
                 .subscribe(object : MySubscribe<AddressListBean>() {
                     override fun onSuccess(response: AddressListBean?) {
-                        if (null != response?.rows ) {
+                        if (null != response?.rows) {
                             mView.showAddress(response.rows)
-                        } else {
-                            ToastUtils.showShort("")
                         }
                     }
                 })
@@ -68,11 +66,24 @@ class DeliveryPresenter : DeliveryAddressContact.Presenter {
     override fun editAddress(id: String, pos: Int) {
 
     }
+
     /**
      * 设置默认选中地址
      */
-    override fun setDefaultAddress(id: String) {
+    override fun setDefaultAddress(id: String, pos: Int) {
+        val body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), "\"$id\"")
+        RetrofitManager.create().setDefaultAddress(body)
+                .compose(RxSchedulers.applySchedulers())
+                .subscribe(object : MySubscribe<CodeAndMsg>() {
+                    override fun onSuccess(response: CodeAndMsg?) {
+                        if (null != response && response.code == 0) {
+                            mView.setDefault(pos)
+                        } else {
+                            ToastUtils.showLong(response?.msg)
+                        }
+                    }
 
+                })
     }
 
     /**

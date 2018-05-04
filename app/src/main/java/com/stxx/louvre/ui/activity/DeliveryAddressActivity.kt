@@ -45,9 +45,21 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
         address_rv.setHasFixedSize(true)
         address_rv.adapter = mAdapter
         address_tv_new.setOnClickListener {
-            startActivityForResult<PlusAddressActivity>(Constant.PLUS_ADDRESS_REQUEST_CODE, "name" to "plus")
+            startActivityForResult<PlusAddressActivity>(Constant.PLUS_ADDRESS_INTENT_CODE, "name" to "plus")
         }
         mAdapter.onItemChildClickListener = this
+        mAdapter.setOnItemClickListener { _, _, position ->
+            val intent = intent
+            //如果是从确认订单页面跳转过来选中Item则返回此数据到confirmOrderActivity
+            if (intent.getBooleanExtra("confirmOrder", false)) {
+                intent.putExtra("confirmResult", mAdapter.getItem(position))
+                setResult(Constant.CHECK_ADDRESS_REQUEST_CODE, intent)
+                this.finish()
+            } else {
+                return@setOnItemClickListener
+            }
+
+        }
 
     }
 
@@ -56,10 +68,10 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
      */
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         val id = mAdapter.data[position].id
-        if (view?.id == R.id.ada_delivery_tv_deleter) {
-            deliveryPresenter.deleterAddress(id, position)
-        } else if (view?.id == R.id.ada_delivery_tv_edit) {
-            startActivity(intentFor<PlusAddressActivity>("data" to mAdapter.data[position]))
+        when (view?.id) {
+            R.id.ada_delivery_tv_deleter -> deliveryPresenter.deleterAddress(id, position)
+            R.id.ada_delivery_tv_edit -> startActivity(intentFor<PlusAddressActivity>("data" to mAdapter.data[position]))
+            R.id.ada_delivery_cb -> { deliveryPresenter.setDefaultAddress(id,position) }
         }
     }
 
@@ -80,7 +92,10 @@ class DeliveryAddressActivity : BaseActivity(), DeliveryAddressContact.View, Bas
     /**
      * 设置默认地址
      */
-    override fun setDefault(id:Int) {
+    override fun setDefault(pos: Int) {
+        mAdapter.data.forEach { it.isdefalurt=1 }
+        mAdapter.getItem(pos)?.isdefalurt=0 //0为选中
+        mAdapter.notifyDataSetChanged()
     }
 
     /**

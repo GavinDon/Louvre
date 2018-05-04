@@ -28,7 +28,7 @@ class LoginPresenter : LoginContact.Presenter {
                 .subscribe(object : MySubscribe<CodeAndMsg>() {
                     override fun onSuccess(response: CodeAndMsg?) {
                         if (0 == response?.code) {
-                            SPUtils.getInstance().put("userName",userName)
+                            SPUtils.getInstance().put("userName", userName)
                             SPUtils.getInstance().put("passWord", password)
                             (mView as LoginActivity).loginSuccess()
                         } else {
@@ -37,6 +37,8 @@ class LoginPresenter : LoginContact.Presenter {
                     }
                 })
     }
+
+
 
     override fun attachView(view: LoginContact.View) {
         super.attachView(view)

@@ -14,6 +14,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.ShoppingCartAdapter
 import com.stxx.louvre.base.BaseFragment
+import com.stxx.louvre.base.Constant
 import com.stxx.louvre.entity.ShoppingCartListRespBean
 import com.stxx.louvre.entity.event.BottomBadgeEvent
 import com.stxx.louvre.entity.event.ConvertFragment
@@ -22,7 +23,8 @@ import com.stxx.louvre.listener.ILogin
 import com.stxx.louvre.selector.SelectorFactory
 import com.stxx.louvre.selector.SelectorShape
 import com.stxx.louvre.selector.Shape
-import com.stxx.louvre.ui.activity.GoodsDetailActivity
+import com.stxx.louvre.ui.WebActivity
+import com.stxx.louvre.ui.activity.ConfirmOrderActivity
 import com.stxx.louvre.ui.activity.LoginActivity
 import com.stxx.louvre.ui.contract.ShoppingCartContact
 import com.stxx.louvre.ui.presenter.ShoppingCartPresenter
@@ -42,6 +44,7 @@ import org.jetbrains.anko.support.v4.toast
 
  */
 class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListener, View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener, ShoppingCartContact.View, ILogin {
+
 
     private lateinit var mAdapter: ShoppingCartAdapter
     private var isClickItemCb = false
@@ -75,8 +78,8 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
             shopping_cart_srl.isEnabled = false
             showUnLoginLayout()
         }
-
     }
+
     /**
      * 从适配器中发送数据过来(此处相当于观察者)
      * 此处只更新底部总价、数量、是否全选
@@ -199,16 +202,26 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         if (v is Button) {
             //当前台未选中任何商品时不进行提交 
             val data = mAdapter.data
-            if (data.none { it.status == 0 }) {
-                toast("未选中任何商品")
-            } else {
-                mPresenter.reqBalanceAccounts(data)
+            when {
+                data.none { it.status == 0 } -> toast("未选中任何商品")
+                data.filter { it.status == 0 }.size != 1 -> toast("目前只能选中一种商品来进行购买")
+                else -> {
+                    mPresenter.reqBalanceAccounts(data)
+
+                }
             }
         }
     }
 
+    /**
+     * 去结算成功之后 跳转确认订单页面
+     */
+    override fun respBanlanceAccounts() {
+        startActivity<ConfirmOrderActivity>(Constant.INTENT_CONFIRM_ORDER to mAdapter.data.filter { it.status == 0 })
+    }
+
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        startActivity<GoodsDetailActivity>()
+        startActivity<WebActivity>("url" to Constant.PROTFOLO_DETAIL_URL + mAdapter.data[position].id)
     }
 
     override fun onStop() {

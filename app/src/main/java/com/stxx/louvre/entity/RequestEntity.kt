@@ -56,7 +56,6 @@ class RequestEntity {
     data class ShoppingCartReqBean(var pageNumber: Int = 1, var pageSize: Int = 100)
 
 
-
     /**
      * 结算购物车
      */
@@ -65,4 +64,27 @@ class RequestEntity {
                                      var lessprice: Int = 0,
                                      var postage: Int = 0,
                                      var idlist: List<String>)
+
+    /**
+     *保存订单 在支付前一步
+     */
+    data class SaveOrder(val orderName: String?,
+                         val depositPrice: String?,
+                         val shippingMethod: String?,
+                         val shortName: String?,
+                         val commodityOldPrice: String?,
+                         val depositAmount: String?,
+                         val couponPrice: String?,
+                         val productId: String?,
+                         val payMethod: String?,
+                         val addressId: String?,
+                         val type: String?,
+                         val picture: String?,
+                         val orderPrice: String?,
+                         val commodityName: String?,
+                         val invoiceId: String?,
+                         val carId: String
+    )
+
+
 }

@@ -92,7 +92,7 @@ class HomeTabProtfolioFragment : BaseFragment() {
                                 lst2.addAll(response.rows)
                                 //设置瀑布流高度差来达到效果
                                 for (i in lst2.indices) {
-                                    lst2[i].hits = (i % 2) * 100 + 500
+                                    lst2[i].imgHeight = (i % 2) * 100 + 500
                                 }
                                 mAdapter.addData(lst2)
                             }

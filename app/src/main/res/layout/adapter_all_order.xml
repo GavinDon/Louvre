@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground"
+    >
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_left8"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="8dp"
+        />
+
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订\t 单 \t号:"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left8"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/semi"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_tv_orderNum"
+        tools:text="@string/app_name"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="订单时间:"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left8"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderNum"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/semi"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_tv_orderTime"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderNum2"
+        tools:text="@string/app_name"/>
+
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="状\t\t\t\t态:"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left8"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderTime"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderState2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/price_red_press"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_tv_orderTime"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderTime2"
+        tools:text="@string/app_name"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="总\t\t\t\t价:"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/guideline_left8"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderState"/>
+
+    <TextView
+        android:id="@+id/ada_order_tv_orderTotalPrice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/price_red_press"
+        android:textSize="16sp"
+        android:drawableLeft="@mipmap/money"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_tv_orderState"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderState2"
+        tools:text="@string/app_name"/>
+
+    <ImageView
+        android:id="@+id/ada_order_iv"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left8"
+        app:layout_constraintTop_toBottomOf="@id/ada_order_tv_orderTotalPrice"
+        tools:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/ada_order_goodsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/semi"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_iv"
+        app:layout_constraintTop_toTopOf="@id/ada_order_iv"
+        tools:text="@string/app_name"
+        />
+
+    <TextView
+        android:id="@+id/ada_order_goodsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/ada_order_iv"
+        app:layout_constraintLeft_toLeftOf="@id/ada_order_goodsName"
+        tools:text="@string/app_name"
+        />
+
+    <TextView
+        android:id="@+id/ada_order_pay_way"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@id/ada_order_goodsPrice"
+        app:layout_constraintTop_toTopOf="@id/ada_order_goodsPrice"
+        tools:text="支付宝"
+        />
+
+
+
+</android.support.constraint.ConstraintLayout>

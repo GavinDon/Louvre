@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:minHeight="360dp"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bottom_dialog_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.stxx.louvre.widgets.SubmitButton
+        android:visibility="gone"
+        android:id="@+id/bottom_dialog_btn"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        app:btnNormalColor="@color/price_red"
+        app:btnPressColor="@color/price_red_press"
+        app:btnAngle="4dp"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="新增"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

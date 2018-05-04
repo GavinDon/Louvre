@@ -18,7 +18,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 class HomeTabAdapter(layoutResId: Int, data: MutableList<ProtfoloListBean.RowsBean>) : BaseQuickAdapter<ProtfoloListBean.RowsBean, BaseViewHolder>(layoutResId, data) {
 
     override fun convert(helper: BaseViewHolder?, item: ProtfoloListBean.RowsBean?) {
-        helper!!.setText(R.id.ada_home_article_name,item?.artistName)
+        helper!!.setText(R.id.ada_home_article_name,item?.pName)
         val iv = helper!!.getView<ImageView>(R.id.ada_home_tab_iv)
         iv.layoutParams.height = item!!.imgHeight
         val multi = MultiTransformation(

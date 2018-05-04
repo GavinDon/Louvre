@@ -8,15 +8,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * 商品详情
- * Created by linan   on 2017/3/9.
+ * 所有订单
+ * Created by linan   on 2018/5/3.
  */
 
-public class GoodsTabWithVpAdapter extends FragmentPagerAdapter {
-    private String[] title = {"商品", "详情", "评论"};
+public class OrderTabWithVpAdapter extends FragmentPagerAdapter {
+    private String[] title = { "全部","待支付", "待收货", "已完成", "评价"};
     private List<Fragment> views;
 
-    public GoodsTabWithVpAdapter(FragmentManager fm, List<Fragment> views) {
+    public OrderTabWithVpAdapter(FragmentManager fm, List<Fragment> views) {
         super(fm);
         this.views = views;
     }

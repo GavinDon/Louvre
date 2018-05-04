@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -47,14 +48,16 @@ public class WebActivity extends BaseActivity {
      */
     private void initWeb() {
         WebSettings webSettings = mWebView.getSettings();
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 设置自动加载图片
             mWebView.getSettings().setLoadsImagesAutomatically(true);
+            mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         } else {
             mWebView.getSettings().setLoadsImagesAutomatically(false);
         }
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.getSettings().setBlockNetworkImage(false);
         mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
         mWebView.getSettings().setSupportMultipleWindows(false);
         mWebView.getSettings().getAllowFileAccess();
@@ -62,7 +65,7 @@ public class WebActivity extends BaseActivity {
         mWebView.getSettings().setUseWideViewPort(true);
         mWebView.getSettings().setLoadWithOverviewMode(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        if (!url.isEmpty()){
+        if (!TextUtils.isEmpty(url)){
             mWebView.loadUrl(url);
         }
         mWebView.setWebViewClient(new WebViewClient() {

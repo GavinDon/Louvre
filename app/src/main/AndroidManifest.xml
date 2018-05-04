@@ -50,6 +50,7 @@
         <activity
             android:name=".ui.activity.ConfirmOrderActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.PayActivity"
@@ -80,18 +81,16 @@
         <activity
             android:name=".ui.activity.UpdatePswActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-
-            >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.WebActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"/>
-        <!--<activity-->
-        <!--android:name="com.tencent.bugly.beta.ui.BetaActivity"-->
-        <!--android:configChanges="keyboardHidden|orientation|screenSize|locale"-->
-        <!--android:theme="@android:style/Theme.Translucent" />-->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.bugly.beta.ui.BetaActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize|locale" -->
+        <!-- android:theme="@android:style/Theme.Translucent" /> -->
 
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -99,7 +98,14 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
-
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".ui.activity.OrderStatusActivity">
+        </activity>
     </application>
 
 </manifest>

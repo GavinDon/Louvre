@@ -24,7 +24,7 @@
             <CheckBox
                 android:id="@+id/cb_shopping_cart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:button="@drawable/sel_cb_bg"
                 app:layout_constraintBottom_toBottomOf="parent"

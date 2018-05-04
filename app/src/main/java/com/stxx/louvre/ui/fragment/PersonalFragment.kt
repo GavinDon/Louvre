@@ -22,6 +22,7 @@ import com.stxx.louvre.entity.PersonalBean
 import com.stxx.louvre.ui.WebActivity
 import com.stxx.louvre.ui.activity.DeliveryAddressActivity
 import com.stxx.louvre.ui.activity.LoginActivity
+import com.stxx.louvre.ui.activity.OrderStatusActivity
 import com.stxx.louvre.ui.activity.RegisterActivity
 import com.stxx.louvre.widgets.WaveView
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -35,6 +36,7 @@ import org.jetbrains.anko.support.v4.toast
 
  */
 class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, WaveView.OnWaveInterface {
+
     private lateinit var mAdapter: PersonalListAdapter
 
     private lateinit var itemData: MutableMap<String, Boolean>
@@ -52,13 +54,18 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
         }
         loadData()
         mAdapter.onItemClickListener = this
-        createNotify()
+//        createNotify()
         waveView.setOnWaveInterface(this)
         iv_user_icon.setOnClickListener { startActivity<LoginActivity>() }
+        tvAllOrder.setOnClickListener { startActivity<OrderStatusActivity>("showIndex" to 0) }
+        tvWaitPay.setOnClickListener { startActivity<OrderStatusActivity>("showIndex" to 1) }
+        tvReceiveGood.setOnClickListener { startActivity<OrderStatusActivity>("showIndex" to 2) }
+        tvHasFinish.setOnClickListener { startActivity<OrderStatusActivity>("showIndex" to 3) }
+        tvWaitComment.setOnClickListener { startActivity<OrderStatusActivity>("showIndex" to 4) }
     }
 
     /**
-     *
+     * true 代表显示分隔线
      */
     private fun loadData() {
         itemData = mutableMapOf(Pair("退款管理", false),
@@ -91,7 +98,7 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
             5 -> {
                 startActivity<WebActivity>()
             }
-            6 ->{
+            6 -> {
 //                CookiesManager.clearAllCookies()
 //                toast("您已退出登陆")
             }

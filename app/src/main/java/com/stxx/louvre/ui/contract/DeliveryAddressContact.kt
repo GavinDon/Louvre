@@ -21,7 +21,7 @@ interface DeliveryAddressContact {
 
         fun deleterAddress(id:String ,pos: Int)
 
-        fun setDefaultAddress(id:String)
+        fun setDefaultAddress(id:String,pos: Int)
 
         fun editAddress(id:String,pos: Int)
 

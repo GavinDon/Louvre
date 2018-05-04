@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.blankj.utilcode.util.LogUtils
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
@@ -59,7 +58,6 @@ class RecommendFragment : BaseFragment() {
         val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
         mAdapter.addHeaderView(headerView)
         mAdapter.setOnItemClickListener { _, _, position ->
-            LogUtils.i(mAdapter.data[position].t.categoryName)
             startActivity<WebActivity>("url" to "${Constant.CLASSIFY_URL}?type=${mAdapter.data[position].t.categoryName}")
         }
     }
@@ -83,7 +81,7 @@ class RecommendFragment : BaseFragment() {
      * 获取服务器分类数据
      */
     private fun reqData() {
-        RetrofitManager.create().classifyData
+        RetrofitManager.create().getClassifyData()
                 .compose(RxSchedulers.applySchedulers())
                 .compose(ProgressUtils.applyProgressBar(activity!!))
                 .subscribe(object : MySubscribe<ClassifyBean>() {

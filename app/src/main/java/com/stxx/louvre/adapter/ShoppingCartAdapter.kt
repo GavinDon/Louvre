@@ -59,7 +59,7 @@ class ShoppingCartAdapter(layoutResId: Int, data: MutableList<ShoppingCartListRe
         }
         //购物车加减
         val amountView = helper.getView<AmountView>(R.id.amount_shopping_cart)
-                .setGoodsStorage(10000)
+                .setGoodsStorage(1)
         val numView = amountView.findViewById<EditText>(R.id.etAmount2)
         val btnDecrease = amountView.findViewById<Button>(R.id.btnDecrease)
         numView.setText(item?.count.toString())

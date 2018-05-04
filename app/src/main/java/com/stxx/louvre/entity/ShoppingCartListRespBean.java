@@ -1,5 +1,8 @@
 package com.stxx.louvre.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -93,7 +96,7 @@ public class ShoppingCartListRespBean {
         this.rows = rows;
     }
 
-    public static class RowsBean {
+    public static class RowsBean implements Parcelable{
         /**
          * PERMISSIONS :
          * PICTURE : https://membersbucket.oss-cn-huhehaote.aliyuncs.com/image/1523783898392.png
@@ -179,6 +182,62 @@ public class ShoppingCartListRespBean {
         private int IS_ONLINE;
         private String OWNERSHIP;
         private String CREATE_ID;
+
+        protected RowsBean(Parcel in) {
+            PERMISSIONS = in.readString();
+            PICTURE = in.readString();
+            FORMAT = in.readString();
+            OWNERSHIP_OF_GOODS = in.readInt();
+            S_AUTHOR = in.readString();
+            USER_ID = in.readString();
+            Count = in.readInt();
+            REC_TYPE = in.readString();
+            DEPOSIT = in.readString();
+            IF_LEASE = in.readInt();
+            CLASS_NAME = in.readString();
+            SHORT_NAME = in.readString();
+            MODIFY_ID = in.readString();
+            STATUS = in.readInt();
+            ARTIST_CreativeTime = in.readString();
+            MODIFY_DATE = in.readString();
+            KEY_WORDS = in.readString();
+            APPLICANT_TIME = in.readString();
+            ID = in.readString();
+            ARTIST_NAME = in.readString();
+            IF_WANFU = in.readInt();
+            RENT = in.readString();
+            HITS = in.readInt();
+            IF_FORYOU = in.readInt();
+            NUMBER = in.readInt();
+            PAR_ID = in.readString();
+            PID = in.readString();
+            THUMBNAIL = in.readString();
+            S_KONGJIAN = in.readString();
+            PRODUCT_ID = in.readString();
+            IS_STAR = in.readString();
+            DISCOUNT = in.readString();
+            CREATE_DATE = in.readString();
+            MODELS = in.readString();
+            CONTS = in.readString();
+            DISTRIBUTION_MODE = in.readString();
+            P_NAME = in.readString();
+            OLD_PRICE = in.readString();
+            IS_ONLINE = in.readInt();
+            OWNERSHIP = in.readString();
+            CREATE_ID = in.readString();
+        }
+
+        public static final Creator<RowsBean> CREATOR = new Creator<RowsBean>() {
+            @Override
+            public RowsBean createFromParcel(Parcel in) {
+                return new RowsBean(in);
+            }
+
+            @Override
+            public RowsBean[] newArray(int size) {
+                return new RowsBean[size];
+            }
+        };
 
         public String getPERMISSIONS() {
             return PERMISSIONS;
@@ -506,6 +565,56 @@ public class ShoppingCartListRespBean {
 
         public void setCREATE_ID(String CREATE_ID) {
             this.CREATE_ID = CREATE_ID;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(PERMISSIONS);
+            dest.writeString(PICTURE);
+            dest.writeString(FORMAT);
+            dest.writeInt(OWNERSHIP_OF_GOODS);
+            dest.writeString(S_AUTHOR);
+            dest.writeString(USER_ID);
+            dest.writeInt(Count);
+            dest.writeString(REC_TYPE);
+            dest.writeString(DEPOSIT);
+            dest.writeInt(IF_LEASE);
+            dest.writeString(CLASS_NAME);
+            dest.writeString(SHORT_NAME);
+            dest.writeString(MODIFY_ID);
+            dest.writeInt(STATUS);
+            dest.writeString(ARTIST_CreativeTime);
+            dest.writeString(MODIFY_DATE);
+            dest.writeString(KEY_WORDS);
+            dest.writeString(APPLICANT_TIME);
+            dest.writeString(ID);
+            dest.writeString(ARTIST_NAME);
+            dest.writeInt(IF_WANFU);
+            dest.writeString(RENT);
+            dest.writeInt(HITS);
+            dest.writeInt(IF_FORYOU);
+            dest.writeInt(NUMBER);
+            dest.writeString(PAR_ID);
+            dest.writeString(PID);
+            dest.writeString(THUMBNAIL);
+            dest.writeString(S_KONGJIAN);
+            dest.writeString(PRODUCT_ID);
+            dest.writeString(IS_STAR);
+            dest.writeString(DISCOUNT);
+            dest.writeString(CREATE_DATE);
+            dest.writeString(MODELS);
+            dest.writeString(CONTS);
+            dest.writeString(DISTRIBUTION_MODE);
+            dest.writeString(P_NAME);
+            dest.writeString(OLD_PRICE);
+            dest.writeInt(IS_ONLINE);
+            dest.writeString(OWNERSHIP);
+            dest.writeString(CREATE_ID);
         }
     }
 }

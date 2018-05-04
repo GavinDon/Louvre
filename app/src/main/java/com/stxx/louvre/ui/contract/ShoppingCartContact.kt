@@ -13,6 +13,7 @@ interface ShoppingCartContact {
     interface View : BaseMvp.View {
         fun loadListSuccess(shoppingCartList: ShoppingCartListRespBean)
         fun loadListFail()
+        fun respBanlanceAccounts()
 
 
     }

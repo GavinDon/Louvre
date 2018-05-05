@@ -12,13 +12,16 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseFragment
+import com.stxx.louvre.base.Constant
 import com.stxx.louvre.entity.HomeLfgBean
 import com.stxx.louvre.net.MySubscribe
 import com.stxx.louvre.net.RetrofitManager
 import com.stxx.louvre.net.RxSchedulers
 import com.stxx.louvre.net.dialog.ProgressUtils
+import com.stxx.louvre.ui.WebActivity
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_home_tab_lfg.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * description: 首页卢浮宫
@@ -40,6 +43,9 @@ class HomeTabLfgFragment : BaseFragment() {
         tabLfgRv.adapter = mAdapter
         mAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM)
         reqData()
+        mAdapter.setOnItemClickListener { _, _, position ->
+            startActivity<WebActivity>("url" to Constant.NEWS_URL + mAdapter.data[position].id)
+        }
     }
 
     private fun reqData() {

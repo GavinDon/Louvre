@@ -63,7 +63,7 @@ class AllOrderFragment : BaseFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : MySubscribe<AllOrderBean>() {
                     override fun onSuccess(response: AllOrderBean?) {
-                        if (null != response && 0 == response.code) {
+                        if (null != response && 0 == response.code && response.rows.isNotEmpty()) {
                             mAdapter.setNewData(response.rows)
                         }
                     }

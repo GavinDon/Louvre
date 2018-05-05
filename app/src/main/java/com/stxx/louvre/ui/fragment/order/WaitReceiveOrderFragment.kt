@@ -3,6 +3,7 @@ package com.stxx.louvre.ui.fragment.order
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +21,17 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_all_order.*
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.textView
 
 /**
  * description: 待发货
  * Created by liNan on 2018/5/3 14:53
 
  */
-class WaitReceiveOrderFragment: BaseFragment() {
+class WaitReceiveOrderFragment : BaseFragment() {
     private lateinit var mAdapter: OrderStatusAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +46,7 @@ class WaitReceiveOrderFragment: BaseFragment() {
         order_rv.adapter = mAdapter
         reqAllOrder()
     }
+
     /**
      * 获取订单
      */
@@ -57,16 +62,29 @@ class WaitReceiveOrderFragment: BaseFragment() {
                 .observeOn(Schedulers.io())
                 .flatMap(io.reactivex.functions.Function<UserInfoBean, Observable<AllOrderBean>> {
 
-                    return@Function RetrofitManager.create().getOrderStatus(it.member.userId+"",type = 0,orderStatus = "5")
+                    return@Function RetrofitManager.create().getOrderStatus(it.member.userId + "", type = 0, orderStatus = "5")
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : MySubscribe<AllOrderBean>() {
                     override fun onSuccess(response: AllOrderBean?) {
-                        if (null != response) {
+                        if (null != response && 0 == response.code && response.rows.isNotEmpty()) {
                             mAdapter.setNewData(response.rows)
+                        } else {
+                            mAdapter.emptyView = createNoView()
                         }
                     }
                 })
 
+    }
+
+    private fun createNoView(): View {
+        return UI {
+            textView("您暂时还没有订单") {
+                textSize = 16f
+                width = matchParent
+                gravity = Gravity.CENTER_HORIZONTAL
+            }
+
+        }.view
     }
 }

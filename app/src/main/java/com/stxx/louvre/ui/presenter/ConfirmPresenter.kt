@@ -204,7 +204,7 @@ class ConfirmPresenter : ConfirmOrderContact.Presenter {
         mAdapter.setOnItemClickListener { _, _, position ->
             when (t[position]) {
                 is MyPayWayData -> mView.respPayWay((t[position] as MyPayWayData).name)
-                is ReceiptInfoBean.RowsBean -> mView.respReceipt(t[position].toString())
+                is ReceiptInfoBean.RowsBean -> mView.respReceipt((t[position] as ReceiptInfoBean.RowsBean).name)
                 is MySendStyle -> mView.respSendStyle((t[position] as MySendStyle).name)
             }
             dialog.dismiss()

@@ -165,6 +165,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
         val view = layoutInflater.inflate(R.layout.empty_shping_cart, rvShoppingCar, false)
         mAdapter.emptyView = view
         view.find<SubmitButton>(R.id.empty_btn).setOnClickListener { startActivity<LoginActivity>() }
+        shopping_cart_cl_balance.visibility = View.GONE
     }
 
     /**

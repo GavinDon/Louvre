@@ -38,7 +38,7 @@ class StartUpActivity : AppCompatActivity(), ILogin {
         initDownTime(tv)
         RxView.clicks(tv).debounce(3, TimeUnit.MILLISECONDS)
                 .subscribe({
-                    startActivity<MainActivity>()
+//                    startActivity<MainActivity>()
                 })
         goLogin() //自动登陆
     }
@@ -47,7 +47,7 @@ class StartUpActivity : AppCompatActivity(), ILogin {
      * 倒计时
      */
     private fun initDownTime(textView: TextView) {
-        val countTime = 5L //倒计时3s
+        val countTime = 3L //倒计时3s
         mDisposable = Observable.interval(0, 1000L, TimeUnit.MILLISECONDS)
                 .compose(RxSchedulers.applySchedulers())
                 .map(Function<Long, Long> {

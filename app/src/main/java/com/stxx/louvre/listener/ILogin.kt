@@ -7,10 +7,15 @@ import com.blankj.utilcode.util.SPUtils
 import com.stxx.louvre.base.Constant
 import com.stxx.louvre.base.MyApplication
 import com.stxx.louvre.entity.CodeAndMsg
+import com.stxx.louvre.entity.UserInfoBean
 import com.stxx.louvre.net.CookiesManager
 import com.stxx.louvre.net.MySubscribe
 import com.stxx.louvre.net.RetrofitManager
 import com.stxx.louvre.net.RxSchedulers
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function
+import io.reactivex.schedulers.Schedulers
 
 /**
  * description: 自动登陆接口
@@ -23,20 +28,30 @@ interface ILogin {
      */
     fun goLogin() {
         CookiesManager.clearAllCookies()
-        val userName = SPUtils.getInstance().getString("userName", "")
-        val passWord = SPUtils.getInstance().getString("passWord", "")
+        val userName = SPUtils.getInstance().getString(Constant.USER_NAME, "")
+        val passWord = SPUtils.getInstance().getString(Constant.USER_PSW, "")
         if (userName.isNotEmpty() && passWord.isNotEmpty()) {
             RetrofitManager.create().getLogin(userName, passWord)
                     .compose(RxSchedulers.applySchedulers())
-                    .subscribe(object : MySubscribe<CodeAndMsg>() {
-                        override fun onSuccess(response: CodeAndMsg?) {
-                            if (0 == response?.code) {
-                                syncCookie()
-                            } else {
-
+                    .doOnNext {
+                        if (0 == it?.code) {
+                            syncCookie()
+                        }
+                    }
+                    .observeOn(Schedulers.io())
+                    .flatMap(Function<CodeAndMsg, Observable<UserInfoBean>> {
+                        return@Function RetrofitManager.create().getPersonalInfo()
+                    })
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : MySubscribe<UserInfoBean>() {
+                        override fun onSuccess(response: UserInfoBean?) {
+                            if (null != response && null != response.member) {
+                                SPUtils.getInstance().put(Constant.USER_ID, response.member.userId)
                             }
                         }
+
                     })
+
         }
     }
 

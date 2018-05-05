@@ -41,6 +41,7 @@ class LoginActivity : BaseActivity(), LoginContact.View {
     override fun loginSuccess() {
         //登陆成功同步cookie给webView
         syncCookie()
+
     }
 
     /**

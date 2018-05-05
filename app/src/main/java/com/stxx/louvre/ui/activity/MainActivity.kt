@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.ashokvarma.bottomnavigation.TextBadgeItem
+import com.blankj.utilcode.util.SPUtils
 import com.stxx.louvre.R
 import com.stxx.louvre.base.BaseActivity
 import com.stxx.louvre.base.BaseFragment
@@ -104,6 +105,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
             } else {
                 //退出之后清除cookie
                 CookiesManager.clearAllCookies()
+                SPUtils.getInstance().remove("userName")
                 System.exit(0)
             }
             return true

@@ -2,10 +2,12 @@ package com.stxx.louvre.net
 
 import com.stxx.louvre.entity.*
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
+
 
 /**
  * description:
@@ -227,6 +229,13 @@ interface ApiService {
      * 订单状态
      */
     @GET("mineOrder/listByUserId")
-    fun getOrderStatus(@Query("userId") userId: String, @Query("type") type: Int = 0, @Query("orderState") orderStatus: String? = null): Observable<AllOrderBean>
+    fun getOrderStatus(@Query("userId") userId: String, @Query("type") type: Int = 0, @Query("orderStatus") orderStatus: String? = null): Observable<AllOrderBean>
 
+
+    /**
+     * 上传头像
+     */
+    @Multipart
+    @POST("uploadFile/member")
+    fun uploadMemberIcon(@Part MultipartFile: MultipartBody.Part): Call<ResponseBody>
 }

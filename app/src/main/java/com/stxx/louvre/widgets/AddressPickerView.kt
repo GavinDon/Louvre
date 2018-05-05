@@ -16,7 +16,6 @@ import com.stxx.louvre.R
 import com.stxx.louvre.entity.AddressPickerBean
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -118,7 +117,6 @@ class AddressPickerView : LinearLayout, TabLayout.OnTabSelectedListener, BaseQui
                 mTableLayout.getTabAt(2)?.text = mRvData[position].n
                 mSelectDistrict = mRvData[position]
                 mSelectDistrictPosition = position
-                context.toast(mSelectCity?.n.toString())
                 if (mListener != null) {
                     mListener!!.onCheckListener("${mSelectProvince?.n}-" + "${mSelectCity?.n}-" + mSelectDistrict?.n)
                 }

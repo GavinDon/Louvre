@@ -13,6 +13,7 @@ import com.stxx.louvre.entity.event.BottomBadgeEvent
 import com.stxx.louvre.entity.event.ConvertFragment
 import com.stxx.louvre.net.CookiesManager
 import com.stxx.louvre.ui.fragment.*
+import com.tencent.bugly.beta.Beta
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -45,6 +46,7 @@ open class MainActivity : BaseActivity(), BottomNavigationBar.OnTabSelectedListe
         initFragment()
         switchFragment(0)
         EventBus.getDefault().register(this)
+        Beta.checkUpgrade(false,false)//检测更新
 
     }
 

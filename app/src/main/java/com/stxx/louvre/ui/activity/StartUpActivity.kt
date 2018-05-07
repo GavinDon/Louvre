@@ -38,7 +38,7 @@ class StartUpActivity : AppCompatActivity(), ILogin {
         initDownTime(tv)
         RxView.clicks(tv).debounce(3, TimeUnit.MILLISECONDS)
                 .subscribe({
-//                    startActivity<MainActivity>()
+                    startActivity<MainActivity>()
                 })
         goLogin() //自动登陆
     }

@@ -4,7 +4,8 @@ import android.app.Application
 import android.content.Context
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.blankj.utilcode.util.Utils
-import com.tencent.bugly.crashreport.CrashReport
+import com.tencent.bugly.Bugly
+import com.tencent.bugly.beta.Beta
 import kotlin.properties.Delegates
 
 
@@ -24,7 +25,10 @@ class MyApplication : Application() {
         Utils.init(this)
         //初始化滑动返回
         BGASwipeBackHelper.init(this, null)
-        CrashReport.initCrashReport(applicationContext, "05da608d2d", true)
+//        CrashReport.initCrashReport(applicationContext, "05da608d2d", true)
+        Bugly.init(applicationContext, "05da608d2d", false)
+        Beta.autoInit = true
+//        Beta.autoCheckUpgrade = true
     }
 
     private fun getAppContext(): Context {

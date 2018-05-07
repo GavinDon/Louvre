@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.RecommendRightAdapter
 import com.stxx.louvre.base.BaseFragment
@@ -57,7 +58,8 @@ class RecommendFragment : BaseFragment() {
         rvRight.adapter = mAdapter
         val headerView = layoutInflater.inflate(R.layout.recommend_head_view, null)
         mAdapter.addHeaderView(headerView)
-        mAdapter.setOnItemClickListener { _, _, position ->
+        mAdapter.setOnItemClickListener { adapter, _, position ->
+            if (adapter.getItemViewType(position) == BaseQuickAdapter.HEADER_VIEW) return@setOnItemClickListener
             startActivity<WebActivity>("url" to "${Constant.CLASSIFY_URL}?type=${mAdapter.data[position].t.categoryName}")
         }
     }

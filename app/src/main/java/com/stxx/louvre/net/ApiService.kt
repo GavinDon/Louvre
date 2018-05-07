@@ -237,5 +237,5 @@ interface ApiService {
      */
     @Multipart
     @POST("uploadFile/member")
-    fun uploadMemberIcon(@Part MultipartFile: MultipartBody.Part): Call<ResponseBody>
+    fun uploadMemberIcon(@Part("srcAddress") srcAddress: String, @Part media: MultipartBody.Part): Call<ResponseBody>
 }

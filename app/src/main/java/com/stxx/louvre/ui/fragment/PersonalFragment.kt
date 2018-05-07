@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.stxx.louvre.R
 import com.stxx.louvre.adapter.PersonalListAdapter
@@ -22,8 +23,12 @@ import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.base.Constant
 import com.stxx.louvre.base.Constant.Companion.CHOOSE_ICON_REQUEST_CODE
 import com.stxx.louvre.base.Constant.Companion.UCROP_ICON_REQUEST_CODE
+import com.stxx.louvre.entity.CodeAndMsg
 import com.stxx.louvre.entity.PersonalBean
 import com.stxx.louvre.entity.event.LoginResultEvent
+import com.stxx.louvre.net.MySubscribe
+import com.stxx.louvre.net.RetrofitManager
+import com.stxx.louvre.net.RxSchedulers
 import com.stxx.louvre.ui.WebActivity
 import com.stxx.louvre.ui.activity.DeliveryAddressActivity
 import com.stxx.louvre.ui.activity.LoginActivity
@@ -104,8 +109,14 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
     override fun onResume() {
         super.onResume()
         val userName = SPUtils.getInstance().getString(Constant.USER_ID)
+        val userIcon = SPUtils.getInstance().getString(Constant.USER_ICON)
         if (userName.isNotEmpty()) {
             tv_user_nickname.text = userName
+        }
+        if (userIcon.isNotEmpty()) {
+            Glide.with(this)
+                    .load(userIcon)
+                    .into(iv_user_icon)
         }
         iv_user_icon.setOnClickListener {
             if (userName.isEmpty()) {
@@ -174,9 +185,8 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
     }
 
     private fun uCropImage(sourceUri: Uri) {
-
         val filePath = "${context!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}" //android/data/pictures
-        val fileName = "headIcon${System.currentTimeMillis()}.jpg"
+        val fileName = "headIcon${System.currentTimeMillis()}.png"
         val destinationUri = Uri.fromFile(File(filePath, fileName)) //裁剪完成后保存图片路径
 
         //裁剪属性设置
@@ -188,7 +198,7 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
         options.setCircleDimmedLayer(true) //设置圆形裁剪
         options.setHideBottomControls(true)//隐藏下边控制栏
         options.withAspectRatio(16F, 9F)
-        options.withMaxResultSize(48, 48)
+//        options.withMaxResultSize(48, 48)
         UCrop.of(sourceUri, destinationUri)
                 .withOptions(options)
                 .start(context!!, this, UCROP_ICON_REQUEST_CODE)
@@ -217,20 +227,23 @@ class PersonalFragment : BaseFragment(), BaseQuickAdapter.OnItemClickListener, W
 
 
     private fun reqUploadFile(file: File) {
-        val body = RequestBody.create(MediaType.parse("image/jpeg"), file)
-        val req = MultipartBody.Part.createFormData("srcAddress", file.name, body)
-        val serverImgUri = "headinfo/18602928514${System.currentTimeMillis()}"
-        val iconIo= RequestBody.create(MediaType.parse("text/plan"),"file")
-//        RetrofitManager.create().uploadMemberIcon()
-//                .enqueue(object : Callback<ResponseBody> {
-//                    override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-//                        LogUtils.i(t?.message)
-//                    }
-//
-//                    override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
-//                        LogUtils.i(response?.body()?.string())
-//                    }
-//                })
+        val userName = SPUtils.getInstance().getString(Constant.USER_ID)
+        val body = RequestBody.create(MediaType.parse("image/png"), file)
+        val serverImgUri = "headinfo/$userName${System.currentTimeMillis()}"
+        val req = MultipartBody.Part.createFormData("srcAddress", serverImgUri, body)
+
+        RetrofitManager.create().uploadMemberIcon(req)
+                .compose(RxSchedulers.applySchedulers())
+                .subscribe(object : MySubscribe<CodeAndMsg>() {
+                    override fun onSuccess(response: CodeAndMsg?) {
+                        if (null != response && response.code == 0) {
+                            Glide.with(this@PersonalFragment)
+                                    .load(file)
+                                    .into(iv_user_icon)
+                        }
+                    }
+
+                })
     }
 
 

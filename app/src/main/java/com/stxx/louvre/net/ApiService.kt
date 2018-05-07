@@ -236,6 +236,6 @@ interface ApiService {
      * 上传头像
      */
     @Multipart
-    @POST("uploadFile/member")
-    fun uploadMemberIcon(@Part("srcAddress") srcAddress: String, @Part media: MultipartBody.Part): Call<ResponseBody>
+    @POST("presonalinfo/uploadheadmember")
+    fun uploadMemberIcon(@Part media: MultipartBody.Part): Observable<CodeAndMsg>
 }

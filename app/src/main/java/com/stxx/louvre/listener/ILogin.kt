@@ -47,6 +47,7 @@ interface ILogin {
                         override fun onSuccess(response: UserInfoBean?) {
                             if (null != response && null != response.member) {
                                 SPUtils.getInstance().put(Constant.USER_ID, response.member.userId)
+                                SPUtils.getInstance().put(Constant.USER_ICON,response.member.picture)
                             }
                         }
 

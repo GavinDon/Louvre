@@ -48,5 +48,6 @@ class Constant {
         const val USER_ID = "userId"
         const val USER_NAME = "userName"
         const val USER_PSW = "password"
+        const val USER_ICON = "userIcon"
     }
 }

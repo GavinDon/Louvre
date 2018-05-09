@@ -2,6 +2,7 @@ package com.stxx.louvre.ui.presenter
 
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.google.gson.Gson
 import com.stxx.louvre.base.BaseMvp
 import com.stxx.louvre.base.Constant
 import com.stxx.louvre.entity.CodeAndMsg
@@ -61,6 +62,8 @@ class LoginPresenter : LoginContact.Presenter {
                     override fun onSuccess(response: UserInfoBean?) {
                         if (null != response && null != response.member) {
                             SPUtils.getInstance().put(Constant.USER_ID, response.member.userId)
+                            val userJson= Gson().toJson(response)
+                            SPUtils.getInstance().put(Constant.USER_INFO,userJson)
                             (mView as LoginActivity).loginSuccess()
                         } else {
                             ToastUtils.showShort("登陆失败")

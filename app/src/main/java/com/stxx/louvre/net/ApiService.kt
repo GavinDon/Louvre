@@ -236,6 +236,28 @@ interface ApiService {
      * 上传头像
      */
     @Multipart
-    @POST("presonalinfo/uploadheadmember")
-    fun uploadMemberIcon(@Part media: MultipartBody.Part): Observable<CodeAndMsg>
+    @POST("uploadFile/member")
+    fun uploadMemberIcon(@Part partList: List<MultipartBody.Part>): Observable<UploadIconRespBean>
+
+    /**
+     * 上传完成之后 需要保存
+     */
+    @GET("presonalinfo/uploadheadmember")
+    fun saveIcon(@Query("url") url: String): Observable<CodeAndMsg>
+
+    /**
+     * 更新个人信息
+     */
+    @Headers("Content-Type: application/json", "Accept:application/json")
+    @POST("presonalinfo/nocaptchaupdate")
+    fun updateUserInfo(@Body requestBody: RequestBody): Observable<CodeAndMsg>
+
+    /**
+     * 以图搜图
+     */
+    @Multipart
+    @POST("img/upload/imgupload")
+    fun picSearchPic(@Part part: MultipartBody.Part): Call<ResponseBody>
+
+
 }

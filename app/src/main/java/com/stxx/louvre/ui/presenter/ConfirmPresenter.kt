@@ -83,6 +83,7 @@ class ConfirmPresenter : ConfirmOrderContact.Presenter {
                         val body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), Gson().toJson(listOf(id)))
                         return@Function RetrofitManager.create().removeOrder(body)
                     } else {
+                        ToastUtils.showShort("商品库存不足")
                         return@Function null
                     }
                 })
@@ -93,7 +94,7 @@ class ConfirmPresenter : ConfirmOrderContact.Presenter {
                             if (!TextUtils.isEmpty(orderStr)) {
                                 mView.respSaveOrder(orderStr)
                             } else {
-                                ToastUtils.showShort("保存订单失败")
+                                ToastUtils.showShort("删除订单失败")
                             }
                         } else {
                             ToastUtils.showLong(response?.msg)
@@ -114,9 +115,11 @@ class ConfirmPresenter : ConfirmOrderContact.Presenter {
                 .subscribe(object : MySubscribe<ConfirmOrderListRespBean>() {
                     override fun onSuccess(response: ConfirmOrderListRespBean?) {
                         if (null != response) {
-                            val reqJson = Gson().toJson(response?.idlist)
+                            val reqJson = Gson().toJson(response.idlist)
                             val body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), reqJson)
                             getOrderInfo(body)
+                        }else{
+                            ToastUtils.showShort("500")
                         }
                     }
                 })

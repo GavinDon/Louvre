@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/setting_include"
+            layout="@layout/common_activity_title"
+            />
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="8dp"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="8dp"
+            />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_icon"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_include"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="头像"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:id="@+id/setting_iv_user_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/standard_icon"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_truename"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_icon"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="真实姓名"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <EditText
+                android:id="@+id/setting_et_truename"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                tools:text="aaa"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_nickname"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_truename"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="昵称"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <EditText
+                android:id="@+id/setting_et_nickname"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_sex"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_nickname"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="性别"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <TextView
+                android:id="@+id/setting_tv_sex"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                android:nextFocusForward="@id/setting_et_email"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_email"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_sex"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="邮箱"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <EditText
+                android:id="@+id/setting_et_email"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_birthday"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_email"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="出生日期"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <TextView
+                android:id="@+id/setting_tv_birthday"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_city"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_birthday"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="所在城市"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <TextView
+                android:id="@+id/setting_tv_city"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                android:nextFocusForward="@id/setting_et_city_detail"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/setting_fbl_city_detail"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_et_bg"
+            app:alignContent="center"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:justifyContent="space_between"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            app:layout_constraintRight_toLeftOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_city"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="详细地址"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_flexGrow="1"
+                />
+
+            <EditText
+                android:id="@+id/setting_et_city_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                app:layout_flexGrow="2"
+                />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.stxx.louvre.widgets.SubmitButton
+            android:id="@+id/setting_btn_update"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:btnAngle="@dimen/dp_4"
+            app:btnNormalColor="@color/price_red"
+            app:btnPressColor="@color/price_red_press"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guide_right"
+            app:layout_constraintTop_toBottomOf="@id/setting_fbl_city_detail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>
+

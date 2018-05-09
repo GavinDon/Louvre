@@ -23,6 +23,7 @@ import com.stxx.louvre.net.RetrofitManager
 import com.stxx.louvre.net.RxSchedulers
 import com.stxx.louvre.net.dialog.ProgressUtils
 import com.stxx.louvre.ui.WebActivity
+import kotlinx.android.synthetic.main.common_title.*
 import kotlinx.android.synthetic.main.fragment_recommend.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
@@ -62,6 +63,7 @@ class RecommendFragment : BaseFragment() {
             if (adapter.getItemViewType(position) == BaseQuickAdapter.HEADER_VIEW) return@setOnItemClickListener
             startActivity<WebActivity>("url" to "${Constant.CLASSIFY_URL}?type=${mAdapter.data[position].t.categoryName}")
         }
+        goSearch(tvSearch)
     }
 
     private fun radomData(leftName: String): ArrayList<RecommendListBean> {

@@ -4,6 +4,7 @@ import android.os.Build
 import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
 import com.blankj.utilcode.util.SPUtils
+import com.google.gson.Gson
 import com.stxx.louvre.base.Constant
 import com.stxx.louvre.base.MyApplication
 import com.stxx.louvre.entity.CodeAndMsg
@@ -36,6 +37,9 @@ interface ILogin {
                     .doOnNext {
                         if (0 == it?.code) {
                             syncCookie()
+                        } else {
+                            //
+                            SPUtils.getInstance().remove("userId")
                         }
                     }
                     .observeOn(Schedulers.io())
@@ -47,7 +51,9 @@ interface ILogin {
                         override fun onSuccess(response: UserInfoBean?) {
                             if (null != response && null != response.member) {
                                 SPUtils.getInstance().put(Constant.USER_ID, response.member.userId)
-                                SPUtils.getInstance().put(Constant.USER_ICON,response.member.picture)
+                                SPUtils.getInstance().put(Constant.USER_ICON, response.member.picture)
+                                val userJson=Gson().toJson(response)
+                                SPUtils.getInstance().put(Constant.USER_INFO,userJson)
                             }
                         }
 

@@ -12,10 +12,9 @@ import com.stxx.louvre.R
 import com.stxx.louvre.adapter.HomeFragmentAdapter
 import com.stxx.louvre.base.BaseFragment
 import com.stxx.louvre.ui.contract.HomeContact
-import com.stxx.louvre.ui.activity.SearchActivity
+import com.stxx.louvre.utils.UploadImgUtil
 import kotlinx.android.synthetic.main.common_title.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
@@ -49,9 +48,10 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, RadioGroup.
         rb.setOnCheckedChangeListener(this)
         rb.check(R.id.rbLu)
         camera.setOnClickListener {
-            startActivity<SearchActivity>()
-            activity?.overridePendingTransition(R.anim.activity_alpha_in, R.anim.activity_alpha_out)
+            UploadImgUtil(this.activity!!)
+                    .choosePicture()
         }
+        goSearch(tvSearch)
     }
 
     override fun onPageScrollStateChanged(state: Int) {

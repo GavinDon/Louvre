@@ -25,10 +25,7 @@ import com.stxx.louvre.ui.presenter.ConfirmPresenter
 import kotlinx.android.synthetic.main.activity_fill_in_order.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 
 /**
  * 确认订单
@@ -103,8 +100,6 @@ class ConfirmOrderActivity : BaseActivity(), View.OnClickListener, ConfirmOrderC
                         mOrderInfo[0].p_NAME,
                         "0",
                         "${mOrderInfo[0].id}"
-
-
                 )
                 val reqJson = Gson().toJson(saveOrderObj)
                 LogUtils.i(reqJson)
@@ -191,7 +186,11 @@ class ConfirmOrderActivity : BaseActivity(), View.OnClickListener, ConfirmOrderC
                 val payResult = PayTask(this@ConfirmOrderActivity).payV2(orderStr, true)
                 uiThread {
                     when (payResult["resultStatus"]) {
-                        "9000" -> toast("支付成功")
+                        "9000" -> {
+                            toast("支付成功")
+                            startActivity<OrderStatusActivity>()
+                            this@ConfirmOrderActivity.finish()
+                        }
                         "4000" -> toast("订单支付失败")
                         "6002" -> toast("网络中断")
                         "6001" -> toast("您取消了支付")

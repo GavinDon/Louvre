@@ -201,7 +201,7 @@ class ShoppingCartFragment : BaseFragment(), CompoundButton.OnCheckedChangeListe
      */
     override fun onClick(v: View?) {
         if (v is Button) {
-            //当前台未选中任何商品时不进行提交 
+            //当前台未选中任何商品时不进行提交
             val data = mAdapter.data
             when {
                 data.none { it.status == 0 } -> toast("未选中任何商品")

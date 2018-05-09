@@ -8,7 +8,9 @@ import com.stxx.louvre.entity.ShoppingCartListRespBean
 import com.stxx.louvre.net.MySubscribe
 import com.stxx.louvre.net.RetrofitManager
 import com.stxx.louvre.net.RxSchedulers
+import com.stxx.louvre.net.dialog.ProgressUtils
 import com.stxx.louvre.ui.contract.ShoppingCartContact
+import com.stxx.louvre.ui.fragment.ShoppingCartFragment
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import java.lang.Exception
@@ -54,6 +56,7 @@ class ShoppingCartPresenter : ShoppingCartContact.Presenter {
             val body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), reqJson)
             RetrofitManager.create().ShoppingClear(body)
                     .compose(RxSchedulers.applySchedulers())
+                    .compose(ProgressUtils.applyProgressBar((mView as ShoppingCartFragment).activity!!))
                     .subscribe(object : MySubscribe<CodeAndMsg>() {
                         override fun onSuccess(response: CodeAndMsg?) {
                             if (null != response && 0 == response.code) {

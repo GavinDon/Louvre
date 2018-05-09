@@ -51,6 +51,7 @@ class HomeTabLfgFragment : BaseFragment() {
             LogUtils.i(Constant.HOME_NEWS_URL + mAdapter.data[position].id)
             startActivity<WebActivity>("url" to Constant.HOME_NEWS_URL + mAdapter.data[position].id)
         }
+
     }
 
     private fun reqData() {
@@ -72,7 +73,7 @@ class HomeTabLfgAdapter(layoutResId: Int, data: MutableList<HomeLfgBean.RowsBean
     override fun convert(helper: BaseViewHolder?, item: HomeLfgBean.RowsBean?) {
         helper!!.setText(R.id.ada_home_tab_lfg_store_name, item?.name)
                 .setText(R.id.ada_home_tab_lfg_hour_ago, showLatest(item?.utime))
-                .setText(R.id.ada_home_tab_lfg_statement,item?.context)
+//                .setText(R.id.ada_home_tab_lfg_statement,Base64Util.decode(item?.context))
         val multi = MultiTransformation(
                 RoundedCornersTransformation(24, 0, RoundedCornersTransformation.CornerType.ALL))
         Glide.with(mContext)
@@ -83,6 +84,7 @@ class HomeTabLfgAdapter(layoutResId: Int, data: MutableList<HomeLfgBean.RowsBean
                 .load(ContextCompat.getDrawable(mContext,R.mipmap.login_logo))
                 .apply(RequestOptions.bitmapTransform(multi))
                 .into(helper.getView(R.id.ada_home_tab_lfg_store_icon))
+
     }
 
     /**

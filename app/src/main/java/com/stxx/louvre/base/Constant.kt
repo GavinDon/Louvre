@@ -13,9 +13,9 @@ class Constant {
         /**
          * 链接url
          */
-//      const val REQUEST_BASE_URL = "http://124.115.16.18/"
         const val REQUEST_BASE_URL = "http://www.hmlfg.net/"
-        //                const val REQUEST_BASE_URL = "http://10.201.8.186:8082/"
+//        const val REQUEST_BASE_URL = "http://192.168.1.146:8082/" 李杰的ip
+//        const val REQUEST_BASE_URL = "http://192.168.1.114:8082/" //老周的ip
         const val SHARE_IS_FIRST = "is_first_enter_app"
         const val WEB_BASE_URL = "${REQUEST_BASE_URL}wapapp/dist/view/"
         //        const val WEB_BASE_URL = "http://10.201.8.186:8082/wapapp/dist/view/"
@@ -28,6 +28,8 @@ class Constant {
         const val MY_COLLECTOR_URL = "${WEB_BASE_URL}wodeshoucang.html" //我的收藏
         const val MY_COUPON_URL = "${WEB_BASE_URL}youhuiquan.html" //优惠券
         const val RECEIPT_MANAGER_URL = "${WEB_BASE_URL}fapiaoguanli.html" //发票管理
+        const val SEARCH_URL = "${WEB_BASE_URL}zuopinliebiao.html?key=" //搜索
+        const val PIC_SEARCH_PIC_URL = "${WEB_BASE_URL}zuopinliebiao.html?id="
         /**
          * requestCode
          */
@@ -49,5 +51,6 @@ class Constant {
         const val USER_NAME = "userName"
         const val USER_PSW = "password"
         const val USER_ICON = "userIcon"
+        const val USER_INFO = "userInfo"
     }
 }
